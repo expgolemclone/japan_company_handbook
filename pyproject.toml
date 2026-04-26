@@ -1,0 +1,31 @@
+[project]
+name = "japan-company-handbook"
+version = "0.1.0"
+description = "会社四季報オンラインの誌面アーカイブPDF一括保存ツール"
+requires-python = ">=3.12"
+dependencies = [
+    "playwright>=1.50,<2",
+    "httpx>=0.28,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9",
+    "pytest-asyncio>=0.24,<1",
+]
+
+[project.scripts]
+scrape = "scrape.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scrape"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-asyncio>=0.26.0",
+]

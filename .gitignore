@@ -1,0 +1,16 @@
+.venv/
+.pytest_cache/
+.playwright-mcp/
+__pycache__/
+*.py[cod]
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Runtime state and secrets
+data/cookies.json
+data/signed_params.json
+data/progress.json
+
+# Downloaded handbook PDFs are tracked via Git LFS
