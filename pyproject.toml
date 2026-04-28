@@ -16,9 +16,10 @@ dev = [
 
 [project.scripts]
 scrape = "scrape.__main__:main"
+invert-pdfs = "pdfops.__main__:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["scrape"]
+packages = ["scrape", "pdfops"]
 
 [build-system]
 requires = ["hatchling"]
