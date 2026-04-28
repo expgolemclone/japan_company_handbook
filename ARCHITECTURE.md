@@ -2,91 +2,214 @@
 
 ## Overview
 
-会社四季報オンライン（shikiho.toyokeizai.net）の誌面アーカイブPDFを一括保存するツール。
-有料会員のログインセッションを使い、CloudFront署名付きURL経由でPDFをダウンロードする。
+このリポジトリは、会社四季報オンラインの誌面アーカイブを取得し、後続処理しやすい形で保存するためのツール群で構成されている。現状は次の3系統が共存している。
+
+1. `scrape`
+   APIから全号のページPDFを直接取得するシンプルな一括ダウンローダー。
+2. `scrape.magazine`
+   号単位で raw manifest、正規化済み manifest、ページ実体、進捗、検証結果まで保存する取得パイプライン。
+3. `pdfops`
+   取得済みPDFを反転し、別ディレクトリへミラー出力する後処理ツール。
+
+認証はいずれも東洋経済サイトのログインCookieに依存する。現在の実装は Playwright MCP を前提にしておらず、`httpx` から直接 API と配信URLを叩く構成になっている。
 
 ## Design Constraints
 
-- **API認証**: サイトのAPI（`api-shikiho.toyokeizai.net`）はブラウザのCORSクレデンシャルでのみ認可される。httpx等の外部HTTPクライアントでは権限エラーになるため、銘柄一覧・号情報の取得はPlaywright MCP経由で事前に行い、JSONファイルに保存する。
-- **署名付きURL**: PDF配信はCloudFront署名付きCookieを使用。署名パラメータ（Policy/Signature/Key-Pair-Id）はワイルドカードポリシー（`files/shimen/basic/*`）のため、1回の取得で全銘柄のダウンロードに使い回せる。有効期限あり（数時間）。
-- **NixOS**: Playwright PythonはNixOSで動作しないため、ブラウザ操作はPlaywright MCP（既存ブラウザセッション）を利用する。
+- **ログインCookie必須**: 匿名では取得できない。既定では Chrome の `Cookies` DB を直接読み、`scrape.magazine` 系CLIは JSON 形式のCookieファイルも受け付ける。
+- **APIと配信URLは別物**: 号一覧や誌面メタデータは `api-shikiho.toyokeizai.net` から取得し、ページ本体は `shikiho.toyokeizai.net/files/...` から取得する。
+- **PDF URLは都度解決が必要**: 一部のページはAPIレスポンスに直URLを持たず、`/headers/v1/headers` が返す `pdf_hash` と会員tierからPDF URLを組み立てる。
+- **レスポンス形式が一定ではない**: `scrape.magazine.normalize` は複数キー候補から `page_id`、`stock_code`、`source_url` を推定する。
+- **長時間バッチを前提にする**: 号単位・ページ単位の進捗ファイルを持ち、中断後の再開と完了検証をできるようにしている。
+- **配信系の一時失敗を許容する**: `scrape.magazine.client.request_with_retries()` が `429`、`5xx`、`TransportError` をリトライする。
 
-## Data Flow
+## Runtime Flows
 
+### 1. `scrape` の全号PDF取得
+
+`scrape.__main__.py` は 1936年以降の全号を走査し、各号のページPDFを `data/{year}_{series}/` に保存する。
+
+```text
+Chrome Cookie DB
+  -> scrape.auth.load_toyokeizai_cookies()
+  -> scrape.client.build_api_client()
+  -> /sso/v1/sso/check
+  -> /headers/v1/headers
+  -> /files/v1/files/magazines/list
+  -> /files/v1/files/magazines/{year}/{series}
+  -> scrape.client.extract_page_ids()
+  -> scrape.downloader.download_all_pages()
+  -> data/{year}_{series}/{page_id}.pdf
+  -> data/progress.json
 ```
-1. Playwright MCP（手動）
-   ├── ログイン → Cookie抽出 → data/cookies.json
-   ├── 銘柄一覧取得 → data/stock_codes_{year}_{series}.json
-   └── 署名パラメータ抽出 → data/signed_params.json
 
-2. scrapeモジュール（自動）
-   ├── 署名パラメータ読込
-   ├── 銘柄コード読込
-   └── PDF一括ダウンロード（1秒間隔）
-       └── data/{year}_{series}/{code}.pdf
+特徴:
+
+- 出力はページPDFのみで、manifestは保持しない。
+- `data/progress.json` で `page_id + year + series` 単位の完了状態を管理する。
+- 連続アクセス間隔は `scrape/downloader.py` の `REQUEST_INTERVAL = 1.0` 秒。
+
+### 2. `scrape.magazine` の号単位取得
+
+`scrape-magazine` と `scrape-magazine-all` は、ページ実体だけでなく取得時のメタデータと検証可能な状態を丸ごと保存する。
+
+```text
+Chrome Cookie / Cookie JSON
+  -> scrape.magazine.client.build_magazine_http_client()
+  -> /files/v1/files/magazines/list
+  -> data/magazines/issues.raw.json
+  -> extract_issue_refs()
+  -> data/magazines/issues.expected.json
+  -> 号ごとに /files/v1/files/magazines/{calendar}/{series}
+  -> manifest.raw.json
+  -> normalize_magazine()
+  -> 必要時だけ /headers/v1/headers で pdf_hash 解決
+  -> manifest.normalized.json
+  -> pages/{page_id}.{ext}
+  -> issue progress.json
+  -> batch_progress.json
+  -> verify_report.json / batch_summary.json
 ```
 
-## File Structure
+特徴:
 
+- ページ実体は PDF とは限らず、`png`、`jpg`、`webp` も許容する。
+- `source_url` が manifest に無いページだけ `pdf_hash` を用いてPDF URLを組み立てる。
+- PDF URLが期限切れで HTML / JSON を返した場合は、`download_page()` が一度だけ `pdf_hash` を再取得して再試行する。
+- `scrape-magazine-all --resume` で成功済み号をスキップできる。
+- `scrape-magazine-verify` または `--verify-after-run` で保存完全性を検証できる。
+
+### 3. `pdfops` のPDF反転
+
+`invert-pdfs` は任意の入力ディレクトリ配下の PDF を列挙し、相対パスを保ったまま出力先へ反転版を書き出す。
+
+```text
+source_root/**/*.pdf
+  -> pdfops.plan_inversion_jobs()
+  -> invert_pdf()
+     -> gs があれば Ghostscript
+     -> 無ければ pdftoppm + ImageMagick
+  -> output_root/**/*.pdf
 ```
-scrape/
-├── __init__.py          # パッケージ初期化
-├── __main__.py          # エントリーポイント（main）
-├── client.py            # データ読込・URL構築
-├── downloader.py        # PDF一括ダウンロード
-└── progress.py          # 進捗管理（JSON、中断・再開対応）
 
-data/
-├── signed_params.json              # CloudFront署名パラメータ
-├── stock_codes_2025_3.json         # 2025年夏号 銘柄コード一覧
-├── stock_codes_2025_4.json         # 2025年秋号
-├── stock_codes_2026_1.json         # 2026年新春号
-├── stock_codes_2026_2.json         # 2026年春号
-├── cookies.json                    # 認証Cookie（gitignore）
-├── progress.json                   # ダウンロード進捗（自動生成）
-├── 2025_3/{code}.pdf               # 各号のPDF保存先
-├── 2025_4/{code}.pdf
-├── 2026_1/{code}.pdf
-└── 2026_2/{code}.pdf
+特徴:
 
-tests/
-├── test_client.py                  # client.py のテスト
-├── test_downloader.py              # downloader.py のテスト
-└── test_progress.py                # progress.py のテスト
-```
+- 出力先ディレクトリ構造は入力をミラーする。
+- `gs` があればベクタPDFのまま反転し、無ければラスタライズ経由で生成する。
 
 ## Module Responsibilities
 
+### `scrape/auth.py`
+
+- Chrome の Cookie SQLite DB を一時コピーして読み込む。
+- v10 形式の暗号化Cookieを復号し、`httpx.Cookies` に積み替える。
+- JSON Cookie経由ではなくブラウザ実Cookieを使う経路の基盤。
+
 ### `scrape/client.py`
 
-データ読込とPDF URL構築を担当。
-
-- `ISSUES`: 直近4号のメタデータ（ハードコード）
-- `load_stock_codes(year, series)`: 保存済み銘柄コード一覧を読み込む
-- `load_signed_params()`: 保存済みCloudFront署名パラメータを読み込む
-- `build_pdf_url(year, series, code, params)`: 署名付きPDF URLを構築する
-- `build_http_client()`: PDFダウンロード用のhttpx.Clientを構築する
+- `scrape` 系の低レベルAPIアクセスを担当。
+- 会員権限から `basic` / `premium` のPDFパスを決める。
+- 号一覧取得、号メタデータ取得、ページID抽出、PDF URL構築を行う。
 
 ### `scrape/downloader.py`
 
-PDFダウンロードの実行を担当。1秒間隔で順次ダウンロード。
-
-- `download_pdf()`: 1銘柄のPDFをダウンロード・保存。content-type検証あり
-- `download_all_stocks()`: 進捗管理付き一括ダウンロード。未ダウンロード分のみ処理
+- `scrape` 系のページPDF保存を担当。
+- 保存先は `data/{year}_{series}/{page_id}.pdf`。
+- `content-type` を検査し、PDF以外を弾く。
 
 ### `scrape/progress.py`
 
-JSONファイルベースの進捗管理。中断・再開に対応。
+- `scrape` 系の簡易進捗管理。
+- `data/progress.json` に completed キー集合を保存する。
+- autosave と flush を持つ。
 
-- `DownloadKey`: `{code}_{year}_{series}` 形式のキー（frozen dataclass）
-- `Progress`: ダウンロード済みの記録・参照。`pending_codes()` で未処理分を抽出
+### `scrape/magazine/client.py`
 
-### `scrape/__main__.py`
+- `scrape.magazine` 系のHTTPクライアント構築を担当。
+- Chrome Cookie DB と JSON Cookie の両方に対応する。
+- 号一覧取得、単号取得、ページ一覧取得、`pdf_hash` 解決、リトライ制御、issue一覧キャッシュ保存を行う。
 
-エントリーポイント。全号のPDFダウンロードを実行する。
+### `scrape/magazine/normalize.py`
+
+- APIレスポンスを安定した内部manifestへ正規化する。
+- 重複ページの統合、`stock_code` の集約、`source_url` 推定、拡張子推定を行う。
+- 正規化結果は `manifest.normalized.json` に保存される。
+
+### `scrape/magazine/downloader.py`
+
+- 単号取得の実行本体。
+- `manifest.raw.json` と `manifest.normalized.json` を保存してからページ実体を取得する。
+- 取得中の失敗は issue progress に記録する。
+
+### `scrape/magazine/progress.py`
+
+- 号単位の `IssueProgress` と、全体バッチ単位の `BatchProgress` を持つ。
+- `IssueProgress` は expected pages、各ページの completed / failed、完了フラグを保持する。
+- `BatchProgress` は `pending` / `running` / `succeeded` / `failed` を保持する。
+
+### `scrape/magazine/verify.py`
+
+- 単号・全号の保存完全性を検証する。
+- manifest 上の expected pages と `pages/` 実ファイル、progress 状態、`physical_page_count` の整合を確認する。
+- 結果は `verify_report.json` に保存できる。
+
+### `scrape/magazine/summary.py`
+
+- `BatchProgress` と `verify_report` から集計サマリを生成する。
+- 結果は `batch_summary.json` に保存する。
+
+### `scrape/magazine/*.py` CLI
+
+- `issue_cli.py`: 単号取得。
+- `all_cli.py`: 全号取得、再開、実行後検証。
+- `verify_cli.py`: 既存成果物の検証のみ実行。
+
+### `pdfops/invert.py`
+
+- PDF列挙、出力パス計画、PDF反転処理を担当。
+- Ghostscript 優先、無ければ `pdftoppm` と `magick` を使う。
+
+## Data Layout
+
+### 主要な入力・中間・出力
+
+```text
+data/
+├── progress.json                    # scrape 系の全体進捗
+├── {year}_{series}/                 # scrape 系のページPDF保存先
+│   └── {page_id}.pdf
+├── stock_codes_*.json              # 旧データ。現行実装では未使用
+└── magazines/
+    ├── issues.raw.json              # APIから取得した号一覧の生データ
+    ├── issues.expected.json         # バッチ対象の号一覧
+    ├── batch_progress.json          # 全号進捗
+    ├── batch_summary.json           # 全号サマリ
+    ├── verify_report.json           # 全号検証結果
+    └── {calendar}_{series}/
+        ├── manifest.raw.json
+        ├── manifest.normalized.json
+        ├── progress.json
+        └── pages/
+            └── {page_id}.{pdf|png|jpg|webp}
+
+derived/
+└── inverted_pdfs/
+    └── ...                          # invert-pdfs の出力先の一例
+```
+
+## CLI Surface
+
+`pyproject.toml` で公開しているCLIは次の通り。
+
+- `scrape`: `scrape.__main__:main`
+- `scrape-magazine`: `scrape.magazine.issue_cli:main`
+- `scrape-magazine-all`: `scrape.magazine.all_cli:main`
+- `scrape-magazine-verify`: `scrape.magazine.verify_cli:main`
+- `invert-pdfs`: `pdfops.__main__:main`
 
 ## Error Handling
 
-- 具体的な例外型のみキャッチ（`httpx.HTTPStatusError`, `httpx.TimeoutException`）
-- except + pass 禁止（ログ出力か再送出）
-- fail fast: エラーは呼び出し元に伝搬
+- HTTPステータス異常は `raise_for_status()` でそのまま失敗させる。
+- `scrape.magazine` では payload 内 `status.code` も検査し、権限エラーを `MagazinePermissionError` に切り分ける。
+- `request_with_retries()` は `429`、`5xx`、`TransportError` を再試行するが、永続エラーは握りつぶさない。
+- 単号バッチでは失敗したページや号の状態を progress に記録し、全件停止ではなく続行できる箇所を分けている。
+- 検証フェーズは「進捗が成功になっているか」だけでなく、「manifest と物理ファイルが一致するか」まで確認する。
