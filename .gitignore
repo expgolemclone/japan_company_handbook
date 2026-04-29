@@ -12,5 +12,6 @@ htmlcov/
 data/cookies.json
 data/signed_params.json
 data/progress.json
+data/watchdogs/
 
 # Downloaded handbook PDFs are tracked via Git LFS
