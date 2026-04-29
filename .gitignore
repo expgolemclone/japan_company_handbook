@@ -1,18 +1,49 @@
-.venv/
-.pytest_cache/
-.playwright-mcp/
+# === Whitelist .gitignore ===
+# デフォルトですべてを無視し、明示的に許可したものだけを管理する
+
+# すべて無視
+*
+
+# === ルート設定ファイル ===
+!.gitignore
+!.gitattributes
+!README.md
+!ARCHITECTURE.md
+!pyproject.toml
+!uv.lock
+
+# === ソースコード ===
+!pdfops/
+!pdfops/**
+!scrape/
+!scrape/**
+!scripts/
+!scripts/**
+!tests/
+!tests/**
+
+# === キャッシュ・ビルド成果物は再除外 ===
 __pycache__/
-*.py[cod]
-.coverage
-htmlcov/
+*.pyc
+*.pyo
 .mypy_cache/
 .ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
 
-# Runtime state and secrets
-data/cookies.json
-data/signed_params.json
-data/progress.json
-data/watchdogs/
+# === データ: メタデータのみ ===
+# ディレクトリ構造を許可
+!data/
+!data/magazines/
+!data/magazines/**/
 
-# Downloaded handbook PDFs are kept local only
-data/**/*.pdf
+# 許可するメタデータファイル
+!data/magazines/**/manifest.normalized.json
+!data/magazines/**/manifest.raw.json
+!data/magazines/issues.expected.json
+!data/magazines/issues.raw.json
+!data/magazines/batch_summary.json
+!data/magazines/verify_report.json
+!data/stock_codes_*.json
