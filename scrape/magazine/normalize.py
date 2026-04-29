@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import re
 from pathlib import PurePosixPath
-from typing import Any
 from urllib.parse import urljoin, urlparse
 
 from scrape.magazine.client import SITE_BASE, build_pdf_source_url
@@ -35,7 +34,7 @@ URL_HINTS = (
 
 
 def normalize_magazine(
-    raw_issue: dict[str, Any],
+    raw_issue: dict[str, object],
     issue: MagazineIssueKey | None = None,
     *,
     pdf_access: PdfAccessInfo | None = None,
@@ -116,7 +115,7 @@ def guess_file_extension_from_url(url: str | None) -> str | None:
     return ext
 
 
-def _extract_page_id(raw_page: dict[str, Any]) -> str:
+def _extract_page_id(raw_page: dict[str, object]) -> str:
     for key in PAGE_KEYS:
         value = raw_page.get(key)
         if value:
@@ -124,7 +123,7 @@ def _extract_page_id(raw_page: dict[str, Any]) -> str:
     raise ValueError(f"page id を解決できません: {raw_page}")
 
 
-def _extract_stock_code(raw_page: dict[str, Any]) -> str | None:
+def _extract_stock_code(raw_page: dict[str, object]) -> str | None:
     for key in STOCK_KEYS:
         value = raw_page.get(key)
         if value:
@@ -132,7 +131,7 @@ def _extract_stock_code(raw_page: dict[str, Any]) -> str | None:
     return None
 
 
-def _extract_source_url(raw_page: dict[str, Any]) -> str | None:
+def _extract_source_url(raw_page: dict[str, object]) -> str | None:
     candidates: list[tuple[int, str]] = []
     _collect_source_candidates(raw_page, candidates)
     if not candidates:
@@ -143,7 +142,7 @@ def _extract_source_url(raw_page: dict[str, Any]) -> str | None:
 
 
 def _resolve_source_url(
-    raw_page: dict[str, Any],
+    raw_page: dict[str, object],
     issue: MagazineIssueKey,
     pdf_access: PdfAccessInfo | None,
 ) -> str | None:
@@ -162,7 +161,7 @@ def _resolve_file_extension(
 
 
 def _collect_source_candidates(
-    value: Any, candidates: list[tuple[int, str]], *, current_key: str = ""
+    value: object, candidates: list[tuple[int, str]], *, current_key: str = ""
 ) -> None:
     if isinstance(value, dict):
         for key, child in value.items():
@@ -215,7 +214,7 @@ def _normalize_candidate_url(candidate: str) -> str:
     return urljoin(SITE_BASE, candidate)
 
 
-def _optional_str(value: Any) -> str | None:
+def _optional_str(value: object) -> str | None:
     if value is None:
         return None
     text = str(value)

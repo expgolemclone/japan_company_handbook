@@ -464,7 +464,7 @@ def _terminate_process_group(
             return process.poll() if process is not None else None
         if process is not None and process.poll() is not None:
             return process.poll()
-        time.sleep(0.1)
+        time.sleep(0.1)  # noqa: scrape-interval
 
     try:
         os.killpg(pgid, signal.SIGKILL)
@@ -477,7 +477,7 @@ def _terminate_process_group(
             return process.poll() if process is not None else None
         if process is not None and process.poll() is not None:
             return process.poll()
-        time.sleep(0.1)
+        time.sleep(0.1)  # noqa: scrape-interval
 
     return process.poll() if process is not None else None
 
@@ -486,8 +486,10 @@ def _pid_exists(pid: int) -> bool:
     try:
         os.kill(pid, 0)
     except ProcessLookupError:
+        logger.debug("pid %d は存在しません", pid)
         return False
     except PermissionError:
+        logger.debug("pid %d は存在しますが権限がありません", pid)
         return True
     return True
 

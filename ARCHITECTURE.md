@@ -170,25 +170,32 @@ source_root/**/*.pdf
 
 ## Data Layout
 
+### Git 管理方針
+
+`.gitignore` はホワイトリスト方式を採用している。ソースコード・設定ファイル・メタデータJSONのみを管理し、PDF・進捗ファイル・認証情報はスクレイパーの実行によってローカルにのみ存在する。PDFはスクレイパーで再取得可能なためリポジトリには含めない。
+
 ### 主要な入力・中間・出力
 
 ```text
-data/
-├── progress.json                    # scrape 系の全体進捗
-├── {year}_{series}/                 # scrape 系のページPDF保存先
+data/                               # ホワイトリストで個別に管理
+├── progress.json                    # [未管理] scrape 系の全体進捗
+├── cookies.json                     # [未管理] 認証Cookie（秘匿）
+├── signed_params.json               # [未管理] 認証パラメータ（秘匿）
+├── {year}_{series}/                 # [未管理] scrape 系のページPDF保存先
 │   └── {page_id}.pdf
-├── stock_codes_*.json              # 旧データ。現行実装では未使用
+├── stock_codes_*.json              # [管理] 旧データ。現行実装では未使用
+├── watchdogs/                       # [未管理] watchdog の実行時ログ・ロック
 └── magazines/
-    ├── issues.raw.json              # APIから取得した号一覧の生データ
-    ├── issues.expected.json         # バッチ対象の号一覧
-    ├── batch_progress.json          # 全号進捗
-    ├── batch_summary.json           # 全号サマリ
-    ├── verify_report.json           # 全号検証結果
+    ├── issues.raw.json              # [管理] APIから取得した号一覧の生データ
+    ├── issues.expected.json         # [管理] バッチ対象の号一覧
+    ├── batch_progress.json          # [未管理] 全号進捗
+    ├── batch_summary.json           # [管理] 全号サマリ
+    ├── verify_report.json           # [管理] 全号検証結果
     └── {calendar}_{series}/
-        ├── manifest.raw.json
-        ├── manifest.normalized.json
-        ├── progress.json
-        └── pages/
+        ├── manifest.raw.json        # [管理] APIレスポンスの生データ
+        ├── manifest.normalized.json # [管理] 正規化済みmanifest
+        ├── progress.json            # [未管理] 号単位の進捗
+        └── pages/                   # [未管理] ページ実体
             └── {page_id}.{pdf|png|jpg|webp}
 
 derived/

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any
 
 from scrape.magazine.client import (
     BATCH_PROGRESS_FILE,
@@ -12,7 +11,12 @@ from scrape.magazine.client import (
     issue_dir,
 )
 from scrape.magazine.progress import BatchProgress, IssueProgress
-from scrape.magazine.types import MagazineIssueKey
+from scrape.magazine.types import (
+    IssueVerifyReport,
+    MagazineIssueKey,
+    MissingPageEntry,
+    VerifyReport,
+)
 
 RAW_MANIFEST_FILE = "manifest.raw.json"
 NORMALIZED_MANIFEST_FILE = "manifest.normalized.json"
@@ -22,7 +26,7 @@ PAGES_DIR = "pages"
 
 def verify_issue_directory(
     issue: MagazineIssueKey, out_dir: Path = MAGAZINES_DIR
-) -> dict[str, Any]:
+) -> IssueVerifyReport:
     issue_path = issue_dir(out_dir, issue)
     raw_path = issue_path / RAW_MANIFEST_FILE
     normalized_path = issue_path / NORMALIZED_MANIFEST_FILE
@@ -108,14 +112,14 @@ def verify_all_issues(
     *,
     expected_issues_path: Path = EXPECTED_ISSUES_FILE,
     batch_progress_path: Path = BATCH_PROGRESS_FILE,
-) -> dict[str, Any]:
+) -> VerifyReport:
     expected_issues = load_expected_issues(expected_issues_path)
     batch_progress = BatchProgress(batch_progress_path)
 
-    issue_reports: list[dict[str, Any]] = []
+    issue_reports: list[IssueVerifyReport] = []
     missing_issues: list[str] = []
-    missing_pages: list[dict[str, Any]] = []
-    failed_by_issue: dict[str, dict[str, Any]] = {}
+    missing_pages: list[MissingPageEntry] = []
+    failed_by_issue: dict[str, dict[str, object]] = {}
     verified_issues: list[str] = []
 
     for issue in expected_issues:
@@ -155,23 +159,23 @@ def verify_all_issues(
         and not missing_pages
     )
 
-    return {
-        "expected_issue_count": len(expected_issues),
-        "completed_issue_count": len(verified_issues),
-        "failed_issue_count": len(failed_by_issue),
-        "missing_issue_count": len(missing_issues),
-        "missing_page_count": sum(len(item["pages"]) for item in missing_pages),
-        "earliest_expected_issue": earliest_expected,
-        "earliest_verified_issue": earliest_verified,
-        "verified_complete": verified_complete,
-        "missing_issues": missing_issues,
-        "failed_issues": list(failed_by_issue.values()),
-        "missing_pages": missing_pages,
-        "issue_reports": issue_reports,
-    }
+    return VerifyReport(
+        expected_issue_count=len(expected_issues),
+        completed_issue_count=len(verified_issues),
+        failed_issue_count=len(failed_by_issue),
+        missing_issue_count=len(missing_issues),
+        missing_page_count=sum(len(item["pages"]) for item in missing_pages),
+        earliest_expected_issue=earliest_expected,
+        earliest_verified_issue=earliest_verified,
+        verified_complete=verified_complete,
+        missing_issues=missing_issues,
+        failed_issues=list(failed_by_issue.values()),
+        missing_pages=missing_pages,
+        issue_reports=issue_reports,
+    )
 
 
-def write_verify_report(report: dict[str, Any], path: Path) -> None:
+def write_verify_report(report: VerifyReport, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         json.dumps(report, indent=2, ensure_ascii=False),
@@ -189,14 +193,14 @@ def _issue_report(
     extra_files: list[str],
     physical_page_count: int,
     actual_file_count: int,
-) -> dict[str, Any]:
-    return {
-        "issue": str(issue),
-        "ok": ok,
-        "errors": errors,
-        "missing_pages": missing_pages,
-        "missing_files": missing_files,
-        "extra_files": extra_files,
-        "physical_page_count": physical_page_count,
-        "actual_file_count": actual_file_count,
-    }
+) -> IssueVerifyReport:
+    return IssueVerifyReport(
+        issue=str(issue),
+        ok=ok,
+        errors=errors,
+        missing_pages=missing_pages,
+        missing_files=missing_files,
+        extra_files=extra_files,
+        physical_page_count=physical_page_count,
+        actual_file_count=actual_file_count,
+    )

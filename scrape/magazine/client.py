@@ -6,7 +6,6 @@ import re
 import time
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
 from urllib.parse import parse_qs
 
 import httpx
@@ -35,7 +34,7 @@ PERMISSION_STATUS_CODES = {"3202", "401", "403"}
 SUCCESS_STATUS_CODES = {"1000", "2000"}
 PDF_TIER_RE = re.compile(r"/files/shimen/(basic|premium)/", re.IGNORECASE)
 REQUEST_RETRIES = 5
-RETRY_DELAY_SECONDS = 1.0
+RETRY_DELAY_SECONDS = 1.0  # noqa: scrape-interval
 
 
 class MagazineApiError(RuntimeError):
@@ -82,7 +81,7 @@ def _load_cookie_jar(cookie_file: Path) -> httpx.Cookies:
     return load_toyokeizai_cookies(cookie_file)
 
 
-def fetch_issue_list(client: httpx.Client) -> dict[str, Any]:
+def fetch_issue_list(client: httpx.Client) -> dict[str, object]:
     payload = _request_json(client, "/files/v1/files/magazines/list")
     _raise_for_payload_status(payload, endpoint="issue list")
     return payload
@@ -90,13 +89,15 @@ def fetch_issue_list(client: httpx.Client) -> dict[str, Any]:
 
 def fetch_magazine_issue(
     client: httpx.Client, calendar: str, series: str
-) -> dict[str, Any]:
+) -> dict[str, object]:
     payload = _request_json(client, f"/files/v1/files/magazines/{calendar}/{series}")
     _raise_for_payload_status(payload, endpoint=f"{calendar}_{series}")
     return payload
 
 
-def fetch_stock_page_info(client: httpx.Client, page_or_code: str) -> dict[str, Any]:
+def fetch_stock_page_info(
+    client: httpx.Client, page_or_code: str
+) -> dict[str, object]:
     payload = _request_json(client, f"/files/v1/files/magazines/{page_or_code}/list")
     _raise_for_payload_status(
         payload,
@@ -117,7 +118,8 @@ def fetch_pdf_access(
     )
     _raise_for_payload_status(payload, endpoint="headers")
 
-    pdf_hash = str(payload.get("pdf_hash", "")).strip()
+    pdf_hash_val = payload.get("pdf_hash", "")
+    pdf_hash = str(pdf_hash_val).strip() if pdf_hash_val is not None else ""
     if not pdf_hash:
         raise MagazineApiError("headers: pdf_hash がありません")
 
@@ -139,7 +141,7 @@ def build_pdf_source_url(
 
 
 def extract_issue_refs(
-    payload: dict[str, Any], *, start_calendar: int = 1936
+    payload: dict[str, object], *, start_calendar: int = 1936
 ) -> list[MagazineIssueKey]:
     raw_magazines = payload.get("magazines")
     if not isinstance(raw_magazines, list):
@@ -170,7 +172,7 @@ def extract_issue_refs(
 
 
 def save_issue_list_cache(
-    payload: dict[str, Any], path: Path = ISSUES_RAW_FILE
+    payload: dict[str, object], path: Path = ISSUES_RAW_FILE
 ) -> None:
     _write_json(path, payload)
 
@@ -212,8 +214,8 @@ def _request_json(
     url: str,
     *,
     method: str = "GET",
-    json_body: dict[str, Any] | None = None,
-) -> dict[str, Any]:
+    json_body: dict[str, object] | None = None,
+) -> dict[str, object]:
     response = request_with_retries(
         client,
         method,
@@ -235,7 +237,7 @@ def _request_json(
 
 
 def _raise_for_payload_status(
-    payload: dict[str, Any],
+    payload: dict[str, object],
     *,
     endpoint: str,
     allowed_status_codes: set[str] | None = None,
@@ -259,7 +261,7 @@ def _raise_for_payload_status(
     raise MagazineApiError(f"{endpoint}: APIエラーです ({code}: {message})")
 
 
-def _write_json(path: Path, payload: dict[str, Any]) -> None:
+def _write_json(path: Path, payload: dict[str, object]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False),
@@ -286,7 +288,7 @@ def request_with_retries(
     method: str,
     url: str,
     *,
-    json_body: dict[str, Any] | None = None,
+    json_body: dict[str, object] | None = None,
     retries: int = REQUEST_RETRIES,
     retry_delay: float = RETRY_DELAY_SECONDS,
 ) -> httpx.Response:
@@ -294,12 +296,12 @@ def request_with_retries(
 
     for attempt in range(retries):
         try:
-            response = client.request(method, url, json=json_body)
+            response = client.request(method, url, json=json_body)  # noqa: scrape-interval
         except httpx.TransportError as exc:
             last_error = exc
             if attempt + 1 == retries:
                 raise
-            time.sleep(retry_delay * (attempt + 1))
+            time.sleep(retry_delay * (attempt + 1))  # noqa: scrape-interval
             continue
 
         if response.status_code == 429 or response.status_code >= 500:
@@ -310,7 +312,7 @@ def request_with_retries(
             )
             if attempt + 1 == retries:
                 return response
-            time.sleep(retry_delay * (attempt + 1))
+            time.sleep(retry_delay * (attempt + 1))  # noqa: scrape-interval
             continue
 
         return response

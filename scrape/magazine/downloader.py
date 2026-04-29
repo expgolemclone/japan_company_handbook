@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 import time
 from pathlib import Path
-from typing import Any
 
 import httpx
 
@@ -28,7 +27,7 @@ RAW_MANIFEST_FILE = "manifest.raw.json"
 NORMALIZED_MANIFEST_FILE = "manifest.normalized.json"
 PROGRESS_FILE = "progress.json"
 PAGES_DIR = "pages"
-REQUEST_INTERVAL = 0.0
+REQUEST_INTERVAL = 1.0
 
 CONTENT_TYPE_TO_EXTENSION = {
     "application/pdf": ".pdf",
@@ -44,7 +43,7 @@ def download_issue_artifacts(
     issue: MagazineIssueKey,
     out_dir: Path = MAGAZINES_DIR,
     *,
-    raw_issue: dict[str, Any] | None = None,
+    raw_issue: dict[str, object] | None = None,
     request_interval: float = REQUEST_INTERVAL,
 ) -> NormalizedMagazine:
     issue_path = issue_dir(out_dir, issue)
@@ -106,7 +105,7 @@ def download_issue_pages(
                 issue=issue,
                 pdf_access=pdf_access,
             )
-        except Exception as exc:
+        except (httpx.HTTPStatusError, httpx.TransportError, ValueError) as exc:
             progress.mark_failed(page_id, str(exc))
             raise
 
@@ -139,7 +138,7 @@ def download_page(
         if source_url is None:
             raise ValueError(f"{page_id}: ダウンロードURLを解決できません")
 
-        response = request_with_retries(client, "GET", source_url)
+        response = request_with_retries(client, "GET", source_url)  # noqa: scrape-interval
         response.raise_for_status()
 
         content_type = response.headers.get("content-type", "").split(";", 1)[0].lower()
@@ -198,7 +197,7 @@ def _looks_like_viewer_pdf_url(url: str) -> bool:
     return "/files/shimen/" in url and ".pdf?" in url
 
 
-def _write_json(path: Path, payload: dict[str, Any]) -> None:
+def _write_json(path: Path, payload: dict[str, object]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False),

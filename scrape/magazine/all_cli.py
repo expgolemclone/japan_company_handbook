@@ -4,6 +4,8 @@ import argparse
 import logging
 from pathlib import Path
 
+import httpx
+
 from scrape.auth import DEFAULT_CHROME_COOKIES
 from scrape.magazine.client import (
     BATCH_PROGRESS_FILE,
@@ -53,7 +55,7 @@ def main(argv: list[str] | None = None) -> int:
                     args.out_dir,
                     request_interval=args.request_interval,
                 )
-            except Exception as exc:
+            except (httpx.HTTPStatusError, httpx.TransportError, ValueError, OSError) as exc:
                 logger.exception("issue failed: %s", issue)
                 batch_progress.mark_failed(issue, str(exc))
                 continue

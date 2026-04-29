@@ -2,9 +2,14 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any
 
-from scrape.magazine.types import MagazineIssueKey
+from scrape.magazine.types import (
+    BatchProgressState,
+    BatchRecord,
+    IssueProgressState,
+    MagazineIssueKey,
+    PageProgressState,
+)
 
 
 class IssueProgress:
@@ -20,7 +25,7 @@ class IssueProgress:
     def expected_pages(self) -> list[str]:
         return list(self._state["expected_pages"])
 
-    def page_state(self, page_id: str) -> dict[str, Any] | None:
+    def page_state(self, page_id: str) -> PageProgressState | None:
         raw = self._state["pages"].get(page_id)
         return dict(raw) if isinstance(raw, dict) else None
 
@@ -41,18 +46,18 @@ class IssueProgress:
         self._save()
 
     def mark_downloaded(self, page_id: str, filename: str) -> None:
-        self._state["pages"][page_id] = {
-            "status": "completed",
-            "filename": filename,
-        }
+        self._state["pages"][page_id] = PageProgressState(
+            status="completed",
+            filename=filename,
+        )
         self._sync_completed()
         self._save()
 
     def mark_failed(self, page_id: str, reason: str) -> None:
-        self._state["pages"][page_id] = {
-            "status": "failed",
-            "reason": reason,
-        }
+        self._state["pages"][page_id] = PageProgressState(
+            status="failed",
+            reason=reason,
+        )
         self._sync_completed()
         self._save()
 
@@ -68,20 +73,20 @@ class IssueProgress:
         self._save()
         return self.completed
 
-    def _load(self) -> dict[str, Any]:
+    def _load(self) -> IssueProgressState:
         if not self._path.exists():
-            return {
-                "expected_pages": [],
-                "pages": {},
-                "completed": False,
-            }
+            return IssueProgressState(
+                expected_pages=[],
+                pages={},
+                completed=False,
+            )
 
         raw = json.loads(self._path.read_text(encoding="utf-8"))
-        return {
-            "expected_pages": list(raw.get("expected_pages", [])),
-            "pages": dict(raw.get("pages", {})),
-            "completed": bool(raw.get("completed", False)),
-        }
+        return IssueProgressState(
+            expected_pages=list(raw.get("expected_pages", [])),
+            pages=dict(raw.get("pages", {})),
+            completed=bool(raw.get("completed", False)),
+        )
 
     def _save(self) -> None:
         self._path.parent.mkdir(parents=True, exist_ok=True)
@@ -116,27 +121,27 @@ class BatchProgress:
     def is_succeeded(self, issue: MagazineIssueKey) -> bool:
         return self.status(issue) == "succeeded"
 
-    def records(self) -> dict[str, dict[str, Any]]:
+    def records(self) -> dict[str, BatchRecord]:
         return dict(self._state["issues"])
 
     def mark_running(self, issue: MagazineIssueKey) -> None:
-        self._state["issues"][str(issue)] = {"status": "running", "error": None}
+        self._state["issues"][str(issue)] = BatchRecord(status="running", error=None)
         self._save()
 
     def mark_succeeded(self, issue: MagazineIssueKey) -> None:
-        self._state["issues"][str(issue)] = {"status": "succeeded", "error": None}
+        self._state["issues"][str(issue)] = BatchRecord(status="succeeded", error=None)
         self._save()
 
     def mark_failed(self, issue: MagazineIssueKey, error: str) -> None:
-        self._state["issues"][str(issue)] = {"status": "failed", "error": error}
+        self._state["issues"][str(issue)] = BatchRecord(status="failed", error=error)
         self._save()
 
-    def _load(self) -> dict[str, Any]:
+    def _load(self) -> BatchProgressState:
         if not self._path.exists():
-            return {"issues": {}}
+            return BatchProgressState(issues={})
 
         raw = json.loads(self._path.read_text(encoding="utf-8"))
-        return {"issues": dict(raw.get("issues", {}))}
+        return BatchProgressState(issues=dict(raw.get("issues", {})))
 
     def _save(self) -> None:
         self._path.parent.mkdir(parents=True, exist_ok=True)
