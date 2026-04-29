@@ -1,0 +1,23 @@
+{
+  "status": {
+    "code": "2000",
+    "message": "ok"
+  },
+  "magazine": {
+    "calendar": "1936",
+    "series": "1",
+    "title": "創刊号",
+    "pubDate": "19360301",
+    "pages": [
+      {
+        "page": "0000page",
+        "imageUrl": "https://example.test/1936-0000page.png"
+      },
+      {
+        "page": "0001page",
+        "stock_code": "1001",
+        "fileUrl": "https://example.test/1936-0001page.pdf"
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "status": {
+    "code": "2000",
+    "message": "ok"
+  },
+  "magazine": {
+    "calendar": "2026",
+    "series": "2",
+    "title": "春号",
+    "subTitle": "ベーシック版",
+    "pubDate": "20260318",
+    "pages": [
+      {
+        "page": "0000page",
+        "imageUrl": "/fixtures/0000page.png"
+      },
+      {
+        "page": "0013page",
+        "imageUrl": "https://example.test/0013page.png"
+      },
+      {
+        "page": "0100page",
+        "stock_code": "1301",
+        "fileUrl": "https://example.test/0100page.pdf"
+      },
+      {
+        "page": "0100page",
+        "stockCode": "7203",
+        "fileUrl": "https://example.test/0100page.pdf"
+      },
+      {
+        "page": "0101page",
+        "stockCode": "6501",
+        "src": "https://example.test/0101page.jpg"
+      }
+    ]
+  }
+}

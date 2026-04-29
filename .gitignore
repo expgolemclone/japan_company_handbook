@@ -14,4 +14,5 @@ data/signed_params.json
 data/progress.json
 data/watchdogs/
 
-# Downloaded handbook PDFs are tracked via Git LFS
+# Downloaded handbook PDFs are kept local only
+data/**/*.pdf

@@ -1,0 +1,32 @@
+{
+  "status": {
+    "code": "2000",
+    "message": "ok"
+  },
+  "magazines": [
+    {
+      "calendar": "2026",
+      "series": "2",
+      "title": "春号",
+      "pubDate": "20260318"
+    },
+    {
+      "calendar": "1936",
+      "series": "2",
+      "title": "第2号",
+      "pubDate": "19360601"
+    },
+    {
+      "calendar": "1936",
+      "series": "1",
+      "title": "創刊号",
+      "pubDate": "19360301"
+    },
+    {
+      "calendar": "2026",
+      "series": "2",
+      "title": "春号",
+      "pubDate": "20260318"
+    }
+  ]
+}

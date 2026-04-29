@@ -1,0 +1,1460 @@
+{
+  "issue": {
+    "calendar": "1946",
+    "series": "4"
+  },
+  "title": "１２月号",
+  "sub_title": null,
+  "pub_date": null,
+  "page_count": 284,
+  "physical_page_count": 159,
+  "pages": [
+    {
+      "page": "0000page",
+      "order": 0,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0000page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0001page",
+      "order": 1,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0001page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0002page",
+      "order": 2,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0002page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0003page",
+      "order": 3,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0003page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0004page",
+      "order": 4,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0004page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0005page",
+      "order": 5,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0005page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0006page",
+      "order": 6,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0006page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0007page",
+      "order": 7,
+      "stock_codes": [
+        "3101",
+        "3102"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0007page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0008page",
+      "order": 8,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0008page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0009page",
+      "order": 9,
+      "stock_codes": [
+        "3106",
+        "3107"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0009page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0010page",
+      "order": 10,
+      "stock_codes": [
+        "3104",
+        "3109"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0010page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0011page",
+      "order": 11,
+      "stock_codes": [
+        "3105",
+        "3110"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0011page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0012page",
+      "order": 12,
+      "stock_codes": [
+        "3111",
+        "3117"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0012page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0013page",
+      "order": 13,
+      "stock_codes": [
+        "3401"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0013page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0014page",
+      "order": 14,
+      "stock_codes": [
+        "3402",
+        "3405"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0014page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0015page",
+      "order": 15,
+      "stock_codes": [
+        "3201"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0015page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0016page",
+      "order": 16,
+      "stock_codes": [
+        "3204"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0016page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0017page",
+      "order": 17,
+      "stock_codes": [
+        "3001",
+        "3584"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0017page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0018page",
+      "order": 18,
+      "stock_codes": [
+        "3002",
+        "3302"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0018page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0019page",
+      "order": 19,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0019page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0020page",
+      "order": 20,
+      "stock_codes": [
+        "9501",
+        "9503"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0020page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0021page",
+      "order": 21,
+      "stock_codes": [
+        "9502",
+        "9506"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0021page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0022page",
+      "order": 22,
+      "stock_codes": [
+        "9504",
+        "9505"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0022page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0023page",
+      "order": 23,
+      "stock_codes": [
+        "9507",
+        "9508"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0023page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0024page",
+      "order": 24,
+      "stock_codes": [
+        "9531",
+        "9532"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0024page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0025page",
+      "order": 25,
+      "stock_codes": [
+        "9533",
+        "9535"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0025page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0026page",
+      "order": 26,
+      "stock_codes": [
+        "1661",
+        "9536"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0026page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0027page",
+      "order": 27,
+      "stock_codes": [
+        "9001",
+        "9005"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0027page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0028page",
+      "order": 28,
+      "stock_codes": [
+        "9009",
+        "9024"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0028page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0029page",
+      "order": 29,
+      "stock_codes": [
+        "9003",
+        "9012"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0029page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0030page",
+      "order": 30,
+      "stock_codes": [
+        "9010",
+        "9041"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0030page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0031page",
+      "order": 31,
+      "stock_codes": [
+        "9042",
+        "9043"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0031page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0032page",
+      "order": 32,
+      "stock_codes": [
+        "9052"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0032page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0033page",
+      "order": 33,
+      "stock_codes": [
+        "9048",
+        "9049"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0033page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0034page",
+      "order": 34,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0034page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0035page",
+      "order": 35,
+      "stock_codes": [
+        "9031"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0035page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0036page",
+      "order": 36,
+      "stock_codes": [
+        "9062",
+        "9101",
+        "9147"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0036page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0037page",
+      "order": 37,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0037page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0038page",
+      "order": 38,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0038page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0039page",
+      "order": 39,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0039page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0040page",
+      "order": 40,
+      "stock_codes": [
+        "2002",
+        "2503"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0040page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0041page",
+      "order": 41,
+      "stock_codes": [
+        "2001",
+        "2003"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0041page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0042page",
+      "order": 42,
+      "stock_codes": [
+        "2004",
+        "2201"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0042page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0043page",
+      "order": 43,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0043page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0044page",
+      "order": 44,
+      "stock_codes": [
+        "1332"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0044page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0045page",
+      "order": 45,
+      "stock_codes": [
+        "1301",
+        "1331"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0045page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0046page",
+      "order": 46,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0046page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0047page",
+      "order": 47,
+      "stock_codes": [
+        "4004"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0047page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0048page",
+      "order": 48,
+      "stock_codes": [
+        "4001",
+        "4061"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0048page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0049page",
+      "order": 49,
+      "stock_codes": [
+        "4005",
+        "4208"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0049page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0050page",
+      "order": 50,
+      "stock_codes": [
+        "4002",
+        "4041"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0050page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0051page",
+      "order": 51,
+      "stock_codes": [
+        "4042",
+        "4043"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0051page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0052page",
+      "order": 52,
+      "stock_codes": [
+        "4045",
+        "4112"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0052page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0053page",
+      "order": 53,
+      "stock_codes": [
+        "4010",
+        "4044"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0053page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0054page",
+      "order": 54,
+      "stock_codes": [
+        "3407",
+        "4021"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0054page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0055page",
+      "order": 55,
+      "stock_codes": [
+        "4272"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0055page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0056page",
+      "order": 56,
+      "stock_codes": [
+        "4063",
+        "4067"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0056page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0057page",
+      "order": 57,
+      "stock_codes": [
+        "4062",
+        "4275"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0057page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0058page",
+      "order": 58,
+      "stock_codes": [
+        "4027",
+        "4092"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0058page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0059page",
+      "order": 59,
+      "stock_codes": [
+        "5301",
+        "5302"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0059page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0060page",
+      "order": 60,
+      "stock_codes": [
+        "4612",
+        "4613"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0060page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0061page",
+      "order": 61,
+      "stock_codes": [
+        "4501",
+        "4901"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0061page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0062page",
+      "order": 62,
+      "stock_codes": [
+        "5231",
+        "5233"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0062page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0063page",
+      "order": 63,
+      "stock_codes": [
+        "5232",
+        "5236"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0063page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0064page",
+      "order": 64,
+      "stock_codes": [
+        "5235"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0064page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0065page",
+      "order": 65,
+      "stock_codes": [
+        "5261",
+        "5351"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0065page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0066page",
+      "order": 66,
+      "stock_codes": [
+        "3701",
+        "3861"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0066page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0067page",
+      "order": 67,
+      "stock_codes": [
+        "3864",
+        "3865"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0067page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0068page",
+      "order": 68,
+      "stock_codes": [
+        "3869"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0068page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0069page",
+      "order": 69,
+      "stock_codes": [
+        "4028",
+        "5014"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0069page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0070page",
+      "order": 70,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0070page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0071page",
+      "order": 71,
+      "stock_codes": [
+        "3315",
+        "5238"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0071page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0072page",
+      "order": 72,
+      "stock_codes": [
+        "1505",
+        "5715"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0072page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0073page",
+      "order": 73,
+      "stock_codes": [
+        "1508",
+        "9675"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0073page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0074page",
+      "order": 74,
+      "stock_codes": [
+        "8835"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0074page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0075page",
+      "order": 75,
+      "stock_codes": [
+        "1601",
+        "5001"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0075page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0076page",
+      "order": 76,
+      "stock_codes": [
+        "5002",
+        "5003"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0076page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0077page",
+      "order": 77,
+      "stock_codes": [
+        "5401",
+        "5404"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0077page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0078page",
+      "order": 78,
+      "stock_codes": [
+        "5406",
+        "5631"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0078page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0079page",
+      "order": 79,
+      "stock_codes": [
+        "5471",
+        "5632"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0079page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0080page",
+      "order": 80,
+      "stock_codes": [
+        "5408"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0080page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0081page",
+      "order": 81,
+      "stock_codes": [
+        "5441",
+        "5476"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0081page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0082page",
+      "order": 82,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0082page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0083page",
+      "order": 83,
+      "stock_codes": [
+        "5482"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0083page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0084page",
+      "order": 84,
+      "stock_codes": [
+        "5473"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0084page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0085page",
+      "order": 85,
+      "stock_codes": [
+        "5407",
+        "5453"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0085page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0086page",
+      "order": 86,
+      "stock_codes": [
+        "5480"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0086page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0087page",
+      "order": 87,
+      "stock_codes": [
+        "5478",
+        "5563"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0087page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0088page",
+      "order": 88,
+      "stock_codes": [
+        "5479",
+        "5491"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0088page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0089page",
+      "order": 89,
+      "stock_codes": [
+        "5703"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0089page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0090page",
+      "order": 90,
+      "stock_codes": [
+        "5801",
+        "5802"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0090page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0091page",
+      "order": 91,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0091page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0092page",
+      "order": 92,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0092page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0093page",
+      "order": 93,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0093page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0094page",
+      "order": 94,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0094page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0095page",
+      "order": 95,
+      "stock_codes": [
+        "6105",
+        "6474"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0095page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0096page",
+      "order": 96,
+      "stock_codes": [
+        "6011",
+        "6102"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0096page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0097page",
+      "order": 97,
+      "stock_codes": [
+        "6205"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0097page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0098page",
+      "order": 98,
+      "stock_codes": [
+        "6103"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0098page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0099page",
+      "order": 99,
+      "stock_codes": [
+        "6206",
+        "6214"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0099page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0100page",
+      "order": 100,
+      "stock_codes": [
+        "6101",
+        "7701"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0100page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0101page",
+      "order": 101,
+      "stock_codes": [
+        "7731",
+        "7752"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0101page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0102page",
+      "order": 102,
+      "stock_codes": [
+        "6471",
+        "6472"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0102page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0103page",
+      "order": 103,
+      "stock_codes": [
+        "6473",
+        "7261"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0103page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0104page",
+      "order": 104,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0104page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0105page",
+      "order": 105,
+      "stock_codes": [
+        "6203"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0105page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0106page",
+      "order": 106,
+      "stock_codes": [
+        "6501",
+        "6502"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0106page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0107page",
+      "order": 107,
+      "stock_codes": [
+        "6503",
+        "6504"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0107page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0108page",
+      "order": 108,
+      "stock_codes": [
+        "6508",
+        "6701"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0108page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0109page",
+      "order": 109,
+      "stock_codes": [
+        "6992"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0109page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0110page",
+      "order": 110,
+      "stock_codes": [
+        "6216"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0110page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0111page",
+      "order": 111,
+      "stock_codes": [
+        "6301",
+        "6461"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0111page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0112page",
+      "order": 112,
+      "stock_codes": [
+        "5602",
+        "6326"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0112page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0113page",
+      "order": 113,
+      "stock_codes": [
+        "5641",
+        "5642"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0113page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0114page",
+      "order": 114,
+      "stock_codes": [
+        "6361",
+        "6362"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0114page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0115page",
+      "order": 115,
+      "stock_codes": [
+        "5442"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0115page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0116page",
+      "order": 116,
+      "stock_codes": [
+        "7202",
+        "7203"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0116page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0117page",
+      "order": 117,
+      "stock_codes": [
+        "7233"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0117page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0118page",
+      "order": 118,
+      "stock_codes": [
+        "7102"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0118page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0119page",
+      "order": 119,
+      "stock_codes": [
+        "6372",
+        "7210"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0119page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0120page",
+      "order": 120,
+      "stock_codes": [
+        "7262",
+        "7302"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0120page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0121page",
+      "order": 121,
+      "stock_codes": [
+        "6201"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0121page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0122page",
+      "order": 122,
+      "stock_codes": [
+        "7224",
+        "8821"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0122page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0123page",
+      "order": 123,
+      "stock_codes": [
+        "7404",
+        "7723"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0123page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0124page",
+      "order": 124,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0124page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0125page",
+      "order": 125,
+      "stock_codes": [
+        "7263"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0125page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0126page",
+      "order": 126,
+      "stock_codes": [
+        "7242"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0126page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0127page",
+      "order": 127,
+      "stock_codes": [
+        "7301"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0127page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0128page",
+      "order": 128,
+      "stock_codes": [
+        "6367",
+        "7951"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0128page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0129page",
+      "order": 129,
+      "stock_codes": [
+        "6042"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0129page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0130page",
+      "order": 130,
+      "stock_codes": [
+        "5901"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0130page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0131page",
+      "order": 131,
+      "stock_codes": [
+        "5981",
+        "6431"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0131page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0132page",
+      "order": 132,
+      "stock_codes": [
+        "7011"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0132page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0133page",
+      "order": 133,
+      "stock_codes": [
+        "7012"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0133page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0134page",
+      "order": 134,
+      "stock_codes": [
+        "7013"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0134page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0135page",
+      "order": 135,
+      "stock_codes": [
+        "7004",
+        "7008"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0135page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0136page",
+      "order": 136,
+      "stock_codes": [
+        "7009",
+        "8231"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0136page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0137page",
+      "order": 137,
+      "stock_codes": [
+        "8233"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0137page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0138page",
+      "order": 138,
+      "stock_codes": [
+        "8237",
+        "9601"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0138page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0139page",
+      "order": 139,
+      "stock_codes": [
+        "9602"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0139page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0140page",
+      "order": 140,
+      "stock_codes": [
+        "9606",
+        "9631"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0140page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0141page",
+      "order": 141,
+      "stock_codes": [
+        "8804",
+        "9632"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0141page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0142page",
+      "order": 142,
+      "stock_codes": [
+        "7911",
+        "9301"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0142page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0143page",
+      "order": 143,
+      "stock_codes": [
+        "7912"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0143page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0144page",
+      "order": 144,
+      "stock_codes": [
+        "8031"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0144page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0145page",
+      "order": 145,
+      "stock_codes": [
+        "8058"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0145page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0146page",
+      "order": 146,
+      "stock_codes": [
+        "8004"
+      ],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0146page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0147page",
+      "order": 147,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0147page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0148page",
+      "order": 148,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0148page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0149page",
+      "order": 149,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0149page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0150page",
+      "order": 150,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0150page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0151page",
+      "order": 151,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0151page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0152page",
+      "order": 152,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0152page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0153page",
+      "order": 153,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0153page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0154page",
+      "order": 154,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0154page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0155page",
+      "order": 155,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0155page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0156page",
+      "order": 156,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0156page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0157page",
+      "order": 157,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0157page.pdf",
+      "file_ext": ".pdf"
+    },
+    {
+      "page": "0158page",
+      "order": 158,
+      "stock_codes": [],
+      "source_url": "https://shikiho.toyokeizai.net/files/shimen/premium/1946/4/0158page.pdf",
+      "file_ext": ".pdf"
+    }
+  ]
+}

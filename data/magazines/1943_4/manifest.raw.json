@@ -1,0 +1,2199 @@
+{
+  "magazine": {
+    "calendar": "1943",
+    "series": "4",
+    "jpnCalendar": null,
+    "title": "秋号",
+    "subTitle": "４集",
+    "pubDate": null,
+    "link": null,
+    "image": null,
+    "magazineType": "1",
+    "pages": [
+      {
+        "type": "10",
+        "page": "0000page"
+      },
+      {
+        "type": "30",
+        "page": "0001page"
+      },
+      {
+        "type": "30",
+        "page": "0002page"
+      },
+      {
+        "type": "30",
+        "page": "0003page"
+      },
+      {
+        "type": "30",
+        "page": "0004page"
+      },
+      {
+        "type": "30",
+        "page": "0005page"
+      },
+      {
+        "type": "30",
+        "page": "0006page"
+      },
+      {
+        "type": "30",
+        "page": "0007page"
+      },
+      {
+        "type": "20",
+        "page": "0008page"
+      },
+      {
+        "type": "20",
+        "page": "0009page"
+      },
+      {
+        "type": "20",
+        "page": "0010page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5401",
+        "page": "0011page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5404",
+        "page": "0011page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5406",
+        "page": "0012page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5632",
+        "page": "0012page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5408",
+        "page": "0013page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5631",
+        "page": "0013page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5471",
+        "page": "0014page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5476",
+        "page": "0014page"
+      },
+      {
+        "type": "40",
+        "page": "0015page"
+      },
+      {
+        "type": "40",
+        "page": "0016page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5441",
+        "page": "0017page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5453",
+        "page": "0017page"
+      },
+      {
+        "type": "40",
+        "page": "0018page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5473",
+        "page": "0018page"
+      },
+      {
+        "type": "40",
+        "page": "0019page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5481",
+        "page": "0019page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5480",
+        "page": "0020page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5563",
+        "page": "0020page"
+      },
+      {
+        "type": "40",
+        "page": "0021page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5407",
+        "page": "0021page"
+      },
+      {
+        "type": "40",
+        "page": "0022page"
+      },
+      {
+        "type": "40",
+        "page": "0023page"
+      },
+      {
+        "type": "40",
+        "page": "0024page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5422",
+        "page": "0024page"
+      },
+      {
+        "type": "40",
+        "page": "0025page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5542",
+        "page": "0025page"
+      },
+      {
+        "type": "40",
+        "page": "0026page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5452",
+        "page": "0026page"
+      },
+      {
+        "type": "40",
+        "page": "0027page"
+      },
+      {
+        "type": "40",
+        "page": "0028page"
+      },
+      {
+        "type": "40",
+        "page": "0029page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5405",
+        "page": "0030page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5802",
+        "page": "0030page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4004",
+        "page": "0031page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5801",
+        "page": "0031page"
+      },
+      {
+        "type": "40",
+        "page": "0032page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5703",
+        "page": "0032page"
+      },
+      {
+        "type": "40",
+        "page": "0033page"
+      },
+      {
+        "type": "40",
+        "page": "0034page"
+      },
+      {
+        "type": "40",
+        "page": "0035page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5478",
+        "page": "0035page"
+      },
+      {
+        "type": "40",
+        "page": "0036page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5707",
+        "page": "0036page"
+      },
+      {
+        "type": "40",
+        "page": "0037page"
+      },
+      {
+        "type": "40",
+        "page": "0038page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5479",
+        "page": "0038page"
+      },
+      {
+        "type": "40",
+        "page": "0039page"
+      },
+      {
+        "type": "40",
+        "page": "0040page"
+      },
+      {
+        "type": "40",
+        "page": "0041page"
+      },
+      {
+        "type": "40",
+        "page": "0042page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5014",
+        "page": "0042page"
+      },
+      {
+        "type": "40",
+        "page": "0043page"
+      },
+      {
+        "type": "40",
+        "page": "0044page"
+      },
+      {
+        "type": "40",
+        "page": "0045page"
+      },
+      {
+        "type": "40",
+        "stock_code": "1491",
+        "page": "0045page"
+      },
+      {
+        "type": "40",
+        "page": "0046page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4028",
+        "page": "0046page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3315",
+        "page": "0047page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5238",
+        "page": "0047page"
+      },
+      {
+        "type": "40",
+        "stock_code": "1505",
+        "page": "0048page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5715",
+        "page": "0048page"
+      },
+      {
+        "type": "40",
+        "page": "0049page"
+      },
+      {
+        "type": "40",
+        "page": "0050page"
+      },
+      {
+        "type": "40",
+        "page": "0051page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8835",
+        "page": "0051page"
+      },
+      {
+        "type": "40",
+        "stock_code": "1511",
+        "page": "0052page"
+      },
+      {
+        "type": "40",
+        "stock_code": "1522",
+        "page": "0052page"
+      },
+      {
+        "type": "40",
+        "page": "0053page"
+      },
+      {
+        "type": "40",
+        "page": "0054page"
+      },
+      {
+        "type": "40",
+        "page": "0055page"
+      },
+      {
+        "type": "40",
+        "page": "0056page"
+      },
+      {
+        "type": "40",
+        "page": "0057page"
+      },
+      {
+        "type": "40",
+        "page": "0058page"
+      },
+      {
+        "type": "40",
+        "page": "0059page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5001",
+        "page": "0059page"
+      },
+      {
+        "type": "40",
+        "stock_code": "1601",
+        "page": "0060page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5002",
+        "page": "0060page"
+      },
+      {
+        "type": "40",
+        "page": "0061page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5003",
+        "page": "0061page"
+      },
+      {
+        "type": "40",
+        "page": "0062page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5021",
+        "page": "0062page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7011",
+        "page": "0063page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7012",
+        "page": "0063page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7008",
+        "page": "0064page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7013",
+        "page": "0064page"
+      },
+      {
+        "type": "40",
+        "page": "0065page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7003",
+        "page": "0065page"
+      },
+      {
+        "type": "40",
+        "page": "0066page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7009",
+        "page": "0066page"
+      },
+      {
+        "type": "40",
+        "page": "0067page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6011",
+        "page": "0068page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6474",
+        "page": "0068page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6102",
+        "page": "0069page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6326",
+        "page": "0069page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6471",
+        "page": "0070page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6472",
+        "page": "0070page"
+      },
+      {
+        "type": "40",
+        "page": "0071page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6205",
+        "page": "0071page"
+      },
+      {
+        "type": "40",
+        "page": "0072page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6103",
+        "page": "0072page"
+      },
+      {
+        "type": "40",
+        "page": "0073page"
+      },
+      {
+        "type": "40",
+        "page": "0074page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6367",
+        "page": "0074page"
+      },
+      {
+        "type": "40",
+        "page": "0075page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7731",
+        "page": "0075page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7261",
+        "page": "0076page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7701",
+        "page": "0076page"
+      },
+      {
+        "type": "40",
+        "page": "0077page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6361",
+        "page": "0077page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6101",
+        "page": "0078page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6473",
+        "page": "0078page"
+      },
+      {
+        "type": "40",
+        "page": "0079page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6362",
+        "page": "0079page"
+      },
+      {
+        "type": "40",
+        "page": "0080page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7721",
+        "page": "0080page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6206",
+        "page": "0081page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6335",
+        "page": "0081page"
+      },
+      {
+        "type": "40",
+        "page": "0082page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6475",
+        "page": "0082page"
+      },
+      {
+        "type": "40",
+        "page": "0083page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6108",
+        "page": "0083page"
+      },
+      {
+        "type": "40",
+        "page": "0084page"
+      },
+      {
+        "type": "40",
+        "page": "0085page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6115",
+        "page": "0085page"
+      },
+      {
+        "type": "40",
+        "page": "0086page"
+      },
+      {
+        "type": "40",
+        "page": "0087page"
+      },
+      {
+        "type": "40",
+        "page": "0088page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6217",
+        "page": "0088page"
+      },
+      {
+        "type": "40",
+        "page": "0089page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6218",
+        "page": "0089page"
+      },
+      {
+        "type": "40",
+        "page": "0090page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6501",
+        "page": "0091page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6502",
+        "page": "0091page"
+      },
+      {
+        "type": "40",
+        "page": "0092page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6503",
+        "page": "0092page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6504",
+        "page": "0093page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6704",
+        "page": "0093page"
+      },
+      {
+        "type": "40",
+        "page": "0094page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6508",
+        "page": "0094page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6703",
+        "page": "0095page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6992",
+        "page": "0095page"
+      },
+      {
+        "type": "40",
+        "page": "0096page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6752",
+        "page": "0096page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6042",
+        "page": "0097page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6506",
+        "page": "0097page"
+      },
+      {
+        "type": "40",
+        "page": "0098page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6641",
+        "page": "0098page"
+      },
+      {
+        "type": "40",
+        "page": "0099page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6901",
+        "page": "0099page"
+      },
+      {
+        "type": "40",
+        "page": "0100page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6643",
+        "page": "0100page"
+      },
+      {
+        "type": "40",
+        "page": "0101page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6216",
+        "page": "0101page"
+      },
+      {
+        "type": "40",
+        "page": "0102page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5602",
+        "page": "0102page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5917",
+        "page": "0103page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6301",
+        "page": "0103page"
+      },
+      {
+        "type": "40",
+        "page": "0104page"
+      },
+      {
+        "type": "40",
+        "page": "0105page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6461",
+        "page": "0105page"
+      },
+      {
+        "type": "40",
+        "page": "0106page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6332",
+        "page": "0106page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5442",
+        "page": "0107page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5458",
+        "page": "0107page"
+      },
+      {
+        "type": "40",
+        "page": "0108page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6201",
+        "page": "0108page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5641",
+        "page": "0109page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5642",
+        "page": "0109page"
+      },
+      {
+        "type": "40",
+        "page": "0110page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5451",
+        "page": "0110page"
+      },
+      {
+        "type": "40",
+        "page": "0111page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6013",
+        "page": "0111page"
+      },
+      {
+        "type": "40",
+        "page": "0112page"
+      },
+      {
+        "type": "40",
+        "page": "0113page"
+      },
+      {
+        "type": "40",
+        "page": "0114page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7102",
+        "page": "0115page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7202",
+        "page": "0115page"
+      },
+      {
+        "type": "40",
+        "page": "0116page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7203",
+        "page": "0116page"
+      },
+      {
+        "type": "40",
+        "page": "0117page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7207",
+        "page": "0117page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7233",
+        "page": "0118page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7262",
+        "page": "0118page"
+      },
+      {
+        "type": "40",
+        "page": "0119page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6372",
+        "page": "0119page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6390",
+        "page": "0120page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7302",
+        "page": "0120page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7276",
+        "page": "0121page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7301",
+        "page": "0121page"
+      },
+      {
+        "type": "40",
+        "page": "0122page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7210",
+        "page": "0123page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7235",
+        "page": "0123page"
+      },
+      {
+        "type": "40",
+        "page": "0124page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7224",
+        "page": "0125page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7723",
+        "page": "0125page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7404",
+        "page": "0126page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8821",
+        "page": "0126page"
+      },
+      {
+        "type": "40",
+        "page": "0127page"
+      },
+      {
+        "type": "40",
+        "page": "0128page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7407",
+        "page": "0128page"
+      },
+      {
+        "type": "40",
+        "page": "0129page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7242",
+        "page": "0129page"
+      },
+      {
+        "type": "40",
+        "page": "0130page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7232",
+        "page": "0130page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5901",
+        "page": "0131page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7951",
+        "page": "0131page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5981",
+        "page": "0132page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6431",
+        "page": "0132page"
+      },
+      {
+        "type": "40",
+        "page": "0133page"
+      },
+      {
+        "type": "40",
+        "page": "0134page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6371",
+        "page": "0134page"
+      },
+      {
+        "type": "40",
+        "page": "0135page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4001",
+        "page": "0135page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4005",
+        "page": "0136page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4061",
+        "page": "0136page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4002",
+        "page": "0137page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4208",
+        "page": "0137page"
+      },
+      {
+        "type": "40",
+        "page": "0138page"
+      },
+      {
+        "type": "40",
+        "page": "0139page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4027",
+        "page": "0139page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4041",
+        "page": "0140page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4042",
+        "page": "0140page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4043",
+        "page": "0141page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4112",
+        "page": "0141page"
+      },
+      {
+        "type": "40",
+        "page": "0142page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4401",
+        "page": "0142page"
+      },
+      {
+        "type": "40",
+        "page": "0143page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4046",
+        "page": "0143page"
+      },
+      {
+        "type": "40",
+        "page": "0144page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4044",
+        "page": "0144page"
+      },
+      {
+        "type": "40",
+        "page": "0145page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4403",
+        "page": "0145page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3407",
+        "page": "0146page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4272",
+        "page": "0146page"
+      },
+      {
+        "type": "40",
+        "page": "0147page"
+      },
+      {
+        "type": "40",
+        "page": "0148page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4067",
+        "page": "0148page"
+      },
+      {
+        "type": "40",
+        "page": "0149page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4063",
+        "page": "0149page"
+      },
+      {
+        "type": "40",
+        "page": "0150page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4062",
+        "page": "0150page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4612",
+        "page": "0151page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4613",
+        "page": "0151page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5301",
+        "page": "0152page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5302",
+        "page": "0152page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5304",
+        "page": "0153page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7014",
+        "page": "0153page"
+      },
+      {
+        "type": "40",
+        "page": "0154page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6931",
+        "page": "0154page"
+      },
+      {
+        "type": "40",
+        "page": "0155page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4091",
+        "page": "0155page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4092",
+        "page": "0156page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4902",
+        "page": "0156page"
+      },
+      {
+        "type": "40",
+        "page": "0157page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4901",
+        "page": "0157page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4501",
+        "page": "0158page"
+      },
+      {
+        "type": "40",
+        "stock_code": "4505",
+        "page": "0158page"
+      },
+      {
+        "type": "40",
+        "stock_code": "1661",
+        "page": "0159page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2602",
+        "page": "0159page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3861",
+        "page": "0160page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3864",
+        "page": "0160page"
+      },
+      {
+        "type": "40",
+        "page": "0161page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3865",
+        "page": "0161page"
+      },
+      {
+        "type": "40",
+        "page": "0162page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3869",
+        "page": "0162page"
+      },
+      {
+        "type": "40",
+        "page": "0163page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3701",
+        "page": "0163page"
+      },
+      {
+        "type": "40",
+        "page": "0164page"
+      },
+      {
+        "type": "40",
+        "page": "0165page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3703",
+        "page": "0165page"
+      },
+      {
+        "type": "40",
+        "page": "0166page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5231",
+        "page": "0167page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5233",
+        "page": "0167page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5232",
+        "page": "0168page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5236",
+        "page": "0168page"
+      },
+      {
+        "type": "40",
+        "page": "0169page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5235",
+        "page": "0169page"
+      },
+      {
+        "type": "40",
+        "page": "0170page"
+      },
+      {
+        "type": "40",
+        "page": "0171page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5353",
+        "page": "0171page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5333",
+        "page": "0172page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5352",
+        "page": "0172page"
+      },
+      {
+        "type": "40",
+        "page": "0173page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5331",
+        "page": "0173page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5201",
+        "page": "0174page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5202",
+        "page": "0174page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5261",
+        "page": "0175page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5351",
+        "page": "0175page"
+      },
+      {
+        "type": "40",
+        "page": "0176page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3101",
+        "page": "0177page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3102",
+        "page": "0177page"
+      },
+      {
+        "type": "40",
+        "page": "0178page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3104",
+        "page": "0178page"
+      },
+      {
+        "type": "40",
+        "page": "0179page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3105",
+        "page": "0179page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3106",
+        "page": "0180page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3107",
+        "page": "0180page"
+      },
+      {
+        "type": "40",
+        "page": "0181page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3116",
+        "page": "0181page"
+      },
+      {
+        "type": "40",
+        "page": "0182page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3109",
+        "page": "0182page"
+      },
+      {
+        "type": "40",
+        "page": "0183page"
+      },
+      {
+        "type": "40",
+        "page": "0184page"
+      },
+      {
+        "type": "40",
+        "page": "0185page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3111",
+        "page": "0185page"
+      },
+      {
+        "type": "40",
+        "page": "0186page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3002",
+        "page": "0186page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3401",
+        "page": "0187page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3405",
+        "page": "0187page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3110",
+        "page": "0188page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3402",
+        "page": "0188page"
+      },
+      {
+        "type": "40",
+        "page": "0189page"
+      },
+      {
+        "type": "40",
+        "page": "0190page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3408",
+        "page": "0190page"
+      },
+      {
+        "type": "40",
+        "page": "0191page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3201",
+        "page": "0191page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3202",
+        "page": "0192page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3204",
+        "page": "0192page"
+      },
+      {
+        "type": "40",
+        "page": "0193page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3001",
+        "page": "0193page"
+      },
+      {
+        "type": "40",
+        "page": "0194page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3302",
+        "page": "0194page"
+      },
+      {
+        "type": "40",
+        "page": "0195page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2101",
+        "page": "0195page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2103",
+        "page": "0196page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2112",
+        "page": "0196page"
+      },
+      {
+        "type": "40",
+        "page": "0197page"
+      },
+      {
+        "type": "40",
+        "page": "0198page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2004",
+        "page": "0198page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2201",
+        "page": "0199page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2202",
+        "page": "0199page"
+      },
+      {
+        "type": "40",
+        "page": "0200page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2503",
+        "page": "0200page"
+      },
+      {
+        "type": "40",
+        "page": "0201page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2001",
+        "page": "0202page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2002",
+        "page": "0202page"
+      },
+      {
+        "type": "40",
+        "page": "0203page"
+      },
+      {
+        "type": "40",
+        "stock_code": "2003",
+        "page": "0203page"
+      },
+      {
+        "type": "40",
+        "page": "0204page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9501",
+        "page": "0204page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9503",
+        "page": "0205page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9509",
+        "page": "0205page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9502",
+        "page": "0206page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9506",
+        "page": "0206page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9504",
+        "page": "0207page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9505",
+        "page": "0207page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9507",
+        "page": "0208page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9508",
+        "page": "0208page"
+      },
+      {
+        "type": "40",
+        "page": "0209page"
+      },
+      {
+        "type": "40",
+        "page": "0210page"
+      },
+      {
+        "type": "40",
+        "page": "0211page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9531",
+        "page": "0212page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9532",
+        "page": "0212page"
+      },
+      {
+        "type": "40",
+        "page": "0213page"
+      },
+      {
+        "type": "40",
+        "page": "0214page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9533",
+        "page": "0214page"
+      },
+      {
+        "type": "40",
+        "page": "0215page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9534",
+        "page": "0215page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9535",
+        "page": "0216page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9536",
+        "page": "0216page"
+      },
+      {
+        "type": "40",
+        "page": "0217page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9101",
+        "page": "0217page"
+      },
+      {
+        "type": "40",
+        "page": "0218page"
+      },
+      {
+        "type": "40",
+        "page": "0219page"
+      },
+      {
+        "type": "40",
+        "page": "0220page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9173",
+        "page": "0220page"
+      },
+      {
+        "type": "40",
+        "page": "0221page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9112",
+        "page": "0221page"
+      },
+      {
+        "type": "40",
+        "page": "0222page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9001",
+        "page": "0223page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9005",
+        "page": "0223page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9008",
+        "page": "0224page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9009",
+        "page": "0224page"
+      },
+      {
+        "type": "40",
+        "page": "0225page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9024",
+        "page": "0225page"
+      },
+      {
+        "type": "40",
+        "page": "0226page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9003",
+        "page": "0227page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9012",
+        "page": "0227page"
+      },
+      {
+        "type": "40",
+        "page": "0228page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9010",
+        "page": "0228page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9042",
+        "page": "0229page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9043",
+        "page": "0229page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9041",
+        "page": "0230page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9045",
+        "page": "0230page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9044",
+        "page": "0231page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9052",
+        "page": "0231page"
+      },
+      {
+        "type": "40",
+        "page": "0232page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9046",
+        "page": "0233page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9048",
+        "page": "0233page"
+      },
+      {
+        "type": "40",
+        "page": "0234page"
+      },
+      {
+        "type": "40",
+        "page": "0235page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9031",
+        "page": "0235page"
+      },
+      {
+        "type": "40",
+        "page": "0236page"
+      },
+      {
+        "type": "40",
+        "stock_code": "6756",
+        "page": "0236page"
+      },
+      {
+        "type": "40",
+        "page": "0237page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9062",
+        "page": "0237page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9147",
+        "page": "0237page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8231",
+        "page": "0238page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8237",
+        "page": "0238page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8233",
+        "page": "0239page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8234",
+        "page": "0239page"
+      },
+      {
+        "type": "40",
+        "page": "0240page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8232",
+        "page": "0240page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9601",
+        "page": "0241page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9602",
+        "page": "0241page"
+      },
+      {
+        "type": "40",
+        "page": "0242page"
+      },
+      {
+        "type": "40",
+        "page": "0243page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8804",
+        "page": "0243page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9301",
+        "page": "0244page"
+      },
+      {
+        "type": "40",
+        "stock_code": "9306",
+        "page": "0244page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7911",
+        "page": "0245page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7912",
+        "page": "0245page"
+      },
+      {
+        "type": "40",
+        "page": "0246page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7932",
+        "page": "0246page"
+      },
+      {
+        "type": "40",
+        "page": "0247page"
+      },
+      {
+        "type": "40",
+        "stock_code": "7961",
+        "page": "0247page"
+      },
+      {
+        "type": "40",
+        "page": "0248page"
+      },
+      {
+        "type": "40",
+        "stock_code": "5103",
+        "page": "0248page"
+      },
+      {
+        "type": "40",
+        "page": "0249page"
+      },
+      {
+        "type": "40",
+        "page": "0250page"
+      },
+      {
+        "type": "40",
+        "page": "0251page"
+      },
+      {
+        "type": "40",
+        "page": "0252page"
+      },
+      {
+        "type": "40",
+        "page": "0253page"
+      },
+      {
+        "type": "40",
+        "stock_code": "1301",
+        "page": "0253page"
+      },
+      {
+        "type": "40",
+        "stock_code": "1331",
+        "page": "0254page"
+      },
+      {
+        "type": "40",
+        "stock_code": "1332",
+        "page": "0254page"
+      },
+      {
+        "type": "40",
+        "page": "0255page"
+      },
+      {
+        "type": "40",
+        "page": "0256page"
+      },
+      {
+        "type": "40",
+        "page": "0257page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8058",
+        "page": "0257page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3004",
+        "page": "0258page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8031",
+        "page": "0258page"
+      },
+      {
+        "type": "40",
+        "page": "0259page"
+      },
+      {
+        "type": "40",
+        "stock_code": "8004",
+        "page": "0259page"
+      },
+      {
+        "type": "40",
+        "page": "0260page"
+      },
+      {
+        "type": "40",
+        "page": "0261page"
+      },
+      {
+        "type": "40",
+        "stock_code": "3584",
+        "page": "0261page"
+      },
+      {
+        "type": "40",
+        "page": "0262page"
+      },
+      {
+        "type": "40",
+        "page": "0263page"
+      },
+      {
+        "type": "40",
+        "page": "0264page"
+      },
+      {
+        "type": "40",
+        "page": "0265page"
+      },
+      {
+        "type": "40",
+        "page": "0266page"
+      },
+      {
+        "type": "50",
+        "page": "0267page"
+      },
+      {
+        "type": "50",
+        "page": "0268page"
+      },
+      {
+        "type": "50",
+        "page": "0269page"
+      },
+      {
+        "type": "50",
+        "page": "0270page"
+      },
+      {
+        "type": "50",
+        "page": "0271page"
+      },
+      {
+        "type": "50",
+        "page": "0272page"
+      },
+      {
+        "type": "50",
+        "page": "0273page"
+      },
+      {
+        "type": "50",
+        "page": "0274page"
+      },
+      {
+        "type": "50",
+        "page": "0275page"
+      },
+      {
+        "type": "50",
+        "page": "0276page"
+      },
+      {
+        "type": "50",
+        "page": "0277page"
+      },
+      {
+        "type": "50",
+        "page": "0278page"
+      },
+      {
+        "type": "50",
+        "page": "0279page"
+      },
+      {
+        "type": "50",
+        "page": "0280page"
+      },
+      {
+        "type": "50",
+        "page": "0281page"
+      },
+      {
+        "type": "50",
+        "page": "0282page"
+      },
+      {
+        "type": "50",
+        "page": "0283page"
+      },
+      {
+        "type": "50",
+        "page": "0284page"
+      },
+      {
+        "type": "50",
+        "page": "0285page"
+      },
+      {
+        "type": "50",
+        "page": "0286page"
+      },
+      {
+        "type": "50",
+        "page": "0287page"
+      },
+      {
+        "type": "50",
+        "page": "0288page"
+      }
+    ],
+    "initialPage": "0001page",
+    "previousType": "1",
+    "previousCalendar": "1943",
+    "previousSeries": "3",
+    "previousPages": [],
+    "previousTitle": "夏号",
+    "previousSubTitle": "３集",
+    "followingType": "1",
+    "followingCalendar": "1944",
+    "followingSeries": "1",
+    "followingPages": [],
+    "followingTitle": "新春号",
+    "followingSubTitle": "１集"
+  },
+  "status": {
+    "code": "1000",
+    "message": "ok"
+  }
+}
