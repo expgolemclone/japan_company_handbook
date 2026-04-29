@@ -1,7 +1,7 @@
 {
-  "issue_count": 179,
-  "succeeded_count": 178,
-  "failed_count": 0,
+  "issue_count": 346,
+  "succeeded_count": 191,
+  "failed_count": 155,
   "succeeded_issues": [
     "1936_3",
     "1936_4",
@@ -180,14 +180,648 @@
     "1983_3",
     "1983_4",
     "1984_1",
-    "1984_2"
+    "1984_2",
+    "1984_3",
+    "1984_4",
+    "1985_1",
+    "1985_2",
+    "1985_3",
+    "1985_4",
+    "1986_1",
+    "1986_2",
+    "1986_3",
+    "1986_4",
+    "1987_1",
+    "1987_2",
+    "1987_3"
   ],
-  "failed_issues": {},
+  "failed_issues": {
+    "1987_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1987/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1988_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1988/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1988_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1988/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1988_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1988/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1988_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1988/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1989_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1989/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1989_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1989/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1989_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1989/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1989_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1989/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1990_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1990/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1990_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1990/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1990_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1990/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1990_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1990/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1991_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1991/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1991_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1991/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1991_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1991/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1991_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1991/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1992_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1992/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1992_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1992/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1992_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1992/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1992_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1992/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1993_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1993/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1993_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1993/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1993_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1993/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1993_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1993/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1994_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1994/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1994_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1994/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1994_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1994/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1994_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1994/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1995_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1995/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1995_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1995/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1995_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1995/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1995_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1995/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1996_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1996/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1996_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1996/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1996_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1996/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1996_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1996/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1997_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1997/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1997_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1997/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1997_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1997/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1997_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1997/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1998_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1998/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1998_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1998/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1998_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1998/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1998_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1998/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1999_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1999/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1999_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1999/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1999_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1999/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "1999_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1999/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2000_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2000/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2000_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2000/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2000_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2000/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2000_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2000/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2001_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2001/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2001_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2001/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2001_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2001/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2001_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2001/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2002_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2002/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2002_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2002/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2002_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2002/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2002_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2002/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2003_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2003/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2003_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2003/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2003_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2003/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2003_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2003/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2004_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2004/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2004_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2004/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2004_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2004/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2004_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2004/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2005_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2005/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2005_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2005/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2005_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2005/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2005_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2005/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2006_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2006/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2006_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2006/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2006_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2006/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2006_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2006/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2007_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2007/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2007_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2007/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2007_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2007/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2007_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2007/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2008_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2008/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2008_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2008/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2008_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2008/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2008_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2008/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2009_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2009/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2009_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2009/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2009_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2009/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2009_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2009/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2010_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2010/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2010_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2010/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2010_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2010/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2010_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2010/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2011_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2011/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2011_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2011/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2011_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2011/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2011_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2011/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2012_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2012/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2012_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2012/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2012_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2012/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2012_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2012/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2013_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2013/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2013_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2013/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2013_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2013/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2013_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2013/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2014_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2014/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2014_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2014/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2014_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2014/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2014_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2014/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2015_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2015/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2015_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2015/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2015_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2015/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2015_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2015/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2016_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2016/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2016_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2016/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2016_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2016/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2016_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2016/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2017_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2017/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2017_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2017/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2017_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2017/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2017_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2017/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2018_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2018/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2018_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2018/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2018_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2018/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2018_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2018/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2019_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2019/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2019_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2019/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2019_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2019/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2019_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2019/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2020_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2020/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2020_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2020/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2020_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2020/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2020_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2020/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2021_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2021/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2021_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2021/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2021_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2021/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2021_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2021/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2022_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2022/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2022_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2022/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2022_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2022/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2022_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2022/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2023_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2023/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2023_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2023/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2023_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2023/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2023_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2023/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2024_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2024/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2024_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2024/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2024_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2024/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2024_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2024/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2025_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2025/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2025_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2025/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2025_3": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2025/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2025_4": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2025/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2026_1": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2026/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    },
+    "2026_2": {
+      "status": "failed",
+      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2026/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+    }
+  },
   "verify": {
     "expected_issue_count": 346,
-    "completed_issue_count": 178,
+    "completed_issue_count": 191,
     "verified_complete": false,
-    "missing_issue_count": 167,
-    "missing_page_count": 257
+    "missing_issue_count": 0,
+    "missing_page_count": 0
   }
 }

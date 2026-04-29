@@ -22,6 +22,8 @@ EXPECTED_ISSUES_FILE = MAGAZINES_DIR / "issues.expected.json"
 BATCH_PROGRESS_FILE = MAGAZINES_DIR / "batch_progress.json"
 BATCH_SUMMARY_FILE = MAGAZINES_DIR / "batch_summary.json"
 VERIFY_REPORT_FILE = MAGAZINES_DIR / "verify_report.json"
+FACT_CHECK_REPORT_FILE = MAGAZINES_DIR / "fact_check_report.json"
+AUTH_DIAGNOSTICS_FILE = MAGAZINES_DIR / "auth_diagnostics.json"
 
 DEFAULT_HEADERS = {
     "Referer": (
@@ -42,6 +44,10 @@ class MagazineApiError(RuntimeError):
 
 
 class MagazinePermissionError(MagazineApiError):
+    pass
+
+
+class MagazinePayloadShapeError(MagazineApiError):
     pass
 
 
@@ -83,7 +89,8 @@ def _load_cookie_jar(cookie_file: Path) -> httpx.Cookies:
 
 def fetch_issue_list(client: httpx.Client) -> dict[str, object]:
     payload = _request_json(client, "/files/v1/files/magazines/list")
-    _raise_for_payload_status(payload, endpoint="issue list")
+    validate_payload_status(payload, endpoint="issue list")
+    validate_issue_list_payload(payload, endpoint="issue list")
     return payload
 
 
@@ -91,7 +98,8 @@ def fetch_magazine_issue(
     client: httpx.Client, calendar: str, series: str
 ) -> dict[str, object]:
     payload = _request_json(client, f"/files/v1/files/magazines/{calendar}/{series}")
-    _raise_for_payload_status(payload, endpoint=f"{calendar}_{series}")
+    validate_payload_status(payload, endpoint=f"{calendar}_{series}")
+    validate_magazine_issue_payload(payload, endpoint=f"{calendar}_{series}")
     return payload
 
 
@@ -99,12 +107,53 @@ def fetch_stock_page_info(
     client: httpx.Client, page_or_code: str
 ) -> dict[str, object]:
     payload = _request_json(client, f"/files/v1/files/magazines/{page_or_code}/list")
-    _raise_for_payload_status(
+    validate_payload_status(
         payload,
         endpoint=f"stock page {page_or_code}",
         allowed_status_codes=SUCCESS_STATUS_CODES | {"3001"},
     )
     return payload
+
+
+def validate_issue_list_payload(
+    payload: dict[str, object], *, endpoint: str = "issue list"
+) -> None:
+    magazines = payload.get("magazines")
+    if not isinstance(magazines, list):
+        raise MagazinePayloadShapeError(
+            f"{endpoint}: magazines 配列がありません"
+        )
+
+
+def validate_magazine_issue_payload(
+    payload: dict[str, object], *, endpoint: str
+) -> None:
+    magazine = payload.get("magazine")
+    if not isinstance(magazine, dict) or not magazine:
+        raise MagazinePayloadShapeError(
+            f"{endpoint}: magazine オブジェクトが空です"
+        )
+
+    missing_keys = [
+        key
+        for key in ("calendar", "series", "pages")
+        if key not in magazine
+    ]
+    if missing_keys:
+        missing = ", ".join(missing_keys)
+        raise MagazinePayloadShapeError(
+            f"{endpoint}: magazine に必須キーがありません ({missing})"
+        )
+
+    pages = magazine.get("pages")
+    if not isinstance(pages, list):
+        raise MagazinePayloadShapeError(
+            f"{endpoint}: pages 配列がありません"
+        )
+    if not pages:
+        raise MagazinePayloadShapeError(
+            f"{endpoint}: pages 配列が空です"
+        )
 
 
 def fetch_pdf_access(
@@ -116,7 +165,7 @@ def fetch_pdf_access(
         method="POST",
         json_body={"stock_codes": stock_codes or []},
     )
-    _raise_for_payload_status(payload, endpoint="headers")
+    validate_payload_status(payload, endpoint="headers")
 
     pdf_hash_val = payload.get("pdf_hash", "")
     pdf_hash = str(pdf_hash_val).strip() if pdf_hash_val is not None else ""
@@ -126,6 +175,19 @@ def fetch_pdf_access(
     return PdfAccessInfo(
         pdf_hash=pdf_hash,
         tier=_infer_pdf_tier(pdf_hash),
+    )
+
+
+def validate_payload_status(
+    payload: dict[str, object],
+    *,
+    endpoint: str,
+    allowed_status_codes: set[str] | None = None,
+) -> None:
+    _raise_for_payload_status(
+        payload,
+        endpoint=endpoint,
+        allowed_status_codes=allowed_status_codes,
     )
 
 

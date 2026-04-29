@@ -13,6 +13,7 @@ from scrape.magazine.client import (
     fetch_pdf_access,
     issue_dir,
     request_with_retries,
+    validate_magazine_issue_payload,
 )
 from scrape.magazine.normalize import guess_file_extension_from_url, normalize_magazine
 from scrape.magazine.progress import IssueProgress
@@ -50,6 +51,7 @@ def download_issue_artifacts(
     issue_path.mkdir(parents=True, exist_ok=True)
 
     payload = raw_issue or fetch_magazine_issue(client, issue.calendar, issue.series)
+    validate_magazine_issue_payload(payload, endpoint=str(issue))
     _write_json(issue_path / RAW_MANIFEST_FILE, payload)
 
     normalized = normalize_magazine(payload, issue)

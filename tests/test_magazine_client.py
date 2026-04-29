@@ -9,6 +9,7 @@ import pytest
 
 from scrape.magazine.client import (
     MagazinePermissionError,
+    MagazinePayloadShapeError,
     build_pdf_source_url,
     build_magazine_http_client,
     extract_issue_refs,
@@ -80,6 +81,20 @@ class TestFetchMagazineApi:
         with pytest.raises(MagazinePermissionError):
             fetch_issue_list(client)
 
+    def test_fetch_issue_list_raises_when_magazines_array_is_missing(self) -> None:
+        transport = httpx.MockTransport(
+            lambda request: httpx.Response(
+                200,
+                json={
+                    "status": {"code": "1000", "message": "ok"},
+                },
+            )
+        )
+        client = httpx.Client(transport=transport, base_url="https://api.example.test")
+
+        with pytest.raises(MagazinePayloadShapeError, match="magazines 配列"):
+            fetch_issue_list(client)
+
     def test_fetch_issue_list_retries_transport_error(self) -> None:
         calls = 0
 
@@ -116,6 +131,40 @@ class TestFetchMagazineApi:
 
         assert payload["magazine"]["series"] == "2"
         assert calls == ["/files/v1/files/magazines/2026/2"]
+
+    def test_fetch_magazine_issue_raises_when_magazine_is_empty(self) -> None:
+        transport = httpx.MockTransport(
+            lambda request: httpx.Response(
+                200,
+                json={
+                    "status": {"code": "1000", "message": "ok"},
+                    "magazine": {},
+                },
+            )
+        )
+        client = httpx.Client(transport=transport, base_url="https://api.example.test")
+
+        with pytest.raises(MagazinePayloadShapeError, match="magazine オブジェクトが空"):
+            fetch_magazine_issue(client, "2026", "2")
+
+    def test_fetch_magazine_issue_raises_when_pages_are_empty(self) -> None:
+        transport = httpx.MockTransport(
+            lambda request: httpx.Response(
+                200,
+                json={
+                    "status": {"code": "1000", "message": "ok"},
+                    "magazine": {
+                        "calendar": "2026",
+                        "series": "2",
+                        "pages": [],
+                    },
+                },
+            )
+        )
+        client = httpx.Client(transport=transport, base_url="https://api.example.test")
+
+        with pytest.raises(MagazinePayloadShapeError, match="pages 配列が空"):
+            fetch_magazine_issue(client, "2026", "2")
 
     def test_fetch_pdf_access_builds_premium_context(self) -> None:
         policy = base64.urlsafe_b64encode(

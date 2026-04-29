@@ -10,6 +10,15 @@
 
 2. 全上場企業で1を完了させる.
 
+## audit
+
+- `uv run scrape-magazine-audit --cookie-file data/cookies.json`
+  - `data/magazines/fact_check_report.json`
+    - `issues.raw.json` / `issues.expected.json` / 既存 manifest を突き合わせて、欠号候補を `external_confirmed` / `mixed` / `internal_inferred` で分類する.
+  - `data/magazines/auth_diagnostics.json`
+    - ライブAPIに対して `issue_list` と代表2号を probe し、`401` / payload `3202` / `1000 + empty magazine` を分類する.
+- `scrape-magazine-all` はバッチ開始前に同じ preflight を行い、失敗時は `auth_diagnostics.json` を書いて停止する.
+
 ## watchdog
 
 - `scripts/watch-scrape`
@@ -88,6 +97,31 @@ for item in expected:
     counts[status] += 1
 
 print(dict(counts))
+PY
+```
+
+- 欠号監査・認証診断:
+
+```bash
+python - <<'PY'
+from pathlib import Path
+import json
+
+for name in ["fact_check_report.json", "auth_diagnostics.json"]:
+    path = Path("data/magazines") / name
+    print(f"== {name} ==")
+    if not path.exists():
+        print("missing")
+        continue
+    data = json.loads(path.read_text(encoding="utf-8"))
+    print("generated_at:", data.get("generated_at"))
+    print("ok:", data.get("ok"))
+    if name == "fact_check_report.json":
+        print("leading_missing_groups:", len(data.get("leading_missing_groups", [])))
+        print("interior_missing_groups:", len(data.get("interior_missing_groups", [])))
+    else:
+        print("category_counts:", data.get("category_counts"))
+    print()
 PY
 ```
 

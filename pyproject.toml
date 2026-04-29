@@ -21,6 +21,7 @@ invert-pdfs = "pdfops.__main__:main"
 scrape-magazine = "scrape.magazine.issue_cli:main"
 scrape-magazine-all = "scrape.magazine.all_cli:main"
 scrape-magazine-verify = "scrape.magazine.verify_cli:main"
+scrape-magazine-audit = "scrape.magazine.audit_cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["scrape", "pdfops"]

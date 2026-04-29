@@ -2,13 +2,15 @@
 
 ## Overview
 
-このリポジトリは、会社四季報オンラインの誌面アーカイブを取得し、後続処理しやすい形で保存するためのツール群で構成されている。現状は次の3系統が共存している。
+このリポジトリは、会社四季報オンラインの誌面アーカイブを取得し、後続処理しやすい形で保存するためのツール群で構成されている。現状は次の4系統が共存している。
 
 1. `scrape`
    APIから全号のページPDFを直接取得するシンプルな一括ダウンローダー。
 2. `scrape.magazine`
    号単位で raw manifest、正規化済み manifest、ページ実体、進捗、検証結果まで保存する取得パイプライン。
-3. `pdfops`
+3. `scrape.magazine.audit`
+   欠号候補のファクトチェックと live API の認証・payload 不整合を診断する監査CLI。
+4. `pdfops`
    取得済みPDFを反転し、別ディレクトリへミラー出力する後処理ツール。
 
 認証はいずれも東洋経済サイトのログインCookieに依存する。現在の実装は Playwright MCP を前提にしておらず、`httpx` から直接 API と配信URLを叩く構成になっている。
@@ -96,6 +98,29 @@ source_root/**/*.pdf
 - 出力先ディレクトリ構造は入力をミラーする。
 - `gs` があればベクタPDFのまま反転し、無ければラスタライズ経由で生成する。
 
+### 4. `scrape.magazine.audit` の監査
+
+`scrape-magazine-audit` は保存済み号一覧と live API を分離して検査し、欠号候補と認証異常を別ファイルで出力する。
+
+```text
+data/magazines/issues.raw.json
+  -> build_fact_check_report()
+  -> data/magazines/fact_check_report.json
+
+Cookie JSON / Chrome Cookie
+  -> build_magazine_http_client()
+  -> /files/v1/files/magazines/list
+  -> /files/v1/files/magazines/{first,last}
+  -> build_auth_diagnostics()
+  -> data/magazines/auth_diagnostics.json
+```
+
+特徴:
+
+- 欠号候補は `external_confirmed` / `mixed` / `internal_inferred` の証拠レベルで分類する。
+- `401`、payload `3202`、`status=1000` なのに `magazine` が空、を別カテゴリで記録する。
+- `scrape-magazine-all` も同じ preflight を使い、失敗時はバッチ開始前に停止する。
+
 ## Module Responsibilities
 
 ### `scrape/auth.py`
@@ -127,6 +152,7 @@ source_root/**/*.pdf
 - `scrape.magazine` 系のHTTPクライアント構築を担当。
 - Chrome Cookie DB と JSON Cookie の両方に対応する。
 - 号一覧取得、単号取得、ページ一覧取得、`pdf_hash` 解決、リトライ制御、issue一覧キャッシュ保存を行う。
+- payload status とレスポンス形状の検証も担当し、空 `magazine` / 空 `pages` を正常扱いしない。
 
 ### `scrape/magazine/normalize.py`
 
@@ -157,11 +183,18 @@ source_root/**/*.pdf
 - `BatchProgress` と `verify_report` から集計サマリを生成する。
 - 結果は `batch_summary.json` に保存する。
 
+### `scrape/magazine/audit.py`
+
+- 欠号候補の抽出、前後号 manifest による連続性確認、公開書誌ソースの付与を担当する。
+- live API の probe 結果を `http_status_error` / `payload_permission_error` / `payload_shape_error` などに分類する。
+- `fact_check_report.json` と `auth_diagnostics.json` を保存する。
+
 ### `scrape/magazine/*.py` CLI
 
 - `issue_cli.py`: 単号取得。
 - `all_cli.py`: 全号取得、再開、実行後検証。
 - `verify_cli.py`: 既存成果物の検証のみ実行。
+- `audit_cli.py`: 欠号監査と認証診断を実行。
 
 ### `pdfops/invert.py`
 
@@ -191,6 +224,8 @@ data/                               # ホワイトリストで個別に管理
     ├── batch_progress.json          # [未管理] 全号進捗
     ├── batch_summary.json           # [管理] 全号サマリ
     ├── verify_report.json           # [管理] 全号検証結果
+    ├── fact_check_report.json       # [管理] 欠号候補と証拠レベルの監査結果
+    ├── auth_diagnostics.json        # [管理] live API の認証・payload診断
     └── {calendar}_{series}/
         ├── manifest.raw.json        # [管理] APIレスポンスの生データ
         ├── manifest.normalized.json # [管理] 正規化済みmanifest
@@ -211,12 +246,14 @@ derived/
 - `scrape-magazine`: `scrape.magazine.issue_cli:main`
 - `scrape-magazine-all`: `scrape.magazine.all_cli:main`
 - `scrape-magazine-verify`: `scrape.magazine.verify_cli:main`
+- `scrape-magazine-audit`: `scrape.magazine.audit_cli:main`
 - `invert-pdfs`: `pdfops.__main__:main`
 
 ## Error Handling
 
 - HTTPステータス異常は `raise_for_status()` でそのまま失敗させる。
 - `scrape.magazine` では payload 内 `status.code` も検査し、権限エラーを `MagazinePermissionError` に切り分ける。
+- `scrape.magazine` では payload status が成功でも、空 `magazine` や空 `pages` は `MagazinePayloadShapeError` として失敗扱いにする。
 - `request_with_retries()` は `429`、`5xx`、`TransportError` を再試行するが、永続エラーは握りつぶさない。
 - 単号バッチでは失敗したページや号の状態を progress に記録し、全件停止ではなく続行できる箇所を分けている。
 - 検証フェーズは「進捗が成功になっているか」だけでなく、「manifest と物理ファイルが一致するか」まで確認する。

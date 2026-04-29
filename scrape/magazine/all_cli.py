@@ -7,7 +7,9 @@ from pathlib import Path
 import httpx
 
 from scrape.auth import DEFAULT_CHROME_COOKIES
+from scrape.magazine.audit import build_auth_diagnostics, write_auth_diagnostics
 from scrape.magazine.client import (
+    AUTH_DIAGNOSTICS_FILE,
     BATCH_PROGRESS_FILE,
     BATCH_SUMMARY_FILE,
     EXPECTED_ISSUES_FILE,
@@ -15,8 +17,6 @@ from scrape.magazine.client import (
     MAGAZINES_DIR,
     VERIFY_REPORT_FILE,
     build_magazine_http_client,
-    extract_issue_refs,
-    fetch_issue_list,
     save_expected_issues,
     save_issue_list_cache,
 )
@@ -35,10 +35,19 @@ def main(argv: list[str] | None = None) -> int:
 
     batch_progress = BatchProgress(args.out_dir / BATCH_PROGRESS_FILE.name)
     with build_magazine_http_client(args.cookie_file) as client:
-        raw_issues = fetch_issue_list(client)
-        save_issue_list_cache(raw_issues, args.out_dir / ISSUES_RAW_FILE.name)
+        auth_report, raw_issues, issues = build_auth_diagnostics(
+            client,
+            start_calendar=args.start_calendar,
+        )
+        if raw_issues is None or not issues or not auth_report["ok"]:
+            write_auth_diagnostics(
+                auth_report,
+                args.out_dir / AUTH_DIAGNOSTICS_FILE.name,
+            )
+            logger.error("事前認証診断に失敗しました")
+            return 1
 
-        issues = extract_issue_refs(raw_issues, start_calendar=args.start_calendar)
+        save_issue_list_cache(raw_issues, args.out_dir / ISSUES_RAW_FILE.name)
         save_expected_issues(issues, args.out_dir / EXPECTED_ISSUES_FILE.name)
 
         for issue in issues:
