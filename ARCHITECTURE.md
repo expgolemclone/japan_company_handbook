@@ -56,6 +56,7 @@ Chrome Cookie DB
 
 ```text
 Chrome Cookie / Cookie JSON
+  -> scrape.auth.refresh_cookies_via_chrome()  # バッチ前にChromeを自動起動しCookieを更新
   -> scrape.magazine.client.build_magazine_http_client()
   -> /files/v1/files/magazines/list
   -> data/magazines/issues.raw.json
@@ -128,6 +129,7 @@ Cookie JSON / Chrome Cookie
 - Chrome の Cookie SQLite DB を一時コピーして読み込む。
 - v10 形式の暗号化Cookieを復号し、`httpx.Cookies` に積み替える。
 - JSON Cookie経由ではなくブラウザ実Cookieを使う経路の基盤。
+- `refresh_cookies_via_chrome()` でバッチ取得前にChromeを自動起動しCookieを更新する。
 
 ### `scrape/client.py`
 
