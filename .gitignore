@@ -34,19 +34,4 @@ __pycache__/
 htmlcov/
 .venv/
 
-# === データ: メタデータのみ ===
-# ディレクトリ構造を許可
-!data/
-!data/magazines/
-!data/magazines/**/
-
-# 許可するメタデータファイル
-!data/magazines/**/manifest.normalized.json
-!data/magazines/**/manifest.raw.json
-!data/magazines/issues.expected.json
-!data/magazines/issues.raw.json
-!data/magazines/batch_summary.json
-!data/magazines/verify_report.json
-!data/magazines/fact_check_report.json
-!data/magazines/auth_diagnostics.json
 !data/stock_codes_*.json
