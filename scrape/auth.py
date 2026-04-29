@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+import logging
+import shutil
 import sqlite3
+import subprocess
 import tempfile
+import time
 from pathlib import Path
 from shutil import copy2
 
@@ -10,13 +14,27 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
+logger = logging.getLogger(__name__)
+
 DEFAULT_CHROME_COOKIES = Path.home() / ".config/google-chrome/Default/Cookies"
 COOKIE_DOMAINS = (".toyokeizai.net", "shikiho.toyokeizai.net", "pa.toyokeizai.net")
+LOGIN_URL = "https://shikiho.toyokeizai.net/stocks/"
 CHROME_V10_PREFIX = b"v10"
 CHROME_SALT = b"saltysalt"
 CHROME_PASSWORD = b"peanuts"
 CHROME_IV = b" " * 16
 HOST_KEY_HASH_BYTES = 32
+
+
+def refresh_cookies_via_chrome(url: str = LOGIN_URL, wait_seconds: float = 5.0) -> None:
+    """Chrome でページを開き Cookie を更新させる。"""
+    chrome = shutil.which("google-chrome") or shutil.which("google-chrome-stable")
+    if chrome is None:
+        logger.warning("Chrome バイナリが見つかりません。Cookie の自動更新をスキップします。")
+        return
+    subprocess.Popen([chrome, url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    logger.info("Chrome で %s を開きました。%s 秒待機します。", url, wait_seconds)
+    time.sleep(wait_seconds)
 
 
 def decrypt_chrome_cookie(encrypted_value: bytes) -> str:

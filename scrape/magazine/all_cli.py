@@ -6,7 +6,7 @@ from pathlib import Path
 
 import httpx
 
-from scrape.auth import DEFAULT_CHROME_COOKIES
+from scrape.auth import DEFAULT_CHROME_COOKIES, refresh_cookies_via_chrome
 from scrape.magazine.audit import build_auth_diagnostics, write_auth_diagnostics
 from scrape.magazine.client import (
     AUTH_DIAGNOSTICS_FILE,
@@ -34,6 +34,7 @@ def main(argv: list[str] | None = None) -> int:
     _configure_logging()
 
     batch_progress = BatchProgress(args.out_dir / BATCH_PROGRESS_FILE.name)
+    refresh_cookies_via_chrome()
     with build_magazine_http_client(args.cookie_file) as client:
         auth_report, raw_issues, issues = build_auth_diagnostics(
             client,
