@@ -37,6 +37,10 @@ SUCCESS_STATUS_CODES = {"1000", "2000"}
 PDF_TIER_RE = re.compile(r"/files/shimen/(basic|premium)/", re.IGNORECASE)
 REQUEST_RETRIES = 5
 RETRY_DELAY_SECONDS = 1.0  # noqa: scrape-interval
+AUTH_RELATED_PAYLOAD_SHAPE_MARKERS = (
+    "magazine オブジェクトが空です",
+    "pages 配列が空です",
+)
 
 
 class MagazineApiError(RuntimeError):
@@ -49,6 +53,16 @@ class MagazinePermissionError(MagazineApiError):
 
 class MagazinePayloadShapeError(MagazineApiError):
     pass
+
+
+def is_probable_auth_error(exc: Exception) -> bool:
+    if isinstance(exc, MagazinePermissionError):
+        return True
+    if isinstance(exc, MagazinePayloadShapeError):
+        return any(marker in str(exc) for marker in AUTH_RELATED_PAYLOAD_SHAPE_MARKERS)
+    if isinstance(exc, httpx.HTTPStatusError):
+        return exc.response is not None and exc.response.status_code in {401, 403}
+    return False
 
 
 def issue_dir(out_dir: Path, issue: MagazineIssueKey) -> Path:

@@ -24,17 +24,47 @@ CHROME_SALT = b"saltysalt"
 CHROME_PASSWORD = b"peanuts"
 CHROME_IV = b" " * 16
 HOST_KEY_HASH_BYTES = 32
+CHROME_REFRESH_TIMEOUT_SECONDS = 15.0
+CHROME_REFRESH_POLL_SECONDS = 1.0
 
 
-def refresh_cookies_via_chrome(url: str = LOGIN_URL, wait_seconds: float = 5.0) -> None:
+def refresh_cookies_via_chrome(
+    url: str = LOGIN_URL,
+    wait_seconds: float = 5.0,
+    *,
+    cookies_db: Path = DEFAULT_CHROME_COOKIES,
+    timeout_seconds: float = CHROME_REFRESH_TIMEOUT_SECONDS,
+    poll_seconds: float = CHROME_REFRESH_POLL_SECONDS,
+) -> bool:
     """Chrome でページを開き Cookie を更新させる。"""
     chrome = shutil.which("google-chrome") or shutil.which("google-chrome-stable")
     if chrome is None:
         logger.warning("Chrome バイナリが見つかりません。Cookie の自動更新をスキップします。")
-        return
+        return False
     subprocess.Popen([chrome, url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    logger.info("Chrome で %s を開きました。%s 秒待機します。", url, wait_seconds)
-    time.sleep(wait_seconds)
+    logger.info("Chrome で %s を開きました。Cookie 更新を待機します。", url)
+
+    deadline = time.monotonic() + max(wait_seconds, timeout_seconds)
+    next_attempt_at = time.monotonic() + wait_seconds
+    last_error: Exception | None = None
+    while True:
+        now = time.monotonic()
+        if now >= next_attempt_at:
+            try:
+                load_toyokeizai_cookies(cookies_db)
+            except (FileNotFoundError, OSError, sqlite3.Error) as exc:
+                last_error = exc
+            else:
+                return True
+            next_attempt_at = now + poll_seconds
+
+        if now >= deadline:
+            break
+        time.sleep(min(poll_seconds, max(deadline - now, 0.1)))
+
+    if last_error is not None:
+        logger.warning("Chrome 起動後も Cookie DB を利用できませんでした: %s", last_error)
+    return False
 
 
 def decrypt_chrome_cookie(encrypted_value: bytes) -> str:

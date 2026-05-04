@@ -16,6 +16,7 @@ from scrape.magazine.client import (
     fetch_pdf_access,
     fetch_issue_list,
     fetch_magazine_issue,
+    is_probable_auth_error,
     load_expected_issues,
     save_expected_issues,
 )
@@ -192,6 +193,32 @@ class TestFetchMagazineApi:
             url
             == f"https://shikiho.toyokeizai.net/files/shimen/premium/2026/2/0000page.pdf?Policy={policy}&Signature=abc&Key-Pair-Id=test"
         )
+
+
+class TestAuthErrorClassifier:
+    def test_returns_true_for_401(self) -> None:
+        request = httpx.Request("GET", "https://api.example.test/files/v1/files/magazines/2026/2")
+        response = httpx.Response(401, request=request)
+        error = httpx.HTTPStatusError("boom", request=request, response=response)
+
+        assert is_probable_auth_error(error) is True
+
+    def test_returns_false_for_503(self) -> None:
+        request = httpx.Request("GET", "https://api.example.test/files/v1/files/magazines/2026/2")
+        response = httpx.Response(503, request=request)
+        error = httpx.HTTPStatusError("boom", request=request, response=response)
+
+        assert is_probable_auth_error(error) is False
+
+    def test_returns_true_for_auth_like_payload_shape_error(self) -> None:
+        error = MagazinePayloadShapeError("2026_2: magazine オブジェクトが空です")
+
+        assert is_probable_auth_error(error) is True
+
+    def test_returns_false_for_non_auth_payload_shape_error(self) -> None:
+        error = MagazinePayloadShapeError("issue list: magazines 配列がありません")
+
+        assert is_probable_auth_error(error) is False
 
 
 class TestExpectedIssues:

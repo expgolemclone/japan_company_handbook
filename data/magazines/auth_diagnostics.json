@@ -1,68 +1,22 @@
 {
-  "generated_at": "2026-04-29T14:38:18.097405+00:00",
-  "sample_issues": [
-    "1936_3",
-    "2026_2"
-  ],
-  "live_issue_count": 346,
-  "ok": true,
+  "generated_at": "2026-04-30T14:36:41.891459+00:00",
+  "sample_issues": [],
+  "live_issue_count": 0,
+  "ok": false,
   "checks": [
     {
       "name": "issue_list",
       "url": "/files/v1/files/magazines/list",
       "issue": null,
-      "ok": true,
-      "category": "ok",
-      "http_status": 200,
-      "content_type": "application/json",
-      "body_preview": "{\"magazines\":[{\"calendar\":\"1936\",\"series\":\"3\",\"jpnCalendar\":null,\"title\":\"６月号\",\"subTitle\":null,\"pubDate\":null,\"link\":null,\"image\":null},{\"calendar\":\"1936\",\"series\":\"4\",\"jpnCalendar\":null,\"title\":\"９月号\",\"subTitle\":null,\"pubDate\":null,\"link\":null,\"image\":null},{\"calendar\":\"1937\",\"series\":\"1\",\"jpnCalend",
-      "observed_keys": [
-        "magazines",
-        "status"
-      ],
-      "payload_status": {
-        "code": "1000",
-        "message": "ok"
-      }
-    },
-    {
-      "name": "issue_detail",
-      "url": "/files/v1/files/magazines/1936/3",
-      "issue": "1936_3",
-      "ok": true,
-      "category": "ok",
-      "http_status": 200,
-      "content_type": "application/json",
-      "body_preview": "{\"magazine\":{\"calendar\":\"1936\",\"series\":\"3\",\"jpnCalendar\":null,\"title\":\"６月号\",\"subTitle\":null,\"pubDate\":null,\"link\":null,\"image\":null,\"magazineType\":\"1\",\"pages\":[{\"type\":\"10\",\"page\":\"0000page\"},{\"type\":\"20\",\"page\":\"0001page\"},{\"type\":\"20\",\"page\":\"0002page\"},{\"type\":\"20\",\"page\":\"0003page\"},{\"type\":\"20",
-      "observed_keys": [
-        "magazine",
-        "status"
-      ],
-      "payload_status": {
-        "code": "1000",
-        "message": "ok"
-      }
-    },
-    {
-      "name": "issue_detail",
-      "url": "/files/v1/files/magazines/2026/2",
-      "issue": "2026_2",
-      "ok": true,
-      "category": "ok",
-      "http_status": 200,
-      "content_type": "application/json",
-      "body_preview": "{\"magazine\":{\"calendar\":\"2026\",\"series\":\"2\",\"jpnCalendar\":null,\"title\":\"春号\",\"subTitle\":\"２集\",\"pubDate\":\"20260318\",\"link\":null,\"image\":null,\"magazineType\":\"0\",\"pages\":[{\"type\":\"10\",\"page\":\"0000page\"},{\"type\":\"20\",\"page\":\"0001page\"},{\"type\":\"20\",\"page\":\"0002page\"},{\"type\":\"20\",\"page\":\"0003page\"},{\"type",
-      "observed_keys": [
-        "magazine",
-        "status"
-      ],
-      "payload_status": {
-        "code": "1000",
-        "message": "ok"
-      }
+      "ok": false,
+      "category": "http_status_error",
+      "http_status": 401,
+      "content_type": "text/plain; charset=utf-8",
+      "body_preview": "Unauthorized",
+      "error": "HTTP 401"
     }
   ],
   "category_counts": {
-    "ok": 3
+    "http_status_error": 1
   }
 }

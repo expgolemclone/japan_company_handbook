@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import logging
 
+import httpx
+
+from scrape.auth import refresh_cookies_via_chrome
 from scrape.client import (
     build_api_client,
     build_http_client,
@@ -24,7 +27,26 @@ logger = logging.getLogger(__name__)
 
 def main() -> None:
     api_client = build_api_client()
-    access = fetch_pdf_access(api_client)
+
+    try:
+        access = fetch_pdf_access(api_client)
+    except httpx.HTTPStatusError as exc:
+        if exc.response.status_code != 401:
+            raise
+
+        logger.warning(
+            "認証に失敗しました。Chromeで四季報オンラインを開いてCookie更新を試みます。"
+        )
+        if not refresh_cookies_via_chrome():
+            logger.error(
+                "Cookie更新に失敗しました。Chromeで四季報オンラインにログインしてください。"
+            )
+            raise
+
+        api_client.close()
+        api_client = build_api_client()
+        access = fetch_pdf_access(api_client)
+
     issues = fetch_issues(api_client, from_year=1936)
 
     logger.info("取得対象号数: %d", len(issues))

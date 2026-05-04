@@ -1,1565 +1,14 @@
 {
   "expected_issue_count": 346,
-  "completed_issue_count": 191,
-  "failed_issue_count": 155,
+  "completed_issue_count": 346,
+  "failed_issue_count": 0,
   "missing_issue_count": 0,
   "missing_page_count": 0,
   "earliest_expected_issue": "1936_3",
   "earliest_verified_issue": "1936_3",
-  "verified_complete": false,
+  "verified_complete": true,
   "missing_issues": [],
-  "failed_issues": [
-    {
-      "issue": "1987_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1987/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1988_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1988/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1988_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1988/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1988_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1988/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1988_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1988/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1989_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1989/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1989_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1989/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1989_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1989/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1989_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1989/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1990_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1990/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1990_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1990/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1990_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1990/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1990_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1990/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1991_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1991/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1991_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1991/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1991_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1991/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1991_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1991/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1992_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1992/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1992_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1992/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1992_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1992/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1992_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1992/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1993_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1993/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1993_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1993/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1993_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1993/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1993_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1993/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1994_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1994/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1994_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1994/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1994_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1994/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1994_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1994/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1995_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1995/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1995_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1995/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1995_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1995/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1995_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1995/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1996_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1996/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1996_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1996/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1996_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1996/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1996_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1996/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1997_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1997/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1997_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1997/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1997_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1997/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1997_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1997/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1998_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1998/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1998_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1998/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1998_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1998/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1998_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1998/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1999_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1999/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1999_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1999/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1999_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1999/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "1999_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/1999/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2000_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2000/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2000_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2000/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2000_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2000/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2000_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2000/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2001_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2001/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2001_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2001/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2001_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2001/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2001_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2001/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2002_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2002/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2002_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2002/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2002_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2002/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2002_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2002/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2003_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2003/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2003_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2003/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2003_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2003/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2003_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2003/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2004_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2004/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2004_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2004/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2004_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2004/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2004_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2004/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2005_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2005/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2005_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2005/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2005_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2005/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2005_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2005/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2006_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2006/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2006_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2006/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2006_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2006/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2006_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2006/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2007_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2007/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2007_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2007/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2007_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2007/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2007_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2007/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2008_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2008/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2008_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2008/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2008_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2008/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2008_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2008/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2009_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2009/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2009_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2009/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2009_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2009/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2009_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2009/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2010_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2010/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2010_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2010/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2010_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2010/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2010_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2010/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2011_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2011/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2011_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2011/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2011_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2011/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2011_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2011/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2012_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2012/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2012_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2012/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2012_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2012/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2012_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2012/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2013_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2013/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2013_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2013/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2013_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2013/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2013_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2013/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2014_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2014/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2014_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2014/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2014_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2014/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2014_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2014/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2015_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2015/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2015_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2015/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2015_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2015/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2015_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2015/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2016_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2016/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2016_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2016/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2016_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2016/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2016_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2016/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2017_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2017/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2017_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2017/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2017_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2017/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2017_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2017/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2018_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2018/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2018_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2018/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2018_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2018/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2018_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2018/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2019_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2019/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2019_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2019/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2019_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2019/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2019_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2019/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2020_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2020/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2020_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2020/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2020_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2020/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2020_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2020/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2021_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2021/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2021_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2021/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2021_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2021/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2021_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2021/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2022_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2022/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2022_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2022/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2022_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2022/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2022_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2022/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2023_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2023/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2023_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2023/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2023_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2023/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2023_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2023/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2024_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2024/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2024_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2024/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2024_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2024/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2024_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2024/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2025_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2025/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2025_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2025/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2025_3",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2025/3'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2025_4",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2025/4'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2026_1",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2026/1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    },
-    {
-      "issue": "2026_2",
-      "status": "failed",
-      "error": "Client error '401 Unauthorized' for url 'https://api-shikiho.toyokeizai.net/files/v1/files/magazines/2026/2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401",
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ]
-    }
-  ],
+  "failed_issues": [],
   "missing_pages": [],
   "issue_reports": [
     {
@@ -3474,2173 +1923,1553 @@
     },
     {
       "issue": "1987_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1169,
+      "actual_file_count": 1169
     },
     {
       "issue": "1988_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1185,
+      "actual_file_count": 1185
     },
     {
       "issue": "1988_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1217,
+      "actual_file_count": 1217
     },
     {
       "issue": "1988_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1217,
+      "actual_file_count": 1217
     },
     {
       "issue": "1988_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1233,
+      "actual_file_count": 1233
     },
     {
       "issue": "1989_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1281,
+      "actual_file_count": 1281
     },
     {
       "issue": "1989_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1297,
+      "actual_file_count": 1297
     },
     {
       "issue": "1989_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1313,
+      "actual_file_count": 1313
     },
     {
       "issue": "1989_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1313,
+      "actual_file_count": 1313
     },
     {
       "issue": "1990_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1345,
+      "actual_file_count": 1345
     },
     {
       "issue": "1990_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1361,
+      "actual_file_count": 1361
     },
     {
       "issue": "1990_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1377,
+      "actual_file_count": 1377
     },
     {
       "issue": "1990_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1393,
+      "actual_file_count": 1393
     },
     {
       "issue": "1991_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1425,
+      "actual_file_count": 1425
     },
     {
       "issue": "1991_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1441,
+      "actual_file_count": 1441
     },
     {
       "issue": "1991_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1473,
+      "actual_file_count": 1473
     },
     {
       "issue": "1991_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1489,
+      "actual_file_count": 1489
     },
     {
       "issue": "1992_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1489,
+      "actual_file_count": 1489
     },
     {
       "issue": "1992_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1489,
+      "actual_file_count": 1489
     },
     {
       "issue": "1992_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1473,
+      "actual_file_count": 1473
     },
     {
       "issue": "1992_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1489,
+      "actual_file_count": 1489
     },
     {
       "issue": "1993_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1489,
+      "actual_file_count": 1489
     },
     {
       "issue": "1993_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1505,
+      "actual_file_count": 1505
     },
     {
       "issue": "1993_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1521,
+      "actual_file_count": 1521
     },
     {
       "issue": "1993_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1521,
+      "actual_file_count": 1521
     },
     {
       "issue": "1994_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1537,
+      "actual_file_count": 1537
     },
     {
       "issue": "1994_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1537,
+      "actual_file_count": 1537
     },
     {
       "issue": "1994_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1553,
+      "actual_file_count": 1553
     },
     {
       "issue": "1994_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1585,
+      "actual_file_count": 1585
     },
     {
       "issue": "1995_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1601,
+      "actual_file_count": 1601
     },
     {
       "issue": "1995_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1633,
+      "actual_file_count": 1633
     },
     {
       "issue": "1995_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1649,
+      "actual_file_count": 1649
     },
     {
       "issue": "1995_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1697,
+      "actual_file_count": 1697
     },
     {
       "issue": "1996_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1697,
+      "actual_file_count": 1697
     },
     {
       "issue": "1996_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1729,
+      "actual_file_count": 1729
     },
     {
       "issue": "1996_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1729,
+      "actual_file_count": 1729
     },
     {
       "issue": "1996_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1729,
+      "actual_file_count": 1729
     },
     {
       "issue": "1997_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1777,
+      "actual_file_count": 1777
     },
     {
       "issue": "1997_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1809,
+      "actual_file_count": 1809
     },
     {
       "issue": "1997_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1793,
+      "actual_file_count": 1793
     },
     {
       "issue": "1997_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1809,
+      "actual_file_count": 1809
     },
     {
       "issue": "1998_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1841,
+      "actual_file_count": 1841
     },
     {
       "issue": "1998_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1841,
+      "actual_file_count": 1841
     },
     {
       "issue": "1998_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1841,
+      "actual_file_count": 1841
     },
     {
       "issue": "1998_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1841,
+      "actual_file_count": 1841
     },
     {
       "issue": "1999_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1841,
+      "actual_file_count": 1841
     },
     {
       "issue": "1999_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1857,
+      "actual_file_count": 1857
     },
     {
       "issue": "1999_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1857,
+      "actual_file_count": 1857
     },
     {
       "issue": "1999_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1857,
+      "actual_file_count": 1857
     },
     {
       "issue": "2000_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1857,
+      "actual_file_count": 1857
     },
     {
       "issue": "2000_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1873,
+      "actual_file_count": 1873
     },
     {
       "issue": "2000_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1889,
+      "actual_file_count": 1889
     },
     {
       "issue": "2000_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1873,
+      "actual_file_count": 1873
     },
     {
       "issue": "2001_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1889,
+      "actual_file_count": 1889
     },
     {
       "issue": "2001_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1905,
+      "actual_file_count": 1905
     },
     {
       "issue": "2001_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1905,
+      "actual_file_count": 1905
     },
     {
       "issue": "2001_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1937,
+      "actual_file_count": 1937
     },
     {
       "issue": "2002_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1953,
+      "actual_file_count": 1953
     },
     {
       "issue": "2002_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1969,
+      "actual_file_count": 1969
     },
     {
       "issue": "2002_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1985,
+      "actual_file_count": 1985
     },
     {
       "issue": "2002_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1985,
+      "actual_file_count": 1985
     },
     {
       "issue": "2003_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1985,
+      "actual_file_count": 1985
     },
     {
       "issue": "2003_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2001,
+      "actual_file_count": 2001
     },
     {
       "issue": "2003_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1985,
+      "actual_file_count": 1985
     },
     {
       "issue": "2003_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1985,
+      "actual_file_count": 1985
     },
     {
       "issue": "2004_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1985,
+      "actual_file_count": 1985
     },
     {
       "issue": "2004_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2001,
+      "actual_file_count": 2001
     },
     {
       "issue": "2004_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2001,
+      "actual_file_count": 2001
     },
     {
       "issue": "2004_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2017,
+      "actual_file_count": 2017
     },
     {
       "issue": "2005_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2049,
+      "actual_file_count": 2049
     },
     {
       "issue": "2005_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2049,
+      "actual_file_count": 2049
     },
     {
       "issue": "2005_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2065,
+      "actual_file_count": 2065
     },
     {
       "issue": "2005_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2081,
+      "actual_file_count": 2081
     },
     {
       "issue": "2006_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2113,
+      "actual_file_count": 2113
     },
     {
       "issue": "2006_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2129,
+      "actual_file_count": 2129
     },
     {
       "issue": "2006_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2161,
+      "actual_file_count": 2161
     },
     {
       "issue": "2006_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2160,
+      "actual_file_count": 2160
     },
     {
       "issue": "2007_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2175,
+      "actual_file_count": 2175
     },
     {
       "issue": "2007_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2209,
+      "actual_file_count": 2209
     },
     {
       "issue": "2007_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2209,
+      "actual_file_count": 2209
     },
     {
       "issue": "2007_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2209,
+      "actual_file_count": 2209
     },
     {
       "issue": "2008_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2209,
+      "actual_file_count": 2209
     },
     {
       "issue": "2008_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2209,
+      "actual_file_count": 2209
     },
     {
       "issue": "2008_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2193,
+      "actual_file_count": 2193
     },
     {
       "issue": "2008_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2177,
+      "actual_file_count": 2177
     },
     {
       "issue": "2009_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2161,
+      "actual_file_count": 2161
     },
     {
       "issue": "2009_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2145,
+      "actual_file_count": 2145
     },
     {
       "issue": "2009_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2129,
+      "actual_file_count": 2129
     },
     {
       "issue": "2009_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2113,
+      "actual_file_count": 2113
     },
     {
       "issue": "2010_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2081,
+      "actual_file_count": 2081
     },
     {
       "issue": "2010_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2049,
+      "actual_file_count": 2049
     },
     {
       "issue": "2010_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2033,
+      "actual_file_count": 2033
     },
     {
       "issue": "2010_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2017,
+      "actual_file_count": 2017
     },
     {
       "issue": "2011_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2001,
+      "actual_file_count": 2001
     },
     {
       "issue": "2011_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 2001,
+      "actual_file_count": 2001
     },
     {
       "issue": "2011_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 1985,
+      "actual_file_count": 1985
     },
     {
       "issue": "2011_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3767,
+      "actual_file_count": 3767
     },
     {
       "issue": "2012_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3766,
+      "actual_file_count": 3766
     },
     {
       "issue": "2012_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3760,
+      "actual_file_count": 3760
     },
     {
       "issue": "2012_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3734,
+      "actual_file_count": 3734
     },
     {
       "issue": "2012_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3725,
+      "actual_file_count": 3725
     },
     {
       "issue": "2013_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3726,
+      "actual_file_count": 3726
     },
     {
       "issue": "2013_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3745,
+      "actual_file_count": 3745
     },
     {
       "issue": "2013_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3760,
+      "actual_file_count": 3760
     },
     {
       "issue": "2013_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3751,
+      "actual_file_count": 3751
     },
     {
       "issue": "2014_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3750,
+      "actual_file_count": 3750
     },
     {
       "issue": "2014_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3751,
+      "actual_file_count": 3751
     },
     {
       "issue": "2014_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3771,
+      "actual_file_count": 3771
     },
     {
       "issue": "2014_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3774,
+      "actual_file_count": 3774
     },
     {
       "issue": "2015_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3779,
+      "actual_file_count": 3779
     },
     {
       "issue": "2015_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3806,
+      "actual_file_count": 3806
     },
     {
       "issue": "2015_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3813,
+      "actual_file_count": 3813
     },
     {
       "issue": "2015_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3814,
+      "actual_file_count": 3814
     },
     {
       "issue": "2016_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3817,
+      "actual_file_count": 3817
     },
     {
       "issue": "2016_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3821,
+      "actual_file_count": 3821
     },
     {
       "issue": "2016_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3843,
+      "actual_file_count": 3843
     },
     {
       "issue": "2016_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3846,
+      "actual_file_count": 3846
     },
     {
       "issue": "2017_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3850,
+      "actual_file_count": 3850
     },
     {
       "issue": "2017_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3855,
+      "actual_file_count": 3855
     },
     {
       "issue": "2017_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3858,
+      "actual_file_count": 3858
     },
     {
       "issue": "2017_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3860,
+      "actual_file_count": 3860
     },
     {
       "issue": "2018_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3889,
+      "actual_file_count": 3889
     },
     {
       "issue": "2018_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3894,
+      "actual_file_count": 3894
     },
     {
       "issue": "2018_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3914,
+      "actual_file_count": 3914
     },
     {
       "issue": "2018_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3922,
+      "actual_file_count": 3922
     },
     {
       "issue": "2019_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3941,
+      "actual_file_count": 3941
     },
     {
       "issue": "2019_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3946,
+      "actual_file_count": 3946
     },
     {
       "issue": "2019_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3966,
+      "actual_file_count": 3966
     },
     {
       "issue": "2019_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3969,
+      "actual_file_count": 3969
     },
     {
       "issue": "2020_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 3978,
+      "actual_file_count": 3978
     },
     {
       "issue": "2020_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4002,
+      "actual_file_count": 4002
     },
     {
       "issue": "2020_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4002,
+      "actual_file_count": 4002
     },
     {
       "issue": "2020_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4005,
+      "actual_file_count": 4005
     },
     {
       "issue": "2021_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4029,
+      "actual_file_count": 4029
     },
     {
       "issue": "2021_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4040,
+      "actual_file_count": 4040
     },
     {
       "issue": "2021_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4040,
+      "actual_file_count": 4040
     },
     {
       "issue": "2021_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4045,
+      "actual_file_count": 4045
     },
     {
       "issue": "2022_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4053,
+      "actual_file_count": 4053
     },
     {
       "issue": "2022_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4082,
+      "actual_file_count": 4082
     },
     {
       "issue": "2022_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4075,
+      "actual_file_count": 4075
     },
     {
       "issue": "2022_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4077,
+      "actual_file_count": 4077
     },
     {
       "issue": "2023_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4088,
+      "actual_file_count": 4088
     },
     {
       "issue": "2023_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4087,
+      "actual_file_count": 4087
     },
     {
       "issue": "2023_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4110,
+      "actual_file_count": 4110
     },
     {
       "issue": "2023_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4135,
+      "actual_file_count": 4135
     },
     {
       "issue": "2024_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4144,
+      "actual_file_count": 4144
     },
     {
       "issue": "2024_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4140,
+      "actual_file_count": 4140
     },
     {
       "issue": "2024_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4138,
+      "actual_file_count": 4138
     },
     {
       "issue": "2024_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4124,
+      "actual_file_count": 4124
     },
     {
       "issue": "2025_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4124,
+      "actual_file_count": 4124
     },
     {
       "issue": "2025_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4118,
+      "actual_file_count": 4118
     },
     {
       "issue": "2025_3",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4110,
+      "actual_file_count": 4110
     },
     {
       "issue": "2025_4",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4090,
+      "actual_file_count": 4090
     },
     {
       "issue": "2026_1",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4083,
+      "actual_file_count": 4083
     },
     {
       "issue": "2026_2",
-      "ok": false,
-      "errors": [
-        "raw manifest がありません: manifest.raw.json",
-        "normalized manifest がありません: manifest.normalized.json",
-        "progress がありません: progress.json"
-      ],
+      "ok": true,
+      "errors": [],
       "missing_pages": [],
       "missing_files": [],
       "extra_files": [],
-      "physical_page_count": 0,
-      "actual_file_count": 0
+      "physical_page_count": 4074,
+      "actual_file_count": 4074
     }
   ]
 }

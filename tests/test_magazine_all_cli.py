@@ -14,6 +14,20 @@ def _load_json(name: str) -> dict[str, object]:
     return json.loads((FIXTURE_DIR / name).read_text(encoding="utf-8"))
 
 
+def _stub_refresh_cookie(
+    monkeypatch,
+    *,
+    return_value: bool = True,
+    calls: dict[str, int] | None = None,
+) -> None:
+    def fake_refresh(*args, **kwargs) -> bool:
+        if calls is not None:
+            calls["refresh"] = calls.get("refresh", 0) + 1
+        return return_value
+
+    monkeypatch.setattr("scrape.magazine.all_cli.refresh_cookies_via_chrome", fake_refresh)
+
+
 def _build_batch_client(call_counter: dict[str, int]) -> httpx.Client:
     issues_list = {
         "status": {"code": "2000", "message": "ok"},
@@ -63,6 +77,7 @@ def _build_batch_client(call_counter: dict[str, int]) -> httpx.Client:
 class TestMagazineAllCli:
     def test_runs_batch_and_verifies_output(self, monkeypatch, tmp_path: Path) -> None:
         calls: dict[str, int] = {}
+        _stub_refresh_cookie(monkeypatch)
 
         def fake_client_builder(*args, **kwargs) -> httpx.Client:
             return _build_batch_client(calls)
@@ -84,6 +99,7 @@ class TestMagazineAllCli:
 
     def test_resume_skips_succeeded_issues(self, monkeypatch, tmp_path: Path) -> None:
         calls: dict[str, int] = {}
+        _stub_refresh_cookie(monkeypatch)
 
         def fake_client_builder(*args, **kwargs) -> httpx.Client:
             return _build_batch_client(calls)
@@ -104,6 +120,7 @@ class TestMagazineAllCli:
         self, monkeypatch, tmp_path: Path
     ) -> None:
         calls: dict[str, int] = {}
+        _stub_refresh_cookie(monkeypatch, return_value=False)
 
         def handler(request: httpx.Request) -> httpx.Response:
             path = request.url.path
@@ -157,3 +174,156 @@ class TestMagazineAllCli:
         assert diagnostics["ok"] is False
         assert diagnostics["category_counts"]["payload_shape_error"] == 2
         assert not (tmp_path / "batch_progress.json").exists()
+
+    def test_retries_current_issue_after_auth_error(
+        self, monkeypatch, tmp_path: Path
+    ) -> None:
+        calls: dict[str, int] = {}
+        refresh_calls: dict[str, int] = {}
+        _stub_refresh_cookie(monkeypatch, calls=refresh_calls)
+
+        issues_list = {
+            "status": {"code": "2000", "message": "ok"},
+            "magazines": [
+                {"calendar": "1936", "series": "1", "title": "創刊号"},
+                {"calendar": "2026", "series": "2", "title": "春号"},
+            ],
+        }
+        raw_1936 = _load_json("1936_1.raw.json")
+        raw_2026 = _load_json("2026_2.raw.json")
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            path = request.url.path
+            if path == "/files/v1/files/magazines/list":
+                calls["list"] = calls.get("list", 0) + 1
+                return httpx.Response(200, json=issues_list)
+            if path == "/files/v1/files/magazines/1936/1":
+                calls["1936_1"] = calls.get("1936_1", 0) + 1
+                return httpx.Response(200, json=raw_1936)
+            if path == "/files/v1/files/magazines/2026/2":
+                calls["2026_2"] = calls.get("2026_2", 0) + 1
+                if calls["2026_2"] == 2 and refresh_calls["refresh"] == 1:
+                    return httpx.Response(401, request=request)
+                return httpx.Response(200, json=raw_2026)
+            if path.endswith(".pdf"):
+                return httpx.Response(
+                    200,
+                    content=b"%PDF-1.4 page pdf",
+                    headers={"content-type": "application/pdf"},
+                )
+            if path.endswith(".jpg"):
+                return httpx.Response(
+                    200,
+                    content=b"jpeg",
+                    headers={"content-type": "image/jpeg"},
+                )
+            return httpx.Response(
+                200,
+                content=b"png",
+                headers={"content-type": "image/png"},
+            )
+
+        def fake_client_builder(*args, **kwargs) -> httpx.Client:
+            return httpx.Client(
+                transport=httpx.MockTransport(handler),
+                base_url="https://api-shikiho.toyokeizai.net",
+            )
+
+        monkeypatch.setattr(
+            "scrape.magazine.all_cli.build_magazine_http_client",
+            fake_client_builder,
+        )
+
+        exit_code = main(["--out-dir", str(tmp_path), "--verify-after-run"])
+
+        assert exit_code == 0
+        verify_report = json.loads((tmp_path / "verify_report.json").read_text(encoding="utf-8"))
+        assert verify_report["verified_complete"] is True
+        assert refresh_calls["refresh"] == 2
+        assert calls["list"] == 2
+        assert calls["1936_1"] == 2
+        assert calls["2026_2"] == 4
+
+    def test_exits_after_second_auth_failure_and_stops_future_issues(
+        self, monkeypatch, tmp_path: Path
+    ) -> None:
+        calls: dict[str, int] = {}
+        refresh_calls: dict[str, int] = {}
+        _stub_refresh_cookie(monkeypatch, calls=refresh_calls)
+
+        issues_list = {
+            "status": {"code": "2000", "message": "ok"},
+            "magazines": [
+                {"calendar": "1936", "series": "1", "title": "創刊号"},
+                {"calendar": "2026", "series": "1", "title": "新春号"},
+                {"calendar": "2026", "series": "2", "title": "春号"},
+            ],
+        }
+        raw_1936 = _load_json("1936_1.raw.json")
+        raw_2026_1 = json.loads(json.dumps(_load_json("2026_2.raw.json")))
+        raw_2026_1["magazine"]["series"] = "1"
+        raw_2026_2 = _load_json("2026_2.raw.json")
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            path = request.url.path
+            if path == "/files/v1/files/magazines/list":
+                calls["list"] = calls.get("list", 0) + 1
+                return httpx.Response(200, json=issues_list)
+            if path == "/files/v1/files/magazines/1936/1":
+                calls["1936_1"] = calls.get("1936_1", 0) + 1
+                return httpx.Response(200, json=raw_1936)
+            if path == "/files/v1/files/magazines/2026/1":
+                calls["2026_1"] = calls.get("2026_1", 0) + 1
+                if calls["2026_1"] in {1, 3}:
+                    return httpx.Response(401, request=request)
+                return httpx.Response(200, json=raw_2026_1)
+            if path == "/files/v1/files/magazines/2026/2":
+                calls["2026_2"] = calls.get("2026_2", 0) + 1
+                return httpx.Response(200, json=raw_2026_2)
+            if path.endswith(".pdf"):
+                return httpx.Response(
+                    200,
+                    content=b"%PDF-1.4 page pdf",
+                    headers={"content-type": "application/pdf"},
+                )
+            if path.endswith(".jpg"):
+                return httpx.Response(
+                    200,
+                    content=b"jpeg",
+                    headers={"content-type": "image/jpeg"},
+                )
+            return httpx.Response(
+                200,
+                content=b"png",
+                headers={"content-type": "image/png"},
+            )
+
+        def fake_client_builder(*args, **kwargs) -> httpx.Client:
+            return httpx.Client(
+                transport=httpx.MockTransport(handler),
+                base_url="https://api-shikiho.toyokeizai.net",
+            )
+
+        monkeypatch.setattr(
+            "scrape.magazine.all_cli.build_magazine_http_client",
+            fake_client_builder,
+        )
+
+        exit_code = main(["--out-dir", str(tmp_path), "--verify-after-run"])
+
+        assert exit_code == 1
+        assert refresh_calls["refresh"] == 2
+        assert calls["list"] == 3
+        assert calls["1936_1"] == 2
+        assert calls["2026_1"] == 4
+        assert calls["2026_2"] == 1
+
+        diagnostics = json.loads((tmp_path / "auth_diagnostics.json").read_text(encoding="utf-8"))
+        assert diagnostics["ok"] is False
+        assert diagnostics["checks"][-1]["name"] == "issue_runtime_failure"
+        assert diagnostics["checks"][-1]["issue"] == "2026_1"
+
+        batch_progress = json.loads((tmp_path / "batch_progress.json").read_text(encoding="utf-8"))
+        assert batch_progress["issues"]["1936_1"]["status"] == "succeeded"
+        assert batch_progress["issues"]["2026_1"]["status"] == "failed"
+        assert "2026_2" not in batch_progress["issues"]

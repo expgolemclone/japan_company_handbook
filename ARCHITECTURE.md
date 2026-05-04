@@ -2,7 +2,7 @@
 
 ## Overview
 
-このリポジトリは、会社四季報オンラインの誌面アーカイブを取得し、後続処理しやすい形で保存するためのツール群で構成されている。現状は次の4系統が共存している。
+このリポジトリは、会社四季報オンラインの誌面アーカイブを取得し、後続処理しやすい形で保存するためのツール群で構成されている。現状は次の5系統が共存している。
 
 1. `scrape`
    APIから全号のページPDFを直接取得するシンプルな一括ダウンローダー。
@@ -10,7 +10,9 @@
    号単位で raw manifest、正規化済み manifest、ページ実体、進捗、検証結果まで保存する取得パイプライン。
 3. `scrape.magazine.audit`
    欠号候補のファクトチェックと live API の認証・payload 不整合を診断する監査CLI。
-4. `pdfops`
+4. `scrape.stock`
+   銘柄ごとの業績予想（四季報予想・会社予想）をAPIから取得し、SQLiteに格納する。
+5. `pdfops`
    取得済みPDFを反転し、別ディレクトリへミラー出力する後処理ツール。
 
 認証はいずれも東洋経済サイトのログインCookieに依存する。現在の実装は Playwright MCP を前提にしておらず、`httpx` から直接 API と配信URLを叩く構成になっている。
@@ -81,7 +83,32 @@ Chrome Cookie / Cookie JSON
 - `scrape-magazine-all --resume` で成功済み号をスキップできる。
 - `scrape-magazine-verify` または `--verify-after-run` で保存完全性を検証できる。
 
-### 3. `pdfops` のPDF反転
+### 3. `scrape.stock` の銘柄業績予想取得
+
+`scrape.stock_cli` は `stock_codes_*.json` に掲載された全銘柄の業績予想を取得し、SQLiteに格納する。
+
+```text
+Chrome Cookie DB
+  -> scrape.auth.load_toyokeizai_cookies()
+  -> scrape.client.build_api_client()
+  -> /sso/v1/sso/check
+  -> /stocks/v1/stocks/{code}/latest
+  -> scrape.stock.fetch_stock_latest()
+  -> shimen_results パース
+     -> ◇XX.X予 → 四季報予想(2期分)
+     -> 会XX.X予 → 会社予想(1期分)
+  -> scrape.stock_db.save_performance()
+  -> data/stock_performance.db
+```
+
+特徴:
+
+- 営業利益・純利益を百万円単位で取得する。
+- 四季報予想はプレミアム会員限定の値が `ー` になる場合、`NULL` として格納する。
+- `INSERT OR REPLACE` で同一キーを更新する。
+- 連続アクセス間隔は `REQUEST_INTERVAL = 1.0` 秒。
+
+### 4. `pdfops` のPDF反転
 
 `invert-pdfs` は任意の入力ディレクトリ配下の PDF を列挙し、相対パスを保ったまま出力先へ反転版を書き出す。
 
@@ -99,7 +126,7 @@ source_root/**/*.pdf
 - 出力先ディレクトリ構造は入力をミラーする。
 - `gs` があればベクタPDFのまま反転し、無ければラスタライズ経由で生成する。
 
-### 4. `scrape.magazine.audit` の監査
+### 5. `scrape.magazine.audit` の監査
 
 `scrape-magazine-audit` は保存済み号一覧と live API を分離して検査し、欠号候補と認証異常を別ファイルで出力する。
 
@@ -148,6 +175,27 @@ Cookie JSON / Chrome Cookie
 - `scrape` 系の簡易進捗管理。
 - `data/progress.json` に completed キー集合を保存する。
 - autosave と flush を持つ。
+
+### `scrape/stock.py`
+
+- 銘柄業績予想のAPI呼び出しとパースを担当。
+- `/stocks/v1/stocks/{code}/latest` から `shimen_results` を取得する。
+- `◇XX.X予` 行から四季報予想（営業利益・純利益）を2期分抽出する。
+- `会XX.X予` 行から会社予想（営業利益・純利益）を1期分抽出する。
+- 値が `ー` の場合は `None` とする。
+
+### `scrape/stock_db.py`
+
+- 銘柄業績予想のSQLite格納を担当。
+- `data/stock_performance.db` に `stock_forecasts` テーブルを作成する。
+- `INSERT OR REPLACE` でUPSERTを行う。
+- 主キーは `(stock_code, forecast_type, period)`。
+
+### `scrape/stock_cli.py`
+
+- `scrape.stock` 系のバッチCLIエントリポイント。
+- `data/stock_codes_*.json` の全銘柄を処理する。
+- 認証失敗時はChrome Cookieの自動更新を試行する。
 
 ### `scrape/magazine/client.py`
 
@@ -216,9 +264,10 @@ data/                               # ホワイトリストで個別に管理
 ├── progress.json                    # [未管理] scrape 系の全体進捗
 ├── cookies.json                     # [未管理] 認証Cookie（秘匿）
 ├── signed_params.json               # [未管理] 認証パラメータ（秘匿）
+├── stock_codes_*.json              # [管理] 銘柄コード一覧
+├── stock_performance.db            # [未管理] 銘柄業績予想SQLite
 ├── {year}_{series}/                 # [未管理] scrape 系のページPDF保存先
 │   └── {page_id}.pdf
-├── stock_codes_*.json              # [管理] 旧データ。現行実装では未使用
 ├── watchdogs/                       # [未管理] watchdog の実行時ログ・ロック
 └── magazines/
     ├── issues.raw.json              # [管理] APIから取得した号一覧の生データ
@@ -251,6 +300,10 @@ derived/
 - `scrape-magazine-audit`: `scrape.magazine.audit_cli:main`
 - `invert-pdfs`: `pdfops.__main__:main`
 
+追加のCLI:
+
+- `python -m scrape.stock_cli`: 銘柄業績予想のバッチ取得
+
 ## Error Handling
 
 - HTTPステータス異常は `raise_for_status()` でそのまま失敗させる。
@@ -259,3 +312,4 @@ derived/
 - `request_with_retries()` は `429`、`5xx`、`TransportError` を再試行するが、永続エラーは握りつぶさない。
 - 単号バッチでは失敗したページや号の状態を progress に記録し、全件停止ではなく続行できる箇所を分けている。
 - 検証フェーズは「進捗が成功になっているか」だけでなく、「manifest と物理ファイルが一致するか」まで確認する。
+- `scrape.stock_cli` ではHTTPエラーやデータなしの銘柄をスキップし、ログに出力して後続の処理を続行する。
