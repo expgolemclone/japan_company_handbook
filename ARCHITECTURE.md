@@ -85,7 +85,7 @@ Chrome Cookie / Cookie JSON
 
 ### 3. `scrape.stock` の銘柄業績予想取得
 
-`scrape.stock_cli` は `stock_codes_*.json` に掲載された全銘柄の業績予想を取得し、SQLiteに格納する。
+`scrape.stock_cli` は `stock_codes_*.json` に掲載された全銘柄の業績予想を取得し、SQLiteに格納する。起動時に現在の Python に `httpx` が無い場合は、プロジェクト直下の `.venv` を検出できればその Python へ再実行し、見つからなければ依存インストールを促して終了する。
 
 ```text
 Chrome Cookie DB
@@ -195,6 +195,7 @@ Cookie JSON / Chrome Cookie
 
 - `scrape.stock` 系のバッチCLIエントリポイント。
 - `data/stock_codes_*.json` の全銘柄を処理する。
+- `httpx` 未導入の Python で起動された場合、`.venv/bin/python3` などのプロジェクト仮想環境を検出して自動で再実行する。
 - 認証失敗時はChrome Cookieの自動更新を試行する。
 
 ### `scrape/magazine/client.py`
@@ -302,7 +303,8 @@ derived/
 
 追加のCLI:
 
-- `python -m scrape.stock_cli`: 銘柄業績予想のバッチ取得
+- `uv run python -m scrape.stock_cli`: 銘柄業績予想のバッチ取得（推奨）
+- `python -m scrape.stock_cli`: `.venv` を検出できる場合は同じ処理を自動再実行
 
 ## Error Handling
 
@@ -312,4 +314,5 @@ derived/
 - `request_with_retries()` は `429`、`5xx`、`TransportError` を再試行するが、永続エラーは握りつぶさない。
 - 単号バッチでは失敗したページや号の状態を progress に記録し、全件停止ではなく続行できる箇所を分けている。
 - 検証フェーズは「進捗が成功になっているか」だけでなく、「manifest と物理ファイルが一致するか」まで確認する。
-- `scrape.stock_cli` ではHTTPエラーやデータなしの銘柄をスキップし、ログに出力して後続の処理を続行する。
+- `scrape.stock_cli` では起動時の依存不足を検出し、`.venv` への再実行または `uv sync` の案内に切り分ける。
+- `scrape.stock_cli` ではHTTPエラー、転送エラー、データなしの銘柄をスキップし、ログに出力して後続の処理を続行する。

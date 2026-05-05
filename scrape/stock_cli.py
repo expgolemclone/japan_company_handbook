@@ -1,22 +1,65 @@
 from __future__ import annotations
 
+import importlib
 import json
 import logging
+import os
+import sys
 import time
 from pathlib import Path
-
-import httpx
-
-from scrape.auth import refresh_cookies_via_chrome
-from scrape.client import build_api_client
-from scrape.downloader import REQUEST_INTERVAL
-from scrape.stock import fetch_stock_latest
-from scrape.stock_db import DEFAULT_DB_PATH, init_db, save_performance
 
 logger = logging.getLogger(__name__)
 
 DATA_DIR = Path("data")
 DEFAULT_CODES_PATH = DATA_DIR / "stock_codes_2026_2.json"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def _find_project_venv_python(project_root: Path = PROJECT_ROOT) -> Path | None:
+    candidates = (
+        project_root / ".venv/bin/python3",
+        project_root / ".venv/bin/python",
+        project_root / ".venv/Scripts/python.exe",
+    )
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def _missing_httpx_message() -> str:
+    return (
+        "httpx が見つかりません。`uv sync` で依存をインストールしてから、"
+        "`uv run python -m scrape.stock_cli` を実行してください。"
+    )
+
+
+def _is_running_inside_project_venv(venv_python: Path) -> bool:
+    return Path(sys.prefix).resolve() == venv_python.parent.parent.resolve()
+
+
+def _ensure_httpx_runtime() -> object:
+    try:
+        return importlib.import_module("httpx")
+    except ModuleNotFoundError as exc:
+        if exc.name != "httpx":
+            raise
+        venv_python = _find_project_venv_python()
+        if venv_python is not None and not _is_running_inside_project_venv(venv_python):
+            os.execv(
+                str(venv_python),
+                [str(venv_python), "-m", "scrape.stock_cli", *sys.argv[1:]],
+            )
+        raise SystemExit(_missing_httpx_message()) from exc
+
+
+httpx = _ensure_httpx_runtime()
+
+from scrape.auth import refresh_cookies_via_chrome
+from scrape.client import build_api_client
+from scrape.downloader import REQUEST_INTERVAL
+from scrape.stock import fetch_stock_latest
+from scrape.stock_db import init_db, save_performance
 
 
 def _load_stock_codes(path: Path = DEFAULT_CODES_PATH) -> list[str]:
@@ -59,6 +102,12 @@ def main() -> None:
             perf = fetch_stock_latest(api_client, code)
         except httpx.HTTPStatusError as exc:
             logger.warning("%s: HTTP %s — スキップ", code, exc.response.status_code)
+            skipped += 1
+            if i < len(codes) - 1:
+                time.sleep(REQUEST_INTERVAL)
+            continue
+        except httpx.TransportError as exc:
+            logger.warning("%s: 転送エラー (%s) — スキップ", code, exc)
             skipped += 1
             if i < len(codes) - 1:
                 time.sleep(REQUEST_INTERVAL)

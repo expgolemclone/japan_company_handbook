@@ -14,6 +14,25 @@
 
 全上場企業の業績予想（営業利益・純利益）をAPIから取得し、SQLiteに格納する。
 
+初回セットアップ:
+
+```
+uv sync
+```
+
+推奨実行コマンド:
+
+```
+uv run python -m scrape.stock_cli
+```
+
+補足:
+
+- プロジェクト直下に `.venv` があれば、`python -m scrape.stock_cli` でも自動的に `.venv` の Python へ再実行する。
+- `.venv` が無い、または依存が未インストールの場合は `httpx` が見つからず起動できないため、先に `uv sync` を実行する。
+
+従来コマンド:
+
 ```
 python -m scrape.stock_cli
 ```
