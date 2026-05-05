@@ -39,6 +39,7 @@ def _parse_value(raw: str | None) -> int | None:
     try:
         return int(stripped.replace(",", ""))
     except ValueError:
+        logger.debug("failed to parse numeric value: %r", stripped)
         return None
 
 
