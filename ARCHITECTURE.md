@@ -183,6 +183,7 @@ Cookie JSON / Chrome Cookie
 - `◇XX.X予` 行から四季報予想（営業利益・純利益）を2期分抽出する。
 - `会XX.X予` 行から会社予想（営業利益・純利益）を1期分抽出する。
 - 値が `ー` の場合は `None` とする。
+- 数値パース失敗時は `logger.debug` で不正値を記録する。
 
 ### `scrape/stock_db.py`
 
@@ -316,3 +317,4 @@ derived/
 - 検証フェーズは「進捗が成功になっているか」だけでなく、「manifest と物理ファイルが一致するか」まで確認する。
 - `scrape.stock_cli` では起動時の依存不足を検出し、`.venv` への再実行または `uv sync` の案内に切り分ける。
 - `scrape.stock_cli` ではHTTPエラー、転送エラー、データなしの銘柄をスキップし、ログに出力して後続の処理を続行する。
+- `scrape.stock._parse_value()` は数値変換失敗を握りつぶさず `logger.debug` で記録する。
