@@ -85,7 +85,7 @@ Chrome Cookie / Cookie JSON
 
 ### 3. `shikiho stock fetch`
 
-`scrape.stock_cli` が `stock_codes_*.json` に掲載された全銘柄の業績予想を取得し、SQLiteに格納する。起動時に現在の Python に `httpx` が無い場合は、プロジェクト直下の `.venv` を検出できれば `python -m scrape.shikiho_cli stock fetch` へ再実行し、見つからなければ依存インストールを促して終了する。
+`scrape.stock_cli` が `stock_codes_*.json` に掲載された全銘柄の業績予想を取得し、SQLiteに格納する。既定では保存済み銘柄を事前に除外して差分取得し、`--force` 指定時だけ全件を再取得する。起動時に現在の Python に `httpx` が無い場合は、プロジェクト直下の `.venv` を検出できれば `python -m scrape.shikiho_cli stock fetch` へ再実行し、見つからなければ依存インストールを促して終了する。
 
 ```text
 Chrome Cookie DB
@@ -106,7 +106,9 @@ Chrome Cookie DB
 - 営業利益・純利益を百万円単位で取得する。
 - 四季報予想はプレミアム会員限定の値が `ー` になる場合、`NULL` として格納する。
 - `INSERT OR REPLACE` で同一キーを更新する。
+- 既定では `stock_forecasts` に保存済みの銘柄コードを起動直後に除外し、差分だけ処理する。
 - 起動時 `sso/check` と銘柄取得中の `401` / `403` を検知した時だけ Cookie 更新を試み、同じ銘柄を1回だけ再試行する。
+- 進捗ログは100銘柄ごとに `進捗: x / total (成功: y, スキップ: z)` を出力する。
 - 連続アクセス間隔は `REQUEST_INTERVAL = 1.0` 秒。
 
 ### 4. `shikiho magazine audit`
