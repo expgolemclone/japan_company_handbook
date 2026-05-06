@@ -20,11 +20,10 @@ from scrape.magazine.client import (
 )
 
 logger = logging.getLogger(__name__)
+DESCRIPTION = "四季報ビューアの欠号監査と認証診断を実行する"
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = build_parser()
-    args = parser.parse_args(argv)
+def run(args: argparse.Namespace) -> int:
     _configure_logging()
 
     fact_report = build_fact_check_report(args.out_dir)
@@ -47,9 +46,21 @@ def main(argv: list[str] | None = None) -> int:
     return 0
 
 
-def build_parser() -> argparse.ArgumentParser:
+def main(argv: list[str] | None = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    return run(args)
+
+
+def build_parser(
+    *,
+    prog: str | None = None,
+    add_help: bool = True,
+) -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="四季報ビューアの欠号監査と認証診断を実行する"
+        prog=prog,
+        description=DESCRIPTION,
+        add_help=add_help,
     )
     parser.add_argument(
         "--cookie-file",

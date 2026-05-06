@@ -198,10 +198,20 @@ class TestWatchdog:
 
     def test_wrapper_scripts_delegate_to_watchdog(self) -> None:
         repo_root = Path(__file__).resolve().parent.parent
-        scrape_wrapper = (repo_root / "scripts" / "watch-scrape").read_text(encoding="utf-8")
+        pdf_wrapper = (
+            repo_root / "scripts" / "watch-shikiho-pdf-all"
+        ).read_text(encoding="utf-8")
         magazine_wrapper = (
+            repo_root / "scripts" / "watch-shikiho-magazine-all"
+        ).read_text(encoding="utf-8")
+        legacy_pdf_wrapper = (repo_root / "scripts" / "watch-scrape").read_text(encoding="utf-8")
+        legacy_magazine_wrapper = (
             repo_root / "scripts" / "watch-scrape-magazine-all"
         ).read_text(encoding="utf-8")
 
-        assert "python -m scrape.watchdog scrape " in scrape_wrapper
-        assert "python -m scrape.watchdog scrape-magazine-all " in magazine_wrapper
+        assert "python -m scrape.watchdog shikiho-pdf-all " in pdf_wrapper
+        assert "python -m scrape.watchdog shikiho-magazine-all " in magazine_wrapper
+        assert "watch-shikiho-pdf-all" in legacy_pdf_wrapper
+        assert "watch-shikiho-magazine-all" in legacy_magazine_wrapper
+        assert "exit 2" in legacy_pdf_wrapper
+        assert "exit 2" in legacy_magazine_wrapper

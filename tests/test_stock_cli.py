@@ -55,7 +55,7 @@ class TestEnsureHttpxRuntime:
 
         assert exc_info.value.args[0] == (
             str(venv_python),
-            [str(venv_python), "-m", "scrape.stock_cli", "--dry-run"],
+            [str(venv_python), "-m", "scrape.shikiho_cli", "stock", "fetch", "--dry-run"],
         )
 
     def test_exits_with_helpful_message_when_httpx_missing_and_no_venv(self, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -65,5 +65,5 @@ class TestEnsureHttpxRuntime:
         monkeypatch.setattr(stock_cli.importlib, "import_module", fake_import_module)
         monkeypatch.setattr(stock_cli, "_find_project_venv_python", lambda: None)
 
-        with pytest.raises(SystemExit, match="uv sync"):
+        with pytest.raises(SystemExit, match="shikiho stock fetch"):
             stock_cli._ensure_httpx_runtime()

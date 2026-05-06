@@ -1,45 +1,40 @@
 # japan_company_handbook
 
-四季報のデータを抽出することが目的のプロジェクトです.
+四季報データを取得するためのプロジェクトです。scraping 系コマンドは `shikiho` に統一しています。
 
-## 銘柄業績予想スクレイプ
+## セットアップ
 
-全上場企業の業績予想（営業利益・純利益）をAPIから取得し、SQLiteに格納する。
-
-初回セットアップ:
-
-```
+```bash
 uv sync
 ```
 
-推奨実行コマンド:
+## scraping コマンド
 
-```
-uv run python -m scrape.stock_cli
-```
+| 用途 | コマンド | 主な出力 |
+| --- | --- | --- |
+| 全号ページPDFを一括取得 | `uv run shikiho pdf all` | `data/{year}_{series}/{page_id}.pdf` |
+| 誌面アーカイブを単号取得 | `uv run shikiho magazine issue --calendar 2026 --series 2` | `data/magazines/{calendar}_{series}/` |
+| 誌面アーカイブを全号取得 | `uv run shikiho magazine all --resume --verify-after-run` | `data/magazines/` 配下一式 |
+| 誌面アーカイブを検証 | `uv run shikiho magazine verify` | `data/magazines/verify_report.json` |
+| 欠号監査と認証診断 | `uv run shikiho magazine audit --cookie-file data/cookies.json` | `fact_check_report.json` / `auth_diagnostics.json` |
+| 銘柄業績予想を取得 | `uv run shikiho stock fetch` | `data/stock_performance.db` |
 
-補足:
+## 補足
 
-- プロジェクト直下に `.venv` があれば、`python -m scrape.stock_cli` でも自動的に `.venv` の Python へ再実行する。
-- `.venv` が無い、または依存が未インストールの場合は `httpx` が見つからず起動できないため、先に `uv sync` を実行する。
+- `shikiho stock fetch` は `httpx` が見つからない場合、プロジェクト直下の `.venv` を検出できれば `python -m scrape.shikiho_cli stock fetch` へ自動再実行します。
+- `.venv` が無い、または依存が未インストールの場合は起動できないため、先に `uv sync` を実行してください。
+- `shikiho magazine all` は開始前に認証 preflight を行い、失敗時は `data/magazines/auth_diagnostics.json` を書いて停止します。
+- `shikiho magazine audit` は `issues.raw.json` / `issues.expected.json` / 既存 manifest を突き合わせて、欠号候補を `external_confirmed` / `mixed` / `internal_inferred` で分類します。
 
-従来コマンド:
+## 移行表
 
-```
-python -m scrape.stock_cli
-```
+| 旧コマンド | 新コマンド |
+| --- | --- |
+| `scrape` | `uv run shikiho pdf all` |
+| `scrape-magazine` | `uv run shikiho magazine issue` |
+| `scrape-magazine-all` | `uv run shikiho magazine all` |
+| `scrape-magazine-verify` | `uv run shikiho magazine verify` |
+| `scrape-magazine-audit` | `uv run shikiho magazine audit` |
+| `python -m scrape.stock_cli` | `uv run shikiho stock fetch` |
 
-結果確認:
-
-```
-sqlite3 data/stock_performance.db "SELECT * FROM stock_forecasts LIMIT 10"
-```
-
-## audit
-
-- `uv run scrape-magazine-audit --cookie-file data/cookies.json`
-  - `data/magazines/fact_check_report.json`
-    - `issues.raw.json` / `issues.expected.json` / 既存 manifest を突き合わせて、欠号候補を `external_confirmed` / `mixed` / `internal_inferred` で分類する.
-  - `data/magazines/auth_diagnostics.json`
-    - ライブAPIに対して `issue_list` と代表2号を probe し、`401` / payload `3202` / `1000 + empty magazine` を分類する.
-- `scrape-magazine-all` はバッチ開始前に同じ preflight を行い、失敗時は `auth_diagnostics.json` を書いて停止する.
+旧コマンドは互換実行せず、対応する `shikiho` コマンドを案内して終了します。

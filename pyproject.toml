@@ -16,12 +16,13 @@ dev = [
 ]
 
 [project.scripts]
-scrape = "scrape.__main__:main"
+shikiho = "scrape.shikiho_cli:main"
+scrape = "scrape.legacy_cli:main_scrape"
 invert-pdfs = "pdfops.__main__:main"
-scrape-magazine = "scrape.magazine.issue_cli:main"
-scrape-magazine-all = "scrape.magazine.all_cli:main"
-scrape-magazine-verify = "scrape.magazine.verify_cli:main"
-scrape-magazine-audit = "scrape.magazine.audit_cli:main"
+scrape-magazine = "scrape.legacy_cli:main_scrape_magazine_issue"
+scrape-magazine-all = "scrape.legacy_cli:main_scrape_magazine_all"
+scrape-magazine-verify = "scrape.legacy_cli:main_scrape_magazine_verify"
+scrape-magazine-audit = "scrape.legacy_cli:main_scrape_magazine_audit"
 
 [tool.hatch.build.targets.wheel]
 packages = ["scrape", "pdfops"]

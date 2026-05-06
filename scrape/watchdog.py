@@ -46,15 +46,23 @@ class SignalState:
 
 
 PROFILES: dict[str, WatchdogProfile] = {
-    "scrape": WatchdogProfile(
-        name="scrape",
-        command=("uv", "run", "scrape"),
+    "shikiho-pdf-all": WatchdogProfile(
+        name="shikiho-pdf-all",
+        command=("uv", "run", "shikiho", "pdf", "all"),
         default_idle_seconds=900.0,
         heartbeat_globs=("data/progress.json",),
     ),
-    "scrape-magazine-all": WatchdogProfile(
-        name="scrape-magazine-all",
-        command=("uv", "run", "scrape-magazine-all", "--resume", "--verify-after-run"),
+    "shikiho-magazine-all": WatchdogProfile(
+        name="shikiho-magazine-all",
+        command=(
+            "uv",
+            "run",
+            "shikiho",
+            "magazine",
+            "all",
+            "--resume",
+            "--verify-after-run",
+        ),
         default_idle_seconds=1800.0,
         heartbeat_globs=(
             "data/magazines/issues.raw.json",
@@ -70,7 +78,7 @@ PROFILES: dict[str, WatchdogProfile] = {
 
 def build_parser(profiles: dict[str, WatchdogProfile] | None = None) -> argparse.ArgumentParser:
     available = profiles or PROFILES
-    parser = argparse.ArgumentParser(description="scrape 系 CLI を監視して再起動する")
+    parser = argparse.ArgumentParser(description="shikiho 系 CLI を監視して再起動する")
     parser.add_argument("profile", choices=sorted(available))
     parser.add_argument(
         "--idle-seconds",

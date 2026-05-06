@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-
-cd "${REPO_ROOT}"
-exec uv run python -m scrape.watchdog scrape "$@"
+echo '`scripts/watch-scrape` は廃止されました。`scripts/watch-shikiho-pdf-all` を使ってください。' >&2
+exit 2

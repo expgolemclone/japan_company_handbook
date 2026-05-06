@@ -34,6 +34,7 @@ from scrape.magazine.summary import build_batch_summary, write_batch_summary
 from scrape.magazine.verify import verify_all_issues, write_verify_report
 
 logger = logging.getLogger(__name__)
+DESCRIPTION = "四季報ビューアの全号を保存する"
 
 AUTH_RETRY_TIMEOUT_SECONDS = 20.0
 AUTH_RETRY_POLL_SECONDS = 2.0
@@ -49,6 +50,10 @@ ISSUE_EXCEPTIONS = (
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+    return run(args)
+
+
+def run(args: argparse.Namespace) -> int:
     _configure_logging()
 
     batch_progress = BatchProgress(args.out_dir / BATCH_PROGRESS_FILE.name)
@@ -289,8 +294,16 @@ def _build_issue_auth_check(
     return payload
 
 
-def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="四季報ビューアの全号を保存する")
+def build_parser(
+    *,
+    prog: str | None = None,
+    add_help: bool = True,
+) -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog=prog,
+        description=DESCRIPTION,
+        add_help=add_help,
+    )
     parser.add_argument(
         "--cookie-file",
         type=Path,

@@ -11,11 +11,10 @@ from scrape.magazine.types import MagazineIssueKey
 from scrape.magazine.verify import verify_issue_directory
 
 logger = logging.getLogger(__name__)
+DESCRIPTION = "四季報ビューアの単号を保存する"
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = build_parser()
-    args = parser.parse_args(argv)
+def run(args: argparse.Namespace) -> int:
     _configure_logging()
 
     issue = MagazineIssueKey(calendar=args.calendar, series=args.series)
@@ -36,8 +35,22 @@ def main(argv: list[str] | None = None) -> int:
     return 0
 
 
-def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="四季報ビューアの単号を保存する")
+def main(argv: list[str] | None = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    return run(args)
+
+
+def build_parser(
+    *,
+    prog: str | None = None,
+    add_help: bool = True,
+) -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog=prog,
+        description=DESCRIPTION,
+        add_help=add_help,
+    )
     parser.add_argument("--calendar", required=True, help="西暦")
     parser.add_argument("--series", required=True, help="号番号")
     parser.add_argument(

@@ -16,11 +16,10 @@ from scrape.magazine.summary import build_batch_summary, write_batch_summary
 from scrape.magazine.verify import verify_all_issues, write_verify_report
 
 logger = logging.getLogger(__name__)
+DESCRIPTION = "四季報ビューア全号の完全性を検証する"
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = build_parser()
-    args = parser.parse_args(argv)
+def run(args: argparse.Namespace) -> int:
     _configure_logging()
 
     report = verify_all_issues(
@@ -42,8 +41,22 @@ def main(argv: list[str] | None = None) -> int:
     return 0
 
 
-def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="四季報ビューア全号の完全性を検証する")
+def main(argv: list[str] | None = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    return run(args)
+
+
+def build_parser(
+    *,
+    prog: str | None = None,
+    add_help: bool = True,
+) -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog=prog,
+        description=DESCRIPTION,
+        add_help=add_help,
+    )
     parser.add_argument(
         "--out-dir",
         type=Path,
