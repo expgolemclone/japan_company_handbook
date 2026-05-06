@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 _COL_OPERATING_PROFIT = 2
 _COL_NET_INCOME = 4
 
-_RE_SHIKIHO_FORECAST = re.compile(r"^◇(\d+\.\d+)予$")
+_RE_SHIKIHO_FORECAST = re.compile(r"^(?:◇|◎|連|単)(\d+\.\d+)\*?予(?:変)?$")
 _RE_COMPANY_FORECAST = re.compile(r"^会(\d+\.\d+)予$")
 
 
@@ -96,10 +96,13 @@ def fetch_stock_latest(
         return None
 
     shikiho_forecasts, company_forecast = parse_shimen_results(shimen_results)
+    if not shikiho_forecasts and company_forecast is None:
+        logger.warning("%s: 保存対象の予想行がありません", code)
+        return None
 
     return StockPerformance(
         code=code,
-        company_name=payload.get("company_name_j", ""),
+        company_name=payload.get("company_name_j") or "",
         shikiho_forecasts=shikiho_forecasts,
         company_forecast=company_forecast,
     )

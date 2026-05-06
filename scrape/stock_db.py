@@ -29,6 +29,17 @@ VALUES (?, ?, ?, ?, ?, ?, ?);
 """
 
 
+def existing_codes(db_path: Path = DEFAULT_DB_PATH) -> set[str]:
+    if not db_path.exists():
+        return set()
+    con = sqlite3.connect(db_path)
+    try:
+        rows = con.execute("SELECT DISTINCT stock_code FROM stock_forecasts").fetchall()
+    finally:
+        con.close()
+    return {row[0] for row in rows}
+
+
 def init_db(db_path: Path = DEFAULT_DB_PATH) -> None:
     db_path.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(db_path)

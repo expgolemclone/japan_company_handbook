@@ -52,6 +52,26 @@ SAMPLE_SHIMEN_RESULTS = [
     ["会26.3予", "50,000,000", "3,800,000", "5,020,000", "3,570,000", "-", "(26.2.6)"],
 ]
 
+SAMPLE_TANREN_SHIMEN_RESULTS = [
+    ["【業績】", "売上高", "営業利益", "経常利益", "純利益", "1株益(円)", "1株配(円)"],
+    ["単22.6", "1,397", "52", "51", "38", "15.9", "0"],
+    ["連23.6", "1,711", "164", "169", "121", "49.8", "0"],
+    ["連24.6", "1,957", "231", "231", "156", "59.3", "10"],
+    ["連25.6", "2,006", "123", "125", "32", "10.4", "10"],
+    ["連26.6予", "2,100", "-60", "-60", "-100", "-31.3", "10"],
+    ["連27.6予", "2,600", "0", "0", "-10", "-3.1", "10"],
+    ["連25.7〜12", "1,008", "-31", "-29", "-69", "-22.2", "0"],
+    ["連26.7〜12予", "1,100", "-20", "-20", "-30", "-9.4", "0"],
+]
+
+SAMPLE_VARIANT_SHIMEN_RESULTS = [
+    ["【業績】", "売上高", "営業利益", "税前利益", "純利益", "1株益(円)", "1株配(円)"],
+    ["◇25.9", "4,399", "-351", "-370", "-377", "-63.6", "0"],
+    ["◇26.4予変", "2,400", "70", "70", "50", "8.2", "0"],
+    ["連26.9*予", "1,100", "-700", "-700", "-700", "-6.8", "0"],
+    ["◎27.3予", "5,400,000", "‥", "535,000", "353,000", "118.0", "47〜49"],
+]
+
 
 class TestParseShimenResults:
     def test_extracts_shikiho_forecasts(self) -> None:
@@ -78,6 +98,40 @@ class TestParseShimenResults:
         shikiho, _ = parse_shimen_results(SAMPLE_SHIMEN_RESULTS)
         periods = [fc.period for fc in shikiho]
         assert "26.4〜9" not in periods
+
+    def test_extracts_full_year_forecasts_from_tanren_labels(self) -> None:
+        shikiho, company = parse_shimen_results(SAMPLE_TANREN_SHIMEN_RESULTS)
+        assert shikiho == [
+            ForecastRow(period="26.6", operating_profit=-60, net_income=-100),
+            ForecastRow(period="27.6", operating_profit=0, net_income=-10),
+        ]
+        assert company is None
+
+    def test_ignores_half_year_forecasts_from_tanren_labels(self) -> None:
+        shikiho, _ = parse_shimen_results(SAMPLE_TANREN_SHIMEN_RESULTS)
+        periods = [fc.period for fc in shikiho]
+        assert "26.7〜12" not in periods
+
+    def test_extracts_variant_full_year_forecasts(self) -> None:
+        shikiho, company = parse_shimen_results(SAMPLE_VARIANT_SHIMEN_RESULTS)
+        assert shikiho == [
+            ForecastRow(period="26.4", operating_profit=70, net_income=50),
+            ForecastRow(period="26.9", operating_profit=-700, net_income=-700),
+        ]
+        assert company is None
+
+    def test_extracts_financial_sector_forecasts(self) -> None:
+        shikiho, _ = parse_shimen_results(
+            [
+                SAMPLE_VARIANT_SHIMEN_RESULTS[0],
+                SAMPLE_VARIANT_SHIMEN_RESULTS[4],
+                ["◎28.3予", "5,500,000", "‥", "540,000", "360,000", "120.0", "48〜50"],
+            ]
+        )
+        assert shikiho == [
+            ForecastRow(period="27.3", operating_profit=None, net_income=353000),
+            ForecastRow(period="28.3", operating_profit=None, net_income=360000),
+        ]
 
     def test_empty_results(self) -> None:
         shikiho, company = parse_shimen_results([["【業績】", "売上高", "営業利益"]])
@@ -134,6 +188,71 @@ class TestFetchStockLatest:
         client = httpx.Client()
         result = fetch_stock_latest(client, "9999")
         assert result is None
+
+    def test_returns_performance_for_tanren_labels_with_missing_company_name(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        import httpx
+
+        payload = {
+            "is_exist": "1",
+            "company_name_j": None,
+            "shimen_results": SAMPLE_TANREN_SHIMEN_RESULTS,
+        }
+        request = httpx.Request("GET", "https://example.com/test")
+        response = httpx.Response(200, json=payload, request=request)
+
+        monkeypatch.setattr(httpx.Client, "get", lambda self, url: response)
+        client = httpx.Client()
+        result = fetch_stock_latest(client, "157A")
+
+        assert result is not None
+        assert result.company_name == ""
+        assert result.shikiho_forecasts == [
+            ForecastRow(period="26.6", operating_profit=-60, net_income=-100),
+            ForecastRow(period="27.6", operating_profit=0, net_income=-10),
+        ]
+
+    def test_returns_none_when_no_supported_forecast_rows(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        import httpx
+
+        payload = {
+            "is_exist": "1",
+            "company_name_j": None,
+            "shimen_results": [
+                ["【業績】", "売上高", "営業利益", "経常利益", "純利益"],
+                ["連25.7〜12", "1,008", "-31", "-29", "-69"],
+                ["連26.7〜12予", "1,100", "-20", "-20", "-30"],
+            ],
+        }
+        request = httpx.Request("GET", "https://example.com/test")
+        response = httpx.Response(200, json=payload, request=request)
+
+        monkeypatch.setattr(httpx.Client, "get", lambda self, url: response)
+        client = httpx.Client()
+        result = fetch_stock_latest(client, "157A")
+
+        assert result is None
+
+    def test_returns_performance_for_variant_full_year_labels(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        import httpx
+
+        payload = {
+            "is_exist": "1",
+            "company_name_j": None,
+            "shimen_results": SAMPLE_VARIANT_SHIMEN_RESULTS,
+        }
+        request = httpx.Request("GET", "https://example.com/test")
+        response = httpx.Response(200, json=payload, request=request)
+
+        monkeypatch.setattr(httpx.Client, "get", lambda self, url: response)
+        client = httpx.Client()
+        result = fetch_stock_latest(client, "8604")
+
+        assert result is not None
+        assert result.company_name == ""
+        assert result.shikiho_forecasts == [
+            ForecastRow(period="26.4", operating_profit=70, net_income=50),
+            ForecastRow(period="26.9", operating_profit=-700, net_income=-700),
+        ]
 
 
 class TestStockDb:

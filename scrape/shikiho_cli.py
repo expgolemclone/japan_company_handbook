@@ -109,8 +109,17 @@ def build_parser() -> argparse.ArgumentParser:
         help=STOCK_DESCRIPTION,
     )
     stock_commands = stock_parser.add_subparsers(dest="stock_command", required=True)
+    from scrape import stock_cli as _stock_cli
+
     stock_fetch_parser = stock_commands.add_parser(
         "fetch",
+        parents=[
+            _stock_cli.build_parser(
+                prog="shikiho stock fetch",
+                add_help=False,
+            )
+        ],
+        add_help=True,
         description=STOCK_FETCH_DESCRIPTION,
         help=STOCK_FETCH_DESCRIPTION,
     )

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 import httpx
@@ -99,7 +100,7 @@ def _http_status_error(status_code: int) -> httpx.HTTPStatusError:
 
 
 class TestRun:
-    def test_fetches_codes_and_saves_successes(self, monkeypatch: pytest.MonkeyPatch) -> None:
+    def test_fetches_codes_and_saves_successes(self, monkeypatch: pytest.MonkeyPatch, caplog: pytest.LogCaptureFixture) -> None:
         client = _FakeApiClient()
         init_calls = 0
         saved: list[StockPerformance] = []
@@ -127,11 +128,13 @@ class TestRun:
             return None
 
         monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203", "9999"])
+        monkeypatch.setattr(stock_cli, "existing_codes", lambda: set())
         monkeypatch.setattr(stock_cli, "init_db", fake_init_db)
         monkeypatch.setattr(stock_cli, "build_api_client", lambda: client)
         monkeypatch.setattr(stock_cli, "fetch_stock_latest", fake_fetch_stock_latest)
         monkeypatch.setattr(stock_cli, "save_performance", lambda perf: saved.append(perf))
         monkeypatch.setattr(stock_cli.time, "sleep", lambda seconds: sleeps.append(seconds))
+        caplog.set_level(logging.INFO)
 
         exit_code = stock_cli.main([])
 
@@ -141,6 +144,7 @@ class TestRun:
         assert client.closed is True
         assert [perf.code for perf in saved] == ["7203"]
         assert sleeps == [stock_cli.REQUEST_INTERVAL]
+        assert "完了 — 成功: 1, スキップ: 1 / 2" in caplog.text
 
     def test_retries_same_code_after_auth_error(self, monkeypatch: pytest.MonkeyPatch) -> None:
         clients: list[_FakeApiClient] = []
@@ -178,6 +182,7 @@ class TestRun:
             )
 
         monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203"])
+        monkeypatch.setattr(stock_cli, "existing_codes", lambda: set())
         monkeypatch.setattr(stock_cli, "init_db", lambda: None)
         monkeypatch.setattr(stock_cli, "build_api_client", fake_build_api_client)
         monkeypatch.setattr(stock_cli, "refresh_cookie_source", fake_refresh_cookie_source)
@@ -209,6 +214,7 @@ class TestRun:
             return True
 
         monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203"])
+        monkeypatch.setattr(stock_cli, "existing_codes", lambda: set())
         monkeypatch.setattr(stock_cli, "init_db", lambda: None)
         monkeypatch.setattr(stock_cli, "build_api_client", fake_build_api_client)
         monkeypatch.setattr(stock_cli, "refresh_cookie_source", fake_refresh_cookie_source)

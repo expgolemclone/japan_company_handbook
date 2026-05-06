@@ -69,7 +69,7 @@ from scrape.auth import is_http_auth_error, refresh_cookie_source
 from scrape.client import build_api_client
 from scrape.downloader import REQUEST_INTERVAL
 from scrape.stock import fetch_stock_latest
-from scrape.stock_db import init_db, save_performance
+from scrape.stock_db import existing_codes, init_db, save_performance
 
 
 def build_parser(
@@ -77,11 +77,18 @@ def build_parser(
     prog: str | None = None,
     add_help: bool = True,
 ) -> argparse.ArgumentParser:
-    return argparse.ArgumentParser(
+    parser = argparse.ArgumentParser(
         prog=prog,
         description=DESCRIPTION,
         add_help=add_help,
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        default=False,
+        help="取得済み銘柄も再取得する",
+    )
+    return parser
 
 
 def _load_stock_codes(path: Path = DEFAULT_CODES_PATH) -> list[str]:
@@ -100,6 +107,19 @@ def run(_args: argparse.Namespace) -> int:
     logger.info("対象銘柄数: %d", len(codes))
 
     init_db()
+
+    if not _args.force:
+        existing = existing_codes()
+        before = len(codes)
+        codes = [c for c in codes if c not in existing]
+        if len(codes) < before:
+            logger.info(
+                "取得済みスキップ: %d, 残り: %d (--force で全件再取得)",
+                before - len(codes),
+                len(codes),
+            )
+    else:
+        logger.info("--force: 全件再取得します")
 
     api_client = build_api_client()
     try:
