@@ -1,0 +1,236 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+SCRIPT_PATH="${SCRIPT_DIR}/monitor-shikiho-pdf-all-hourly"
+STATE_DIR="${REPO_ROOT}/data/watchdogs"
+PID_FILE="${STATE_DIR}/shikiho-pdf-all-hourly.pid"
+STATUS_FILE="${STATE_DIR}/shikiho-pdf-all-hourly.json"
+STATUS_LOG="${STATE_DIR}/shikiho-pdf-all-hourly.log"
+UNIT_NAME="shikiho-pdf-all-hourly-monitor"
+INTERVAL_SECONDS="${INTERVAL_SECONDS:-3600}"
+
+mkdir -p "${STATE_DIR}"
+
+is_running() {
+  local pid="${1:-}"
+  [[ -n "${pid}" ]] && kill -0 "${pid}" 2>/dev/null
+}
+
+snapshot() {
+  REPO_ROOT="${REPO_ROOT}" \
+  STATUS_FILE="${STATUS_FILE}" \
+  STATUS_LOG="${STATUS_LOG}" \
+  INTERVAL_SECONDS="${INTERVAL_SECONDS}" \
+  python - <<'PY'
+from __future__ import annotations
+
+import json
+import os
+import subprocess
+from datetime import datetime
+from pathlib import Path
+
+
+repo_root = Path(os.environ["REPO_ROOT"])
+status_path = Path(os.environ["STATUS_FILE"])
+status_log = Path(os.environ["STATUS_LOG"])
+interval_seconds = float(os.environ["INTERVAL_SECONDS"])
+watchdog_state_path = repo_root / "data" / "watchdogs" / "shikiho-pdf-all.json"
+watchdog_log_path = repo_root / "data" / "watchdogs" / "shikiho-pdf-all.log"
+progress_path = repo_root / "data" / "progress.json"
+
+
+def read_json(path: Path) -> dict | None:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return None
+
+
+def parse_timestamp(raw: str | None) -> datetime | None:
+    if not raw:
+        return None
+    try:
+        return datetime.fromisoformat(raw)
+    except ValueError:
+        return None
+
+
+def pid_exists(pid: int | None) -> bool:
+    if pid is None:
+        return False
+    try:
+        os.kill(pid, 0)
+    except OSError:
+        return False
+    return True
+
+
+def last_line(path: Path) -> str | None:
+    try:
+        with path.open("rb") as handle:
+            handle.seek(0, os.SEEK_END)
+            size = handle.tell()
+            handle.seek(max(size - 4096, 0))
+            lines = handle.read().decode("utf-8", errors="replace").splitlines()
+    except FileNotFoundError:
+        return None
+
+    for line in reversed(lines):
+        stripped = line.strip()
+        if stripped:
+            return stripped
+    return None
+
+
+watchdog_state = read_json(watchdog_state_path) or {}
+previous_status = read_json(status_path) or {}
+progress = read_json(progress_path) or {}
+completed = progress.get("completed", {})
+if isinstance(completed, dict):
+    completed_count = len(completed)
+elif isinstance(completed, list):
+    completed_count = len(completed)
+else:
+    completed_count = 0
+
+previous_completed = previous_status.get("completed_count")
+completed_delta = None
+if isinstance(previous_completed, int):
+    completed_delta = completed_count - previous_completed
+
+checked_at = datetime.now().astimezone()
+previous_checked_at = parse_timestamp(previous_status.get("checked_at"))
+snapshot_gap_seconds = None
+if previous_checked_at is not None:
+    snapshot_gap_seconds = round((checked_at - previous_checked_at.astimezone()).total_seconds(), 1)
+last_heartbeat_raw = watchdog_state.get("last_heartbeat_at")
+last_heartbeat = parse_timestamp(last_heartbeat_raw)
+heartbeat_age_seconds = None
+if last_heartbeat is not None:
+    heartbeat_age_seconds = round((checked_at - last_heartbeat.astimezone()).total_seconds(), 1)
+
+child_pid = watchdog_state.get("pid")
+child_alive = pid_exists(child_pid if isinstance(child_pid, int) else None)
+watchdog_proc = subprocess.run(
+    ["pgrep", "-af", "python -m scrape.watchdog shikiho-pdf-all"],
+    capture_output=True,
+    text=True,
+    check=False,
+)
+watchdog_processes = [line.strip() for line in watchdog_proc.stdout.splitlines() if line.strip()]
+watchdog_alive = bool(watchdog_processes)
+
+status = "ok"
+reason = "healthy"
+if not watchdog_alive:
+    status = "error"
+    reason = "watchdog_missing"
+elif not child_alive:
+    status = "error"
+    reason = "child_missing"
+elif heartbeat_age_seconds is None or heartbeat_age_seconds > 3600:
+    status = "error"
+    reason = "heartbeat_stale"
+elif (
+    completed_delta is not None
+    and snapshot_gap_seconds is not None
+    and snapshot_gap_seconds >= max(interval_seconds * 0.9, 300.0)
+    and completed_delta <= 0
+):
+    status = "warn"
+    reason = "no_progress"
+
+payload = {
+    "checked_at": checked_at.isoformat(),
+    "status": status,
+    "reason": reason,
+    "completed_count": completed_count,
+    "completed_delta": completed_delta,
+    "snapshot_gap_seconds": snapshot_gap_seconds,
+    "interval_seconds": interval_seconds,
+    "child_pid": child_pid,
+    "child_alive": child_alive,
+    "watchdog_alive": watchdog_alive,
+    "watchdog_processes": watchdog_processes,
+    "heartbeat_age_seconds": heartbeat_age_seconds,
+    "watchdog_state_updated_at": watchdog_state.get("updated_at"),
+    "watchdog_last_heartbeat_at": last_heartbeat_raw,
+    "watchdog_restart_count": watchdog_state.get("restart_count"),
+    "watchdog_last_exit_code": watchdog_state.get("last_exit_code"),
+    "watchdog_last_restart_reason": watchdog_state.get("last_restart_reason"),
+    "watchdog_log_last_line": last_line(watchdog_log_path),
+}
+
+status_path.write_text(
+    json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+    encoding="utf-8",
+)
+with status_log.open("a", encoding="utf-8") as handle:
+    handle.write(
+        f"[{payload['checked_at']}] status={status} reason={reason} "
+        f"completed={completed_count} delta={completed_delta} "
+        f"child_pid={child_pid} child_alive={child_alive} "
+        f"heartbeat_age_seconds={heartbeat_age_seconds}\n"
+    )
+PY
+}
+
+daemon_loop() {
+  echo "$$" > "${PID_FILE}"
+  trap 'rm -f "${PID_FILE}"; exit 0' INT TERM EXIT
+  while true; do
+    snapshot
+    sleep "${INTERVAL_SECONDS}"
+  done
+}
+
+print_status() {
+  if [[ -f "${STATUS_FILE}" ]]; then
+    cat "${STATUS_FILE}"
+  else
+    echo "status file not found: ${STATUS_FILE}" >&2
+    return 1
+  fi
+}
+
+case "${1:-start}" in
+  start)
+    if systemctl --user --quiet is-active "${UNIT_NAME}.service"; then
+      echo "hourly monitor already running: unit=${UNIT_NAME}.service"
+      exit 0
+    fi
+
+    systemd-run \
+      --user \
+      --unit "${UNIT_NAME}" \
+      --description "Hourly monitor for shikiho pdf all" \
+      --same-dir \
+      --quiet \
+      "${SCRIPT_PATH}" daemon
+    echo "started hourly monitor: unit=${UNIT_NAME}.service"
+    ;;
+  stop)
+    systemctl --user stop "${UNIT_NAME}.service" >/dev/null 2>&1 || true
+    rm -f "${PID_FILE}"
+    echo "stopped hourly monitor: unit=${UNIT_NAME}.service"
+    ;;
+  status)
+    systemctl --user --no-pager --plain --lines=0 status "${UNIT_NAME}.service" || true
+    echo "---"
+    print_status
+    ;;
+  once)
+    snapshot
+    print_status
+    ;;
+  daemon)
+    daemon_loop
+    ;;
+  *)
+    echo "usage: $0 [start|stop|status|once]" >&2
+    exit 1
+    ;;
+esac

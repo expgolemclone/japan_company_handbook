@@ -305,6 +305,9 @@ data/                               # ホワイトリストで個別に管理
 ├── {year}_{series}/                # [未管理] pdf all のページPDF保存先
 │   └── {page_id}.pdf
 ├── watchdogs/                      # [未管理] watchdog の実行時ログ・ロック
+│   ├── shikiho-pdf-all-hourly.json # [未管理] 1時間ごとの監視スナップショット
+│   ├── shikiho-pdf-all-hourly.log  # [未管理] 1時間ごとの監視履歴
+│   └── shikiho-pdf-all-hourly.pid  # [未管理] 1時間ごとの監視プロセスPID
 └── magazines/
     ├── issues.raw.json             # [管理] APIから取得した号一覧の生データ
     ├── issues.expected.json        # [管理] バッチ対象の号一覧
@@ -355,6 +358,7 @@ watchdog ラッパー:
 
 - `scripts/watch-shikiho-pdf-all`
 - `scripts/watch-shikiho-magazine-all`
+- `scripts/monitor-shikiho-pdf-all-hourly`
 
 旧ラッパー `scripts/watch-scrape` と `scripts/watch-scrape-magazine-all` も移行メッセージのみ返す。
 
