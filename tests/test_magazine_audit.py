@@ -5,7 +5,11 @@ from pathlib import Path
 
 import httpx
 
-from scrape.magazine.audit import build_auth_diagnostics, build_fact_check_report
+from scrape.magazine.audit import (
+    build_auth_diagnostics,
+    build_fact_check_report,
+    should_refresh_for_auth_diagnostics,
+)
 from scrape.magazine.client import save_expected_issues
 from scrape.magazine.types import MagazineIssueKey
 
@@ -118,3 +122,31 @@ class TestBuildAuthDiagnostics:
             "payload_permission_error": 1,
             "payload_shape_error": 2,
         }
+
+
+class TestShouldRefreshForAuthDiagnostics:
+    def test_returns_true_for_permission_report(self) -> None:
+        report = {
+            "checks": [
+                {
+                    "ok": False,
+                    "category": "payload_permission_error",
+                    "error": "issue list: 権限エラーです (3202: you don't have permission to execute.)",
+                }
+            ]
+        }
+
+        assert should_refresh_for_auth_diagnostics(report) is True
+
+    def test_returns_false_for_transport_report(self) -> None:
+        report = {
+            "checks": [
+                {
+                    "ok": False,
+                    "category": "transport_error",
+                    "error": "dns failed",
+                }
+            ]
+        }
+
+        assert should_refresh_for_auth_diagnostics(report) is False

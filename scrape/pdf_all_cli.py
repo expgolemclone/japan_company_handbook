@@ -2,11 +2,13 @@ from __future__ import annotations
 
 import argparse
 import logging
+from typing import Callable, TypeVar
 
 import httpx
 
-from scrape.auth import refresh_cookies_via_chrome
+from scrape.auth import is_http_auth_error, refresh_cookie_source
 from scrape.client import (
+    PdfAccess,
     build_api_client,
     build_http_client,
     extract_page_ids,
@@ -19,6 +21,7 @@ from scrape.progress import Progress
 
 DESCRIPTION = "四季報ビューア全号のページPDFを保存する"
 logger = logging.getLogger(__name__)
+T = TypeVar("T")
 
 
 def build_parser(
@@ -39,26 +42,13 @@ def run(_args: argparse.Namespace) -> int:
     client = None
 
     try:
-        try:
-            access = fetch_pdf_access(api_client)
-        except httpx.HTTPStatusError as exc:
-            if exc.response.status_code != 401:
-                raise
-
-            logger.warning(
-                "認証に失敗しました。Chromeで四季報オンラインを開いてCookie更新を試みます。"
-            )
-            if not refresh_cookies_via_chrome():
-                logger.error(
-                    "Cookie更新に失敗しました。Chromeで四季報オンラインにログインしてください。"
-                )
-                raise
-
-            api_client.close()
-            api_client = build_api_client()
-            access = fetch_pdf_access(api_client)
-
-        issues = fetch_issues(api_client, from_year=1936)
+        access, api_client = _fetch_pdf_access_with_retry(api_client)
+        issues, api_client, access = _call_api_with_refresh(
+            api_client,
+            access,
+            lambda current_client: fetch_issues(current_client, from_year=1936),
+            label="号一覧取得",
+        )
 
         logger.info("取得対象号数: %d", len(issues))
         if issues:
@@ -81,11 +71,22 @@ def run(_args: argparse.Namespace) -> int:
             title = issue["title"]
             logger.info("=== %s年 %s (%s) ===", year, title, series)
 
-            magazine = fetch_magazine(api_client, year, series)
-            page_ids = extract_page_ids(magazine)
-            logger.info("ページ数: %d", len(page_ids))
+            auth_retry_used = False
+            while True:
+                try:
+                    magazine = fetch_magazine(api_client, year, series)
+                    page_ids = extract_page_ids(magazine)
+                    logger.info("ページ数: %d", len(page_ids))
 
-            download_all_pages(client, year, series, page_ids, access, progress)
+                    download_all_pages(client, year, series, page_ids, access, progress)
+                except httpx.HTTPStatusError as exc:
+                    if not is_http_auth_error(exc) or auth_retry_used:
+                        raise
+                    api_client, access = _refresh_pdf_session(api_client)
+                    auth_retry_used = True
+                    logger.info("認証を再確認したため同じ号を再試行します: %s_%s", year, series)
+                    continue
+                break
 
         logger.info("完了")
         return 0
@@ -93,6 +94,52 @@ def run(_args: argparse.Namespace) -> int:
         api_client.close()
         if client is not None:
             client.close()
+
+
+def _fetch_pdf_access_with_retry(api_client: httpx.Client) -> tuple[PdfAccess, httpx.Client]:
+    try:
+        return fetch_pdf_access(api_client), api_client
+    except httpx.HTTPStatusError as exc:
+        if not is_http_auth_error(exc):
+            raise
+        refreshed_client, access = _refresh_pdf_session(api_client)
+        return access, refreshed_client
+
+
+def _call_api_with_refresh(
+    api_client: httpx.Client,
+    access: PdfAccess,
+    operation: Callable[[httpx.Client], T],
+    *,
+    label: str,
+) -> tuple[T, httpx.Client, PdfAccess]:
+    auth_retry_used = False
+
+    while True:
+        try:
+            return operation(api_client), api_client, access
+        except httpx.HTTPStatusError as exc:
+            if not is_http_auth_error(exc) or auth_retry_used:
+                raise
+            api_client, access = _refresh_pdf_session(api_client)
+            auth_retry_used = True
+            logger.info("認証を再確認したため%sを再試行します。", label)
+
+
+def _refresh_pdf_session(api_client: httpx.Client) -> tuple[httpx.Client, PdfAccess]:
+    logger.warning(
+        "認証に失敗しました。Chromeで四季報オンラインを開いてCookie更新を試みます。"
+    )
+    if not refresh_cookie_source():
+        logger.error(
+            "Cookie更新に失敗しました。Chromeで四季報オンラインにログインしてください。"
+        )
+        raise RuntimeError("Cookie更新に失敗しました")
+
+    api_client.close()
+    refreshed_client = build_api_client()
+    access = fetch_pdf_access(refreshed_client)
+    return refreshed_client, access
 
 
 def _configure_logging() -> None:

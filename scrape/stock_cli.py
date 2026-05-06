@@ -65,7 +65,7 @@ def _ensure_httpx_runtime() -> object:
 
 httpx = _ensure_httpx_runtime()
 
-from scrape.auth import refresh_cookies_via_chrome
+from scrape.auth import is_http_auth_error, refresh_cookie_source
 from scrape.client import build_api_client
 from scrape.downloader import REQUEST_INTERVAL
 from scrape.stock import fetch_stock_latest
@@ -104,24 +104,41 @@ def run(_args: argparse.Namespace) -> int:
     api_client = build_api_client()
     try:
         try:
-            access_resp = api_client.get("/sso/v1/sso/check")
-            access_resp.raise_for_status()
+            _check_api_auth(api_client)
         except httpx.HTTPStatusError as exc:
-            if exc.response.status_code != 401:
+            if not is_http_auth_error(exc):
                 raise
-            logger.warning("認証に失敗しました。ChromeでCookie更新を試みます。")
-            if not refresh_cookies_via_chrome():
+            refreshed_client = _refresh_api_client(api_client)
+            if refreshed_client is None:
                 logger.error("Cookie更新に失敗しました。")
                 raise
-            api_client.close()
-            api_client = build_api_client()
+            api_client = refreshed_client
+            _check_api_auth(api_client)
 
         success = 0
         skipped = 0
 
         for i, code in enumerate(codes):
+            auth_retry_used = False
+            skip_current_code = False
+            perf = None
             try:
-                perf = fetch_stock_latest(api_client, code)
+                while True:
+                    try:
+                        perf = fetch_stock_latest(api_client, code)
+                    except httpx.HTTPStatusError as exc:
+                        if not is_http_auth_error(exc) or auth_retry_used:
+                            raise
+                        refreshed_client = _refresh_api_client(api_client)
+                        if refreshed_client is None:
+                            logger.warning("%s: Cookie更新に失敗したためスキップ", code)
+                            skip_current_code = True
+                            break
+                        api_client = refreshed_client
+                        auth_retry_used = True
+                        logger.info("%s: 認証を再確認したため再試行します", code)
+                        continue
+                    break
             except httpx.HTTPStatusError as exc:
                 logger.warning("%s: HTTP %s — スキップ", code, exc.response.status_code)
                 skipped += 1
@@ -135,7 +152,7 @@ def run(_args: argparse.Namespace) -> int:
                     time.sleep(REQUEST_INTERVAL)
                 continue
 
-            if perf is None:
+            if skip_current_code or perf is None:
                 skipped += 1
                 if i < len(codes) - 1:
                     time.sleep(REQUEST_INTERVAL)
@@ -166,6 +183,19 @@ def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
     return run(args)
+
+
+def _check_api_auth(api_client) -> None:
+    access_resp = api_client.get("/sso/v1/sso/check")
+    access_resp.raise_for_status()
+
+
+def _refresh_api_client(api_client):
+    logger.warning("認証に失敗しました。ChromeでCookie更新を試みます。")
+    if not refresh_cookie_source():
+        return None
+    api_client.close()
+    return build_api_client()
 
 
 if __name__ == "__main__":

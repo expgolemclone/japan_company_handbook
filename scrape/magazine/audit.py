@@ -9,6 +9,7 @@ import httpx
 
 from scrape.magazine.client import (
     AUTH_DIAGNOSTICS_FILE,
+    AUTH_RELATED_PAYLOAD_SHAPE_MARKERS,
     EXPECTED_ISSUES_FILE,
     FACT_CHECK_REPORT_FILE,
     ISSUES_RAW_FILE,
@@ -140,6 +141,33 @@ def write_auth_diagnostics(
     report: dict[str, object], path: Path = AUTH_DIAGNOSTICS_FILE
 ) -> None:
     _write_json(path, report)
+
+
+def should_refresh_for_auth_diagnostics(report: dict[str, object]) -> bool:
+    checks = report.get("checks")
+    if not isinstance(checks, list):
+        return False
+
+    for check in checks:
+        if not isinstance(check, dict) or bool(check.get("ok")):
+            continue
+
+        category = str(check.get("category", ""))
+        if category == "payload_permission_error":
+            return True
+        if category == "payload_shape_error":
+            error = str(check.get("error", ""))
+            if any(marker in error for marker in AUTH_RELATED_PAYLOAD_SHAPE_MARKERS):
+                return True
+        if category == "http_status_error":
+            http_status = check.get("http_status")
+            try:
+                if int(http_status) in {401, 403}:
+                    return True
+            except (TypeError, ValueError):
+                continue
+
+    return False
 
 
 def load_local_sample_issues(out_dir: Path = MAGAZINES_DIR) -> list[MagazineIssueKey]:

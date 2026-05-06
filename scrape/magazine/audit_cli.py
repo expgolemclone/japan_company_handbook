@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import argparse
 import logging
+from datetime import UTC, datetime
 from pathlib import Path
 
-from scrape.auth import DEFAULT_CHROME_COOKIES
+from scrape.auth import DEFAULT_CHROME_COOKIES, refresh_cookie_source
 from scrape.magazine.audit import (
     build_auth_diagnostics,
     build_fact_check_report,
     load_local_sample_issues,
+    should_refresh_for_auth_diagnostics,
     write_auth_diagnostics,
     write_fact_check_report,
 )
@@ -30,12 +32,7 @@ def run(args: argparse.Namespace) -> int:
     write_fact_check_report(fact_report, args.out_dir / FACT_CHECK_REPORT_FILE.name)
 
     sample_issues = load_local_sample_issues(args.out_dir)
-    with build_magazine_http_client(args.cookie_file) as client:
-        auth_report, _, _ = build_auth_diagnostics(
-            client,
-            sample_issues=sample_issues,
-            start_calendar=args.start_calendar,
-        )
+    auth_report = _run_auth_diagnostics(args, sample_issues)
     write_auth_diagnostics(auth_report, args.out_dir / AUTH_DIAGNOSTICS_FILE.name)
 
     if not auth_report["ok"]:
@@ -90,6 +87,57 @@ def _configure_logging() -> None:
     )
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.getLogger("httpcore").setLevel(logging.WARNING)
+
+
+def _run_auth_diagnostics(
+    args: argparse.Namespace,
+    sample_issues,
+) -> dict[str, object]:
+    refresh_used = False
+
+    while True:
+        try:
+            client = build_magazine_http_client(args.cookie_file)
+        except (FileNotFoundError, OSError, ValueError) as exc:
+            if refresh_used or not refresh_cookie_source(args.cookie_file):
+                return _build_client_auth_failure_report(str(exc))
+            refresh_used = True
+            continue
+
+        with client:
+            auth_report, _, _ = build_auth_diagnostics(
+                client,
+                sample_issues=sample_issues,
+                start_calendar=args.start_calendar,
+            )
+
+        if auth_report["ok"]:
+            return auth_report
+        if refresh_used or not should_refresh_for_auth_diagnostics(auth_report):
+            return auth_report
+        if not refresh_cookie_source(args.cookie_file):
+            return auth_report
+        refresh_used = True
+
+
+def _build_client_auth_failure_report(error: str) -> dict[str, object]:
+    return {
+        "generated_at": datetime.now(UTC).isoformat(),
+        "sample_issues": [],
+        "live_issue_count": 0,
+        "ok": False,
+        "checks": [
+            {
+                "name": "client_build",
+                "url": None,
+                "issue": None,
+                "ok": False,
+                "category": "client_build_error",
+                "error": error,
+            }
+        ],
+        "category_counts": {"client_build_error": 1},
+    }
 
 
 if __name__ == "__main__":

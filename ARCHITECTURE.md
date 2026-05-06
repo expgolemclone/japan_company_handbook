@@ -16,11 +16,13 @@
 ## Design Constraints
 
 - **ログインCookie必須**: 匿名では取得できない。既定では Chrome の `Cookies` DB を直接読み、`shikiho magazine ...` は JSON 形式のCookieファイルも受け付ける。
+- **Cookie失効は認証失敗で検知する**: `401` / `403` / payload `3202` / auth-like payload shape を検知した時だけ `https://shikiho.toyokeizai.net/stocks/` へアクセスし、Cookie 更新後に1回だけ再試行する。
 - **APIと配信URLは別物**: 号一覧や誌面メタデータは `api-shikiho.toyokeizai.net`、ページ本体は `shikiho.toyokeizai.net/files/...` から取得する。
 - **PDF URLは都度解決が必要**: 一部のページはAPIレスポンスに直URLを持たず、`/headers/v1/headers` が返す `pdf_hash` と会員tierからPDF URLを組み立てる。
 - **レスポンス形式が一定ではない**: `scrape.magazine.normalize` は複数キー候補から `page_id`、`stock_code`、`source_url` を推定する。
 - **長時間バッチを前提にする**: 号単位・ページ単位の進捗ファイルを持ち、中断後の再開と完了検証をできるようにしている。
 - **配信系の一時失敗を許容する**: `scrape.magazine.client.request_with_retries()` が `429`、`5xx`、`TransportError` をリトライする。
+- **JSON Cookie も自動回復する**: `--cookie-file *.json` 指定時に認証失敗した場合は、Chrome Cookie DB から Cookie を再読込して指定 JSON を上書き更新する。
 - **旧CLIは互換実行しない**: `scrape*` と `python -m scrape.stock_cli` は移行メッセージを出して終了コード `2` を返す。
 
 ## Runtime Flows
@@ -55,7 +57,6 @@ Chrome Cookie DB
 
 ```text
 Chrome Cookie / Cookie JSON
-  -> scrape.auth.refresh_cookies_via_chrome()  # バッチ前にChromeを自動起動しCookieを更新
   -> scrape.magazine.client.build_magazine_http_client()
   -> /files/v1/files/magazines/list
   -> data/magazines/issues.raw.json
@@ -75,6 +76,8 @@ Chrome Cookie / Cookie JSON
 特徴:
 
 - ページ実体は PDF とは限らず、`png`、`jpg`、`webp` も許容する。
+- 起動時に毎回 Cookie 更新はせず、認証失敗時だけ `stocks/` を開いて回復を試みる。
+- `--cookie-file *.json` 指定時も、認証失敗したら Chrome Cookie DB を元に JSON を上書き更新してから再試行する。
 - `source_url` が manifest に無いページだけ `pdf_hash` を用いてPDF URLを組み立てる。
 - PDF URLが期限切れで HTML / JSON を返した場合は、`download_page()` が一度だけ `pdf_hash` を再取得して再試行する。
 - `shikiho magazine all --resume` で成功済み号をスキップできる。
@@ -103,6 +106,7 @@ Chrome Cookie DB
 - 営業利益・純利益を百万円単位で取得する。
 - 四季報予想はプレミアム会員限定の値が `ー` になる場合、`NULL` として格納する。
 - `INSERT OR REPLACE` で同一キーを更新する。
+- 起動時 `sso/check` と銘柄取得中の `401` / `403` を検知した時だけ Cookie 更新を試み、同じ銘柄を1回だけ再試行する。
 - 連続アクセス間隔は `REQUEST_INTERVAL = 1.0` 秒。
 
 ### 4. `shikiho magazine audit`
@@ -126,7 +130,8 @@ Cookie JSON / Chrome Cookie
 
 - 欠号候補は `external_confirmed` / `mixed` / `internal_inferred` の証拠レベルで分類する。
 - `401`、payload `3202`、`status=1000` なのに `magazine` が空、を別カテゴリで記録する。
-- `shikiho magazine all` も同じ preflight を使い、失敗時はバッチ開始前に停止する。
+- 認証診断が auth-like failure の時だけ Cookie 更新後に1回だけ再試行する。
+- `shikiho magazine all` も同じ preflight を使い、回復できない場合だけバッチ開始前に停止する。
 
 ### 5. `invert-pdfs`
 
@@ -164,7 +169,8 @@ source_root/**/*.pdf
 - Chrome の Cookie SQLite DB を一時コピーして読み込む。
 - v10 形式の暗号化Cookieを復号し、`httpx.Cookies` に積み替える。
 - JSON Cookie経由ではなくブラウザ実Cookieを使う経路の基盤。
-- `refresh_cookies_via_chrome()` でバッチ取得前にChromeを自動起動しCookieを更新する。
+- `refresh_cookies_via_chrome()` で `stocks/` を開き、Cookie が再利用可能になるまで待機する。
+- `refresh_cookie_source()` は認証失敗時の回復ヘルパで、JSON指定なら Chrome Cookie DB から指定 JSON も上書き更新する。
 
 ### `scrape/client.py`
 
@@ -201,6 +207,7 @@ source_root/**/*.pdf
 - `shikiho stock fetch` の実行本体。
 - `data/stock_codes_*.json` の全銘柄を処理する。
 - `httpx` 未導入時は `.venv` を検出して `scrape.shikiho_cli stock fetch` に再実行する。
+- `401` / `403` を検知した場合は Cookie 更新後に同じ銘柄を1回だけ再試行する。
 - 直接 `python -m scrape.stock_cli` された場合は移行メッセージを返す。
 
 ### `scrape/magazine/client.py`
@@ -208,6 +215,7 @@ source_root/**/*.pdf
 - `shikiho magazine ...` 系のHTTPクライアント構築を担当。
 - Chrome Cookie DB と JSON Cookie の両方に対応する。
 - 号一覧取得、単号取得、ページ一覧取得、`pdf_hash` 解決、リトライ制御、issue一覧キャッシュ保存を行う。
+- 認証失敗らしい例外を `is_probable_auth_error()` で切り分ける。
 
 ### `scrape/magazine/normalize.py`
 
@@ -247,6 +255,7 @@ source_root/**/*.pdf
 - `all_cli.py`: `shikiho magazine all`
 - `verify_cli.py`: `shikiho magazine verify`
 - `audit_cli.py`: `shikiho magazine audit`
+- `issue_cli.py` / `all_cli.py` / `audit_cli.py` は auth-like failure のとき Cookie 回復後に1回だけ再試行する。
 
 ### `scrape/watchdog.py`
 
@@ -264,11 +273,17 @@ source_root/**/*.pdf
 CLI再編後の scraping 導線は、実APIの長時間バッチを毎回走らせる代わりに、入口疎通と実行本体の主要経路をスモークテストで固定化して確認する。
 
 - `tests/test_pdf_all_cli.py`
-  `shikiho pdf all` が `401` 再認証、号一覧取得、ページ一覧抽出、`download_all_pages()` 呼び出しまで到達することを確認する。
+  `shikiho pdf all` が `401` / `403` 再認証、号一覧取得、ページ一覧抽出、同一号の再試行まで到達することを確認する。
 - `tests/test_magazine_all_cli.py`
-  `shikiho magazine all` が issue list 取得、artifact 保存、`verify_report.json` 生成、`--resume`、認証エラー時の診断出力まで完了することを確認する。
+  `shikiho magazine all` が issue list 取得、artifact 保存、`verify_report.json` 生成、`--resume`、認証エラー時の Cookie 回復と診断出力まで完了することを確認する。
+- `tests/test_magazine_issue_cli.py`
+  `shikiho magazine issue` が認証エラー後に同じ号を再試行し、2回目も失敗したら終了コード `1` を返すことを確認する。
+- `tests/test_magazine_audit_cli.py`
+  `shikiho magazine audit` が auth diagnostics の `3202` を検知したら Cookie 回復後に再実行することを確認する。
 - `tests/test_stock_cli.py`
-  `shikiho stock fetch` が銘柄一覧読込、`/sso/v1/sso/check`、`fetch_stock_latest()`、SQLite保存、`httpx` 未導入時の `.venv` 再実行判定まで確認する。
+  `shikiho stock fetch` が銘柄一覧読込、`/sso/v1/sso/check`、`fetch_stock_latest()`、認証エラー時の同一銘柄再試行、SQLite保存、`httpx` 未導入時の `.venv` 再実行判定まで確認する。
+- `tests/test_auth.py`
+  JSON Cookie の上書き再生成と、非JSON Cookie ソースの refresh 委譲を確認する。
 - `tests/test_shikiho_cli.py`
   利用者向け `shikiho` 親CLIが `pdf` / `magazine` / `stock` の各 subcommand へ正しく dispatch することを確認する。
 

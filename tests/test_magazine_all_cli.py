@@ -25,7 +25,7 @@ def _stub_refresh_cookie(
             calls["refresh"] = calls.get("refresh", 0) + 1
         return return_value
 
-    monkeypatch.setattr("scrape.magazine.all_cli.refresh_cookies_via_chrome", fake_refresh)
+    monkeypatch.setattr("scrape.magazine.all_cli.refresh_cookie_source", fake_refresh)
 
 
 def _build_batch_client(call_counter: dict[str, int]) -> httpx.Client:
@@ -77,7 +77,8 @@ def _build_batch_client(call_counter: dict[str, int]) -> httpx.Client:
 class TestMagazineAllCli:
     def test_runs_batch_and_verifies_output(self, monkeypatch, tmp_path: Path) -> None:
         calls: dict[str, int] = {}
-        _stub_refresh_cookie(monkeypatch)
+        refresh_calls: dict[str, int] = {}
+        _stub_refresh_cookie(monkeypatch, calls=refresh_calls)
 
         def fake_client_builder(*args, **kwargs) -> httpx.Client:
             return _build_batch_client(calls)
@@ -96,6 +97,7 @@ class TestMagazineAllCli:
         assert calls["list"] == 1
         assert calls["1936_1"] == 2
         assert calls["2026_2"] == 2
+        assert refresh_calls.get("refresh", 0) == 0
 
     def test_resume_skips_succeeded_issues(self, monkeypatch, tmp_path: Path) -> None:
         calls: dict[str, int] = {}
@@ -120,7 +122,8 @@ class TestMagazineAllCli:
         self, monkeypatch, tmp_path: Path
     ) -> None:
         calls: dict[str, int] = {}
-        _stub_refresh_cookie(monkeypatch, return_value=False)
+        refresh_calls: dict[str, int] = {}
+        _stub_refresh_cookie(monkeypatch, return_value=False, calls=refresh_calls)
 
         def handler(request: httpx.Request) -> httpx.Response:
             path = request.url.path
@@ -174,6 +177,7 @@ class TestMagazineAllCli:
         assert diagnostics["ok"] is False
         assert diagnostics["category_counts"]["payload_shape_error"] == 2
         assert not (tmp_path / "batch_progress.json").exists()
+        assert refresh_calls["refresh"] == 1
 
     def test_retries_current_issue_after_auth_error(
         self, monkeypatch, tmp_path: Path
@@ -202,7 +206,7 @@ class TestMagazineAllCli:
                 return httpx.Response(200, json=raw_1936)
             if path == "/files/v1/files/magazines/2026/2":
                 calls["2026_2"] = calls.get("2026_2", 0) + 1
-                if calls["2026_2"] == 2 and refresh_calls["refresh"] == 1:
+                if calls["2026_2"] == 2 and refresh_calls.get("refresh", 0) == 0:
                     return httpx.Response(401, request=request)
                 return httpx.Response(200, json=raw_2026)
             if path.endswith(".pdf"):
@@ -239,7 +243,7 @@ class TestMagazineAllCli:
         assert exit_code == 0
         verify_report = json.loads((tmp_path / "verify_report.json").read_text(encoding="utf-8"))
         assert verify_report["verified_complete"] is True
-        assert refresh_calls["refresh"] == 2
+        assert refresh_calls["refresh"] == 1
         assert calls["list"] == 2
         assert calls["1936_1"] == 2
         assert calls["2026_2"] == 4
@@ -312,7 +316,7 @@ class TestMagazineAllCli:
         exit_code = main(["--out-dir", str(tmp_path), "--verify-after-run"])
 
         assert exit_code == 1
-        assert refresh_calls["refresh"] == 2
+        assert refresh_calls["refresh"] == 1
         assert calls["list"] == 3
         assert calls["1936_1"] == 2
         assert calls["2026_1"] == 4

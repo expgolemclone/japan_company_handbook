@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import logging
-import time
 from collections import Counter
 from datetime import UTC, datetime
 from functools import partial
@@ -11,8 +10,12 @@ from typing import Callable
 
 import httpx
 
-from scrape.auth import DEFAULT_CHROME_COOKIES, refresh_cookies_via_chrome
-from scrape.magazine.audit import build_auth_diagnostics, write_auth_diagnostics
+from scrape.auth import DEFAULT_CHROME_COOKIES, refresh_cookie_source
+from scrape.magazine.audit import (
+    build_auth_diagnostics,
+    should_refresh_for_auth_diagnostics,
+    write_auth_diagnostics,
+)
 from scrape.magazine.client import (
     AUTH_DIAGNOSTICS_FILE,
     BATCH_PROGRESS_FILE,
@@ -35,9 +38,6 @@ from scrape.magazine.verify import verify_all_issues, write_verify_report
 
 logger = logging.getLogger(__name__)
 DESCRIPTION = "四季報ビューアの全号を保存する"
-
-AUTH_RETRY_TIMEOUT_SECONDS = 20.0
-AUTH_RETRY_POLL_SECONDS = 2.0
 ISSUE_EXCEPTIONS = (
     httpx.HTTPStatusError,
     httpx.TransportError,
@@ -114,6 +114,7 @@ def run(args: argparse.Namespace) -> int:
                         out_dir=args.out_dir,
                         start_calendar=args.start_calendar,
                         sample_issues=[issue],
+                        refresh_first=True,
                     )
                     if refreshed_client is None:
                         batch_progress.mark_failed(issue, str(exc))
@@ -155,17 +156,34 @@ def _authenticate_client(
     out_dir: Path,
     start_calendar: int,
     sample_issues: list[MagazineIssueKey] | None = None,
+    refresh_first: bool = False,
 ) -> tuple[httpx.Client | None, dict[str, object] | None, list[MagazineIssueKey] | None]:
-    can_wait_for_refresh = _refresh_cookie_source(cookie_file)
-    deadline = time.monotonic() + AUTH_RETRY_TIMEOUT_SECONDS if can_wait_for_refresh else None
+    refresh_used = False
     last_report: dict[str, object] | None = None
     last_error: Exception | None = None
+
+    if refresh_first:
+        if not refresh_cookie_source(cookie_file):
+            failure_report = _build_client_auth_failure_report(
+                error=f"Cookie更新に失敗しました: {cookie_file}",
+                sample_issues=sample_issues,
+                category="cookie_refresh_failed",
+            )
+            write_auth_diagnostics(failure_report, out_dir / AUTH_DIAGNOSTICS_FILE.name)
+            return None, None, None
+        refresh_used = True
 
     while True:
         try:
             client = client_builder()
         except (FileNotFoundError, OSError, ValueError) as exc:
             last_error = exc
+            if refresh_used:
+                break
+            if not refresh_cookie_source(cookie_file):
+                break
+            refresh_used = True
+            continue
         else:
             auth_report, raw_issues, issues = build_auth_diagnostics(
                 client,
@@ -177,10 +195,11 @@ def _authenticate_client(
 
             last_report = auth_report
             client.close()
-
-        if deadline is None or time.monotonic() >= deadline:
-            break
-        time.sleep(AUTH_RETRY_POLL_SECONDS)
+            if refresh_used or not should_refresh_for_auth_diagnostics(auth_report):
+                break
+            if not refresh_cookie_source(cookie_file):
+                break
+            refresh_used = True
 
     failure_report = last_report or _build_client_auth_failure_report(
         error=str(last_error) if last_error is not None else "認証用clientを構築できませんでした",
@@ -188,13 +207,6 @@ def _authenticate_client(
     )
     write_auth_diagnostics(failure_report, out_dir / AUTH_DIAGNOSTICS_FILE.name)
     return None, None, None
-
-
-def _refresh_cookie_source(cookie_file: Path) -> bool:
-    if cookie_file.suffix == ".json":
-        logger.warning("JSON Cookie ファイルでは Chrome 自動更新を利用できません: %s", cookie_file)
-        return False
-    return refresh_cookies_via_chrome(cookies_db=cookie_file)
 
 
 def _auth_preflight_ok(

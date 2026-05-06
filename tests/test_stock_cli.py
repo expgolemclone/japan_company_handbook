@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import httpx
 import pytest
 
 from scrape import stock_cli
@@ -87,6 +88,16 @@ class _FakeApiClient:
         self.closed = True
 
 
+def _http_status_error(status_code: int) -> httpx.HTTPStatusError:
+    request = httpx.Request("GET", f"https://api-shikiho.toyokeizai.net/status/{status_code}")
+    response = httpx.Response(status_code, request=request)
+    return httpx.HTTPStatusError(
+        f"HTTP {status_code}",
+        request=request,
+        response=response,
+    )
+
+
 class TestRun:
     def test_fetches_codes_and_saves_successes(self, monkeypatch: pytest.MonkeyPatch) -> None:
         client = _FakeApiClient()
@@ -130,3 +141,83 @@ class TestRun:
         assert client.closed is True
         assert [perf.code for perf in saved] == ["7203"]
         assert sleeps == [stock_cli.REQUEST_INTERVAL]
+
+    def test_retries_same_code_after_auth_error(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        clients: list[_FakeApiClient] = []
+        refresh_calls = 0
+        saved: list[StockPerformance] = []
+
+        def fake_build_api_client() -> _FakeApiClient:
+            client = _FakeApiClient()
+            clients.append(client)
+            return client
+
+        def fake_refresh_cookie_source() -> bool:
+            nonlocal refresh_calls
+            refresh_calls += 1
+            return True
+
+        fetch_calls = 0
+
+        def fake_fetch_stock_latest(_client: _FakeApiClient, code: str) -> StockPerformance | None:
+            nonlocal fetch_calls
+            fetch_calls += 1
+            if fetch_calls == 1:
+                raise _http_status_error(401)
+            return StockPerformance(
+                code=code,
+                company_name="トヨタ自動車",
+                shikiho_forecasts=[
+                    ForecastRow(period="26.3", operating_profit=4000000, net_income=3800000),
+                ],
+                company_forecast=ForecastRow(
+                    period="26.3",
+                    operating_profit=3800000,
+                    net_income=3570000,
+                ),
+            )
+
+        monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203"])
+        monkeypatch.setattr(stock_cli, "init_db", lambda: None)
+        monkeypatch.setattr(stock_cli, "build_api_client", fake_build_api_client)
+        monkeypatch.setattr(stock_cli, "refresh_cookie_source", fake_refresh_cookie_source)
+        monkeypatch.setattr(stock_cli, "fetch_stock_latest", fake_fetch_stock_latest)
+        monkeypatch.setattr(stock_cli, "save_performance", lambda perf: saved.append(perf))
+
+        exit_code = stock_cli.main([])
+
+        assert exit_code == 0
+        assert refresh_calls == 1
+        assert fetch_calls == 2
+        assert len(clients) == 2
+        assert clients[0].closed is True
+        assert clients[1].closed is True
+        assert [perf.code for perf in saved] == ["7203"]
+
+    def test_skips_code_after_second_auth_error(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        clients: list[_FakeApiClient] = []
+        refresh_calls = 0
+
+        def fake_build_api_client() -> _FakeApiClient:
+            client = _FakeApiClient()
+            clients.append(client)
+            return client
+
+        def fake_refresh_cookie_source() -> bool:
+            nonlocal refresh_calls
+            refresh_calls += 1
+            return True
+
+        monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203"])
+        monkeypatch.setattr(stock_cli, "init_db", lambda: None)
+        monkeypatch.setattr(stock_cli, "build_api_client", fake_build_api_client)
+        monkeypatch.setattr(stock_cli, "refresh_cookie_source", fake_refresh_cookie_source)
+        monkeypatch.setattr(stock_cli, "fetch_stock_latest", lambda client, code: (_ for _ in ()).throw(_http_status_error(403)))
+
+        exit_code = stock_cli.main([])
+
+        assert exit_code == 0
+        assert refresh_calls == 1
+        assert len(clients) == 2
+        assert clients[0].closed is True
+        assert clients[1].closed is True

@@ -4,27 +4,70 @@ import argparse
 import logging
 from pathlib import Path
 
-from scrape.auth import DEFAULT_CHROME_COOKIES
-from scrape.magazine.client import MAGAZINES_DIR, build_magazine_http_client
+import httpx
+
+from scrape.auth import DEFAULT_CHROME_COOKIES, refresh_cookie_source
+from scrape.magazine.client import (
+    MAGAZINES_DIR,
+    MagazineApiError,
+    build_magazine_http_client,
+    is_probable_auth_error,
+)
 from scrape.magazine.downloader import download_issue_artifacts
 from scrape.magazine.types import MagazineIssueKey
 from scrape.magazine.verify import verify_issue_directory
 
 logger = logging.getLogger(__name__)
 DESCRIPTION = "四季報ビューアの単号を保存する"
+ISSUE_EXCEPTIONS = (
+    httpx.HTTPStatusError,
+    httpx.TransportError,
+    MagazineApiError,
+    ValueError,
+    OSError,
+)
 
 
 def run(args: argparse.Namespace) -> int:
     _configure_logging()
 
     issue = MagazineIssueKey(calendar=args.calendar, series=args.series)
-    with build_magazine_http_client(args.cookie_file) as client:
-        download_issue_artifacts(
-            client,
-            issue,
-            args.out_dir,
-            request_interval=args.request_interval,
-        )
+    auth_retry_used = False
+
+    while True:
+        try:
+            client = build_magazine_http_client(args.cookie_file)
+        except (FileNotFoundError, OSError, ValueError) as exc:
+            if auth_retry_used:
+                logger.error("再認証後もCookieソースを利用できませんでした: %s", exc)
+                return 1
+            if not refresh_cookie_source(args.cookie_file):
+                logger.error("Cookie更新に失敗しました: %s", exc)
+                return 1
+            auth_retry_used = True
+            logger.info("Cookieを更新したため同じ号を再試行します: %s", issue)
+            continue
+        try:
+            with client:
+                download_issue_artifacts(
+                    client,
+                    issue,
+                    args.out_dir,
+                    request_interval=args.request_interval,
+                )
+        except ISSUE_EXCEPTIONS as exc:
+            if not is_probable_auth_error(exc):
+                raise
+            if auth_retry_used:
+                logger.error("再認証後も認証異常が解消しませんでした: %s", issue)
+                return 1
+            if not refresh_cookie_source(args.cookie_file):
+                logger.error("認証を回復できなかったため停止します: %s", issue)
+                return 1
+            auth_retry_used = True
+            logger.info("認証を再確認したため同じ号を再試行します: %s", issue)
+            continue
+        break
 
     report = verify_issue_directory(issue, args.out_dir)
     if not report["ok"]:

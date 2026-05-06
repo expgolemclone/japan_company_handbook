@@ -23,7 +23,9 @@ uv sync
 
 - `shikiho stock fetch` は `httpx` が見つからない場合、プロジェクト直下の `.venv` を検出できれば `python -m scrape.shikiho_cli stock fetch` へ自動再実行します。
 - `.venv` が無い、または依存が未インストールの場合は起動できないため、先に `uv sync` を実行してください。
-- `shikiho magazine all` は開始前に認証 preflight を行い、失敗時は `data/magazines/auth_diagnostics.json` を書いて停止します。
+- `shikiho pdf all` / `shikiho stock fetch` / `shikiho magazine issue|all|audit` は、`401` / `403` / `3202` などの認証失敗を検知すると `https://shikiho.toyokeizai.net/stocks/` を開いて Cookie 更新を試み、成功時は同じ処理を1回だけ再試行します。
+- `--cookie-file data/cookies.json` のような JSON Cookie を指定した場合も、認証失敗時は Chrome Cookie DB を元にその JSON を自動で上書き更新します。
+- `shikiho magazine all` は開始前に現在の Cookie で認証 preflight を行い、認証系失敗時だけ Cookie 更新後に再試行します。回復できない場合は `data/magazines/auth_diagnostics.json` を書いて停止します。
 - `shikiho magazine audit` は `issues.raw.json` / `issues.expected.json` / 既存 manifest を突き合わせて、欠号候補を `external_confirmed` / `mixed` / `internal_inferred` で分類します。
 
 ## 移行表
