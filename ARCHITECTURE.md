@@ -259,6 +259,19 @@ source_root/**/*.pdf
 - PDF列挙、出力パス計画、PDF反転処理を担当する。
 - Ghostscript 優先、無ければ `pdftoppm` と `magick` を使う。
 
+## Verification Strategy
+
+CLI再編後の scraping 導線は、実APIの長時間バッチを毎回走らせる代わりに、入口疎通と実行本体の主要経路をスモークテストで固定化して確認する。
+
+- `tests/test_pdf_all_cli.py`
+  `shikiho pdf all` が `401` 再認証、号一覧取得、ページ一覧抽出、`download_all_pages()` 呼び出しまで到達することを確認する。
+- `tests/test_magazine_all_cli.py`
+  `shikiho magazine all` が issue list 取得、artifact 保存、`verify_report.json` 生成、`--resume`、認証エラー時の診断出力まで完了することを確認する。
+- `tests/test_stock_cli.py`
+  `shikiho stock fetch` が銘柄一覧読込、`/sso/v1/sso/check`、`fetch_stock_latest()`、SQLite保存、`httpx` 未導入時の `.venv` 再実行判定まで確認する。
+- `tests/test_shikiho_cli.py`
+  利用者向け `shikiho` 親CLIが `pdf` / `magazine` / `stock` の各 subcommand へ正しく dispatch することを確認する。
+
 ## Data Layout
 
 ### Git 管理方針

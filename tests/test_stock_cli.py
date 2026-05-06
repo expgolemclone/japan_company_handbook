@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 
 from scrape import stock_cli
+from scrape.stock import ForecastRow, StockPerformance
 
 
 class _ExecvCalled(Exception):
@@ -67,3 +68,65 @@ class TestEnsureHttpxRuntime:
 
         with pytest.raises(SystemExit, match="shikiho stock fetch"):
             stock_cli._ensure_httpx_runtime()
+
+
+class _FakeApiClient:
+    def __init__(self) -> None:
+        self.closed = False
+        self.sso_checks = 0
+
+    def get(self, path: str):
+        import httpx
+
+        self.sso_checks += 1
+        assert path == "/sso/v1/sso/check"
+        request = httpx.Request("GET", f"https://api-shikiho.toyokeizai.net{path}")
+        return httpx.Response(200, json={"auth_level": 5}, request=request)
+
+    def close(self) -> None:
+        self.closed = True
+
+
+class TestRun:
+    def test_fetches_codes_and_saves_successes(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        client = _FakeApiClient()
+        init_calls = 0
+        saved: list[StockPerformance] = []
+        sleeps: list[float] = []
+
+        def fake_init_db() -> None:
+            nonlocal init_calls
+            init_calls += 1
+
+        def fake_fetch_stock_latest(_client: _FakeApiClient, code: str) -> StockPerformance | None:
+            if code == "7203":
+                return StockPerformance(
+                    code="7203",
+                    company_name="トヨタ自動車",
+                    shikiho_forecasts=[
+                        ForecastRow(period="26.3", operating_profit=4000000, net_income=3800000),
+                        ForecastRow(period="27.3", operating_profit=4200000, net_income=3900000),
+                    ],
+                    company_forecast=ForecastRow(
+                        period="26.3",
+                        operating_profit=3800000,
+                        net_income=3570000,
+                    ),
+                )
+            return None
+
+        monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203", "9999"])
+        monkeypatch.setattr(stock_cli, "init_db", fake_init_db)
+        monkeypatch.setattr(stock_cli, "build_api_client", lambda: client)
+        monkeypatch.setattr(stock_cli, "fetch_stock_latest", fake_fetch_stock_latest)
+        monkeypatch.setattr(stock_cli, "save_performance", lambda perf: saved.append(perf))
+        monkeypatch.setattr(stock_cli.time, "sleep", lambda seconds: sleeps.append(seconds))
+
+        exit_code = stock_cli.main([])
+
+        assert exit_code == 0
+        assert init_calls == 1
+        assert client.sso_checks == 1
+        assert client.closed is True
+        assert [perf.code for perf in saved] == ["7203"]
+        assert sleeps == [stock_cli.REQUEST_INTERVAL]
