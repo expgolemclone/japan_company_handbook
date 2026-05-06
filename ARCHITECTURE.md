@@ -97,7 +97,10 @@ Chrome Cookie DB
   -> shimen_results パース
      -> ◇XX.X予 / ◎XX.X予 / 連XX.X予 / 単XX.X予 / *予 / 予変 -> 四季報予想(2期分)
      -> 会XX.X予 -> 会社予想(1期分)
+  -> shimen_shareholders パース
+     -> name / number / ratio -> 大株主リスト
   -> scrape.stock_db.save_performance()
+  -> scrape.stock_db.save_shareholders()
   -> data/stock_performance.db
 ```
 
@@ -107,7 +110,7 @@ Chrome Cookie DB
 - 四季報予想はプレミアム会員限定の値が `ー` になる場合、`NULL` として格納する。
 - `連XX.X予` / `単XX.X予` / `◎XX.X予` や `*予` / `予変` を含む通期予想も四季報予想として取り込み、`26.7〜12予` のような中間期予想は保存しない。
 - `INSERT OR REPLACE` で同一キーを更新する。
-- 既定では `stock_forecasts` に保存済みの銘柄コードを起動直後に除外し、差分だけ処理する。
+- 既定では `stock_forecasts` と `major_shareholders` の両方に保存済みの銘柄コードを起動直後に除外し、差分だけ処理する。
 - API 上は銘柄が存在しても、保存対象の予想行を1件も抽出できなかった場合はスキップとして扱う。
 - 起動時 `sso/check` と銘柄取得中の `401` / `403` を検知した時だけ Cookie 更新を試み、同じ銘柄を1回だけ再試行する。
 - 進捗ログは100銘柄ごとに `進捗: x / total (成功: y, スキップ: z)` を出力する。
@@ -218,16 +221,18 @@ systemd-run --user
 
 ### `scrape/stock.py`
 
-- 銘柄業績予想のAPI呼び出しとパースを担当。
-- `/stocks/v1/stocks/{code}/latest` から `shimen_results` を取得する。
+- 銘柄業績予想と大株主のAPI呼び出しとパースを担当。
+- `/stocks/v1/stocks/{code}/latest` から `shimen_results` と `shimen_shareholders` を取得する。
 - `◇XX.X予`、`◎XX.X予`、`連XX.X予` / `単XX.X予`、`*予` / `予変` を含む通期行から四季報予想を2期分、`会XX.X予` 行から会社予想を1期分抽出する。
+- `shimen_shareholders` から大株主リストをパースし、`shareholders_research_date` を基準日として格納する。
 - 保存対象の予想行を抽出できなかった payload はスキップ対象として返す。
 
 ### `scrape/stock_db.py`
 
-- 銘柄業績予想のSQLite格納を担当。
-- `data/stock_performance.db` に `stock_forecasts` テーブルを作成する。
+- 銘柄業績予想と大株主のSQLite格納を担当。
+- `data/stock_performance.db` に `stock_forecasts` テーブルと `major_shareholders` テーブルを作成する。
 - `INSERT OR REPLACE` でUPSERTを行う。
+- `major_shareholders` は `stock_code + rank` を主キーとし、同一銘柄は毎回上書きする。
 
 ### `scrape/stock_cli.py`
 
@@ -315,7 +320,7 @@ CLI再編後の scraping 導線は、実APIの長時間バッチを毎回走ら�
 - `tests/test_magazine_audit_cli.py`
   `shikiho magazine audit` が auth diagnostics の `3202` を検知したら Cookie 回復後に再実行することを確認する。
 - `tests/test_stock_cli.py`
-  `shikiho stock fetch` が銘柄一覧読込、`/sso/v1/sso/check`、`fetch_stock_latest()`、`None` を返した銘柄のスキップ集計、認証エラー時の同一銘柄再試行、SQLite保存、`httpx` 未導入時の `.venv` 再実行判定まで確認する。
+  `shikiho stock fetch` が銘柄一覧読込、`/sso/v1/sso/check`、`fetch_stock_latest()`、`None` を返した銘柄のスキップ集計、認証エラー時の同一銘柄再試行、SQLite保存（業績予想・大株主）、`httpx` 未導入時の `.venv` 再実行判定まで確認する。
 - `tests/test_auth.py`
   JSON Cookie の上書き再生成と、非JSON Cookie ソースの refresh 委譲を確認する。
 - `tests/test_shikiho_cli.py`

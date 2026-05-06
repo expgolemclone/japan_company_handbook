@@ -23,11 +23,20 @@ class ForecastRow:
 
 
 @dataclass(frozen=True, slots=True)
+class MajorShareholder:
+    name: str
+    shares: int | None
+    ratio_pct: float | None
+
+
+@dataclass(frozen=True, slots=True)
 class StockPerformance:
     code: str
     company_name: str
     shikiho_forecasts: list[ForecastRow]
     company_forecast: ForecastRow | None
+    shareholders: list[MajorShareholder]
+    shareholders_date: str | None
 
 
 def _parse_value(raw: str | None) -> int | None:
@@ -40,6 +49,19 @@ def _parse_value(raw: str | None) -> int | None:
         return int(stripped.replace(",", ""))
     except ValueError:
         logger.debug("failed to parse numeric value: %r", stripped)
+        return None
+
+
+def _parse_ratio(raw: str | None) -> float | None:
+    if raw is None:
+        return None
+    stripped = raw.strip()
+    if stripped in ("ー", "-", "―", "", "‥"):
+        return None
+    try:
+        return float(stripped)
+    except ValueError:
+        logger.debug("failed to parse ratio value: %r", stripped)
         return None
 
 
@@ -100,9 +122,21 @@ def fetch_stock_latest(
         logger.warning("%s: 保存対象の予想行がありません", code)
         return None
 
+    raw_shareholders = payload.get("shimen_shareholders") or []
+    shareholders = [
+        MajorShareholder(
+            name=s.get("name", ""),
+            shares=_parse_value(s.get("number")),
+            ratio_pct=_parse_ratio(s.get("ratio")),
+        )
+        for s in raw_shareholders
+    ]
+
     return StockPerformance(
         code=code,
         company_name=payload.get("company_name_j") or "",
         shikiho_forecasts=shikiho_forecasts,
         company_forecast=company_forecast,
+        shareholders=shareholders,
+        shareholders_date=payload.get("shareholders_research_date"),
     )

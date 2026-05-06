@@ -22,10 +22,30 @@ CREATE TABLE IF NOT EXISTS stock_forecasts (
 );
 """
 
+_CREATE_SHAREHOLDERS_TABLE = """
+CREATE TABLE IF NOT EXISTS major_shareholders (
+    stock_code        TEXT NOT NULL,
+    company_name      TEXT NOT NULL,
+    rank              INTEGER NOT NULL,
+    shareholder_name  TEXT NOT NULL,
+    shares            INTEGER,
+    ratio_pct         REAL,
+    research_date     TEXT,
+    fetched_at        TEXT NOT NULL,
+    PRIMARY KEY (stock_code, rank)
+);
+"""
+
 _UPSERT = """
 INSERT OR REPLACE INTO stock_forecasts
     (stock_code, company_name, forecast_type, period, operating_profit, net_income, fetched_at)
 VALUES (?, ?, ?, ?, ?, ?, ?);
+"""
+
+_UPSERT_SHAREHOLDER = """
+INSERT OR REPLACE INTO major_shareholders
+    (stock_code, company_name, rank, shareholder_name, shares, ratio_pct, research_date, fetched_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 """
 
 
@@ -45,6 +65,7 @@ def init_db(db_path: Path = DEFAULT_DB_PATH) -> None:
     con = sqlite3.connect(db_path)
     try:
         con.execute(_CREATE_TABLE)
+        con.execute(_CREATE_SHAREHOLDERS_TABLE)
         con.commit()
     finally:
         con.close()
@@ -69,6 +90,37 @@ def save_performance(
                 _UPSERT,
                 (perf.code, perf.company_name, "company", fc.period,
                  fc.operating_profit, fc.net_income, now),
+            )
+        con.commit()
+    finally:
+        con.close()
+
+
+def existing_shareholder_codes(db_path: Path = DEFAULT_DB_PATH) -> set[str]:
+    if not db_path.exists():
+        return set()
+    con = sqlite3.connect(db_path)
+    try:
+        rows = con.execute("SELECT DISTINCT stock_code FROM major_shareholders").fetchall()
+    finally:
+        con.close()
+    return {row[0] for row in rows}
+
+
+def save_shareholders(
+    perf: StockPerformance,
+    db_path: Path = DEFAULT_DB_PATH,
+) -> None:
+    if not perf.shareholders:
+        return
+    now = datetime.now(timezone.utc).isoformat()
+    con = sqlite3.connect(db_path)
+    try:
+        for rank, sh in enumerate(perf.shareholders, start=1):
+            con.execute(
+                _UPSERT_SHAREHOLDER,
+                (perf.code, perf.company_name, rank, sh.name,
+                 sh.shares, sh.ratio_pct, perf.shareholders_date, now),
             )
         con.commit()
     finally:

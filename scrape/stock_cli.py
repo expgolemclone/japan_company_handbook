@@ -69,7 +69,7 @@ from scrape.auth import is_http_auth_error, refresh_cookie_source
 from scrape.client import build_api_client
 from scrape.downloader import REQUEST_INTERVAL
 from scrape.stock import fetch_stock_latest
-from scrape.stock_db import existing_codes, init_db, save_performance
+from scrape.stock_db import existing_codes, existing_shareholder_codes, init_db, save_performance, save_shareholders
 
 
 def build_parser(
@@ -109,7 +109,9 @@ def run(_args: argparse.Namespace) -> int:
     init_db()
 
     if not _args.force:
-        existing = existing_codes()
+        existing_forecasts = existing_codes()
+        existing_sh = existing_shareholder_codes()
+        existing = existing_forecasts & existing_sh
         before = len(codes)
         codes = [c for c in codes if c not in existing]
         if len(codes) < before:
@@ -179,6 +181,7 @@ def run(_args: argparse.Namespace) -> int:
                 continue
 
             save_performance(perf)
+            save_shareholders(perf)
             success += 1
 
             if i % 100 == 0:
