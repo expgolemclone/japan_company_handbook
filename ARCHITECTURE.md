@@ -146,6 +146,28 @@ source_root/**/*.pdf
   -> output_root/**/*.pdf
 ```
 
+### 6. `monitor-shikiho-pdf-all-hourly`
+
+`scripts/monitor-shikiho-pdf-all-hourly` は `shikiho-pdf-all` watchdog の外側で 1 時間ごとの健全性スナップショットを取り、長時間バッチが「生きているが進んでいない」状態を見つけやすくする。
+
+```text
+systemd-run --user
+  -> scripts/monitor-shikiho-pdf-all-hourly daemon
+  -> 1時間ごとに snapshot()
+  -> data/watchdogs/shikiho-pdf-all.json
+  -> data/progress.json
+  -> data/watchdogs/shikiho-pdf-all.log
+  -> data/watchdogs/shikiho-pdf-all-hourly.json
+  -> data/watchdogs/shikiho-pdf-all-hourly.log
+```
+
+特徴:
+
+- `systemd-run --user` で transient service として起動し、端末を閉じても監視を継続する。
+- watchdog state の `pid` と `last_heartbeat_at`、`pgrep -af "python -m scrape.watchdog shikiho-pdf-all"` の結果から、watchdog 本体と child process の生存を判定する。
+- `data/progress.json` の completed 件数を前回スナップショットと比較し、1時間近く経過して増分が無い場合は `warn/no_progress` にする。
+- heartbeat が 1 時間超 stale、watchdog 不在、child 不在のいずれかなら `error` にする。
+
 ## Module Responsibilities
 
 ### `scrape/shikiho_cli.py`
@@ -262,6 +284,13 @@ source_root/**/*.pdf
 - 長時間バッチを監視して再起動する。
 - 現在の profile 名は `shikiho-pdf-all` と `shikiho-magazine-all`。
 - child command は `uv run shikiho ...` を直接起動する。
+- `shikiho-pdf-all` では `data/progress.json` の更新時刻を heartbeat として扱い、既定 900 秒停止したら再起動する。
+
+### `scripts/monitor-shikiho-pdf-all-hourly`
+
+- `shikiho-pdf-all` watchdog の外側で 1 時間ごとに状態スナップショットを作る。
+- `data/watchdogs/shikiho-pdf-all-hourly.json` に最新判定、`*.log` に履歴、`*.pid` に常駐監視の PID を保存する。
+- 進捗差分が止まっているだけの `warn/no_progress` と、watchdog / child 不在や heartbeat stale の `error` を分けて記録する。
 
 ### `pdfops/invert.py`
 
