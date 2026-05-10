@@ -88,11 +88,27 @@ def build_parser(
         default=False,
         help="取得済み銘柄も再取得する",
     )
+    parser.add_argument(
+        "--code",
+        action="append",
+        dest="codes",
+        metavar="STOCK_CODE",
+        help="指定した銘柄コードだけ取得する。複数指定可",
+    )
     return parser
 
 
 def _load_stock_codes(path: Path = DEFAULT_CODES_PATH) -> list[str]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _normalize_requested_codes(codes: list[str] | None) -> list[str] | None:
+    if codes is None:
+        return None
+    normalized = [code.strip() for code in codes if code.strip()]
+    if not normalized:
+        raise SystemExit("--code には空でない銘柄コードを指定してください。")
+    return normalized
 
 
 def run(_args: argparse.Namespace) -> int:
@@ -103,7 +119,8 @@ def run(_args: argparse.Namespace) -> int:
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.getLogger("httpcore").setLevel(logging.WARNING)
 
-    codes = _load_stock_codes()
+    requested_codes = _normalize_requested_codes(getattr(_args, "codes", None))
+    codes = requested_codes if requested_codes is not None else _load_stock_codes()
     logger.info("対象銘柄数: %d", len(codes))
 
     init_db()
@@ -121,7 +138,8 @@ def run(_args: argparse.Namespace) -> int:
                 len(codes),
             )
     else:
-        logger.info("--force: 全件再取得します")
+        target_label = "指定銘柄" if requested_codes is not None else "全件"
+        logger.info("--force: %s再取得します", target_label)
 
     api_client = build_api_client()
     try:

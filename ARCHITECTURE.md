@@ -85,7 +85,7 @@ Chrome Cookie / Cookie JSON
 
 ### 3. `shikiho stock fetch`
 
-`scrape.stock_cli` が `stock_codes_*.json` に掲載された全銘柄の業績予想を取得し、SQLiteに格納する。既定では保存済み銘柄を事前に除外して差分取得し、`--force` 指定時だけ全件を再取得する。起動時に現在の Python に `httpx` が無い場合は、プロジェクト直下の `.venv` を検出できれば `python -m scrape.shikiho_cli stock fetch` へ再実行し、見つからなければ依存インストールを促して終了する。
+`scrape.stock_cli` が `stock_codes_*.json` に掲載された全銘柄の業績予想を取得し、SQLiteに格納する。`--code` 指定時は銘柄一覧JSONを読まずに指定銘柄だけを処理する。既定では保存済み銘柄を事前に除外して差分取得し、`--force` 指定時だけ全件または指定銘柄を再取得する。起動時に現在の Python に `httpx` が無い場合は、プロジェクト直下の `.venv` を検出できれば `python -m scrape.shikiho_cli stock fetch` へ再実行し、見つからなければ依存インストールを促して終了する。
 
 ```text
 Chrome Cookie DB
@@ -110,6 +110,7 @@ Chrome Cookie DB
 - 四季報予想はプレミアム会員限定の値が `ー` になる場合、`NULL` として格納する。
 - `連XX.X予` / `単XX.X予` / `◎XX.X予` や `*予` / `予変` を含む通期予想も四季報予想として取り込み、`26.7〜12予` のような中間期予想は保存しない。
 - `INSERT OR REPLACE` で同一キーを更新する。
+- `--code CODE` は指定銘柄だけを実行対象にし、`--force` と組み合わせると保存済みの単一銘柄を再取得できる。
 - 既定では `stock_forecasts` と `major_shareholders` の両方に保存済みの銘柄コードを起動直後に除外し、差分だけ処理する。
 - API 上は銘柄が存在しても、保存対象の予想行を1件も抽出できなかった場合はスキップとして扱う。
 - 起動時 `sso/check` と銘柄取得中の `401` / `403` を検知した時だけ Cookie 更新を試み、同じ銘柄を1回だけ再試行する。
@@ -320,7 +321,7 @@ CLI再編後の scraping 導線は、実APIの長時間バッチを毎回走ら�
 - `tests/test_magazine_audit_cli.py`
   `shikiho magazine audit` が auth diagnostics の `3202` を検知したら Cookie 回復後に再実行することを確認する。
 - `tests/test_stock_cli.py`
-  `shikiho stock fetch` が銘柄一覧読込、`/sso/v1/sso/check`、`fetch_stock_latest()`、`None` を返した銘柄のスキップ集計、認証エラー時の同一銘柄再試行、SQLite保存（業績予想・大株主）、`httpx` 未導入時の `.venv` 再実行判定まで確認する。
+  `shikiho stock fetch` が銘柄一覧読込、`--code` 指定時の単一銘柄取得、`/sso/v1/sso/check`、`fetch_stock_latest()`、`None` を返した銘柄のスキップ集計、認証エラー時の同一銘柄再試行、SQLite保存（業績予想・大株主）、`httpx` 未導入時の `.venv` 再実行判定まで確認する。
 - `tests/test_auth.py`
   JSON Cookie の上書き再生成と、非JSON Cookie ソースの refresh 委譲を確認する。
 - `tests/test_shikiho_cli.py`

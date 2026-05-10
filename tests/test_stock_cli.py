@@ -100,6 +100,36 @@ def _http_status_error(status_code: int) -> httpx.HTTPStatusError:
 
 
 class TestRun:
+    def test_fetches_requested_code_without_loading_default_codes(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        client = _FakeApiClient()
+        saved: list[StockPerformance] = []
+
+        def fake_fetch_stock_latest(_client: _FakeApiClient, code: str) -> StockPerformance | None:
+            return StockPerformance(
+                code=code,
+                company_name="タイガースポリマー",
+                shikiho_forecasts=[
+                    ForecastRow(period="26.3", operating_profit=2900, net_income=2200),
+                    ForecastRow(period="27.3", operating_profit=3100, net_income=2330),
+                ],
+                company_forecast=ForecastRow(period="26.3", operating_profit=2900, net_income=2200),
+                shareholders=[],
+                shareholders_date=None,
+            )
+
+        monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: pytest.fail("default code list should not be loaded"))
+        monkeypatch.setattr(stock_cli, "init_db", lambda: None)
+        monkeypatch.setattr(stock_cli, "build_api_client", lambda: client)
+        monkeypatch.setattr(stock_cli, "fetch_stock_latest", fake_fetch_stock_latest)
+        monkeypatch.setattr(stock_cli, "save_performance", lambda perf: saved.append(perf))
+        monkeypatch.setattr(stock_cli, "save_shareholders", lambda perf: None)
+
+        exit_code = stock_cli.main(["--code", "4231", "--force"])
+
+        assert exit_code == 0
+        assert client.closed is True
+        assert [perf.code for perf in saved] == ["4231"]
+
     def test_fetches_codes_and_saves_successes(self, monkeypatch: pytest.MonkeyPatch, caplog: pytest.LogCaptureFixture) -> None:
         client = _FakeApiClient()
         init_calls = 0
