@@ -69,8 +69,8 @@ httpx = _ensure_httpx_runtime()
 from scrape.auth import is_http_auth_error, refresh_cookie_source
 from scrape.client import build_api_client
 from scrape.downloader import REQUEST_INTERVAL
-from scrape.stock import fetch_stock_latest_json, parse_stock_latest_payload
-from scrape.stock_db import existing_codes, existing_shareholder_codes, init_db, save_performance, save_shareholders
+from scrape.stock import fetch_stock_latest_json, parse_dividends, parse_metrics, parse_stock_latest_payload
+from scrape.stock_db import existing_codes, existing_dividend_codes, existing_metrics_codes, existing_shareholder_codes, init_db, save_dividends, save_metrics, save_performance, save_shareholders
 
 
 def build_parser(
@@ -135,8 +135,10 @@ def run(_args: argparse.Namespace) -> int:
     if not _args.force:
         existing_forecasts = existing_codes()
         existing_sh = existing_shareholder_codes()
+        existing_div = existing_dividend_codes()
+        existing_met = existing_metrics_codes()
         existing_raw_json = _existing_raw_json_codes(codes, _args.raw_json_dir)
-        existing = existing_forecasts & existing_sh & existing_raw_json
+        existing = existing_forecasts & existing_sh & existing_div & existing_met & existing_raw_json
         before = len(codes)
         codes = [c for c in codes if c not in existing]
         if len(codes) < before:
@@ -208,8 +210,14 @@ def run(_args: argparse.Namespace) -> int:
                     time.sleep(REQUEST_INTERVAL)
                 continue
 
+            dividends = parse_dividends(latest.payload.get("shimen_dividends"))
+            metrics = parse_metrics(code, latest.payload)
+
             save_performance(perf)
             save_shareholders(perf)
+            save_dividends(code, dividends)
+            if metrics is not None:
+                save_metrics(metrics)
             success += 1
 
             if i % 100 == 0:

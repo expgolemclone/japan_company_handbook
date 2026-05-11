@@ -7,8 +7,12 @@ from pathlib import Path
 
 from scrape.stock_db import (
     existing_codes,
+    existing_dividend_codes,
+    existing_metrics_codes,
     existing_shareholder_codes,
     init_db,
+    save_dividends,
+    save_metrics,
     save_performance,
     save_shareholders,
 )
@@ -68,7 +72,7 @@ def _normalize_requested_codes(codes: list[str] | None) -> list[str] | None:
 
 
 def run(args: argparse.Namespace) -> int:
-    from scrape.stock import parse_stock_latest_payload
+    from scrape.stock import parse_dividends, parse_metrics, parse_stock_latest_payload
 
     logging.basicConfig(
         level=logging.INFO,
@@ -91,7 +95,9 @@ def run(args: argparse.Namespace) -> int:
     if not args.force:
         existing_fc = existing_codes()
         existing_sh = existing_shareholder_codes()
-        existing = existing_fc & existing_sh
+        existing_div = existing_dividend_codes()
+        existing_met = existing_metrics_codes()
+        existing = existing_fc & existing_sh & existing_div & existing_met
         before = len(codes)
         codes = [c for c in codes if c not in existing]
         if len(codes) < before:
@@ -135,8 +141,14 @@ def run(args: argparse.Namespace) -> int:
             skipped += 1
             continue
 
+        dividends = parse_dividends(payload.get("shimen_dividends"))
+        metrics = parse_metrics(code, payload)
+
         save_performance(perf)
         save_shareholders(perf)
+        save_dividends(code, dividends)
+        if metrics is not None:
+            save_metrics(metrics)
         success += 1
 
         if (i + 1) % 100 == 0:

@@ -82,15 +82,17 @@ APIから号一覧を取得し、各号について:
 
 ### 銘柄データ取得 (stock)
 
-`stock.py` が四季報API (`/stocks/v1/stocks/{code}/latest`) から銘柄情報を取得。レスポンスの `shimen_results` から四季報予想・会社予想を正規表現でパースし、`shimen_shareholders` から大株主を抽出。
+`stock.py` が四季報API (`/stocks/v1/stocks/{code}/latest`) から銘柄情報を取得。レスポンスの `shimen_results` から四季報予想・会社予想を正規表現でパースし、`shimen_shareholders` から大株主を抽出。`shimen_dividends` から配当履歴、`shimen_stats`/`shimen_financials` から指標・財務データをパース。
 
-`stock_db.py` は SQLite に 2テーブルを管理:
-- `stock_forecasts`: 銘柄コード・予想種別・期間の複合主キーで UPSERT
-- `major_shareholders`: 銘柄コード・順位の複合主キーで UPSERT
+`stock_db.py` は SQLite に 4テーブルを管理:
+- `stock_forecasts`: 銘柄コード・予想種別・期間の複合主キーで UPSERT (営業利益・純利益)
+- `major_shareholders`: 銘柄コード・順位の複合主キーで UPSERT (大株主)
+- `stock_dividends`: 銘柄コード・期間の複合主キーで UPSERT (配当金)
+- `stock_metrics`: 銘柄コード主キーで UPSERT (PER/PBR/ROE/ROA/EPS/財務・会社基本情報)
 
-`stock_cli.py` は API生JSON を `data/stock_latest_json/{code}.json` に保存しつつ SQLite も更新。`--force` なしの場合は SQLite と raw JSON の両方が揃った銘柄をスキップ。
+`stock_cli.py` は API生JSON を `data/stock_latest_json/{code}.json` に保存しつつ SQLite も更新。`--force` なしの場合は全テーブルと raw JSON が揃った銘柄をスキップ。
 
-`stock_load_cli.py` はAPI通信なしでローカルJSONからSQLiteへ読み込む。認証不要でオフライン再処理が可能。`--force` なしの場合はSQLite保存済み銘柄をスキップ。
+`stock_load_cli.py` はAPI通信なしでローカルJSONからSQLiteへ読み込む。認証不要でオフライン再処理が可能。`--force` なしの場合は全テーブル保存済み銘柄をスキップ。
 
 ### プロセス監視 (watchdog.py)
 

@@ -134,6 +134,8 @@ class TestRun:
         monkeypatch.setattr(stock_cli, "parse_stock_latest_payload", lambda code, payload: _performance(code))
         monkeypatch.setattr(stock_cli, "save_performance", lambda perf: saved.append(perf))
         monkeypatch.setattr(stock_cli, "save_shareholders", lambda perf: None)
+        monkeypatch.setattr(stock_cli, "save_dividends", lambda code, divs: None)
+        monkeypatch.setattr(stock_cli, "save_metrics", lambda met: None)
 
         exit_code = stock_cli.main([
             "--code",
@@ -175,12 +177,16 @@ class TestRun:
         monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203", "9999"])
         monkeypatch.setattr(stock_cli, "existing_codes", lambda: set())
         monkeypatch.setattr(stock_cli, "existing_shareholder_codes", lambda: set())
+        monkeypatch.setattr(stock_cli, "existing_dividend_codes", lambda: set())
+        monkeypatch.setattr(stock_cli, "existing_metrics_codes", lambda: set())
         monkeypatch.setattr(stock_cli, "init_db", fake_init_db)
         monkeypatch.setattr(stock_cli, "build_api_client", lambda: client)
         monkeypatch.setattr(stock_cli, "fetch_stock_latest_json", lambda client, code: _latest_json(code))
         monkeypatch.setattr(stock_cli, "parse_stock_latest_payload", fake_parse_stock_latest_payload)
         monkeypatch.setattr(stock_cli, "save_performance", lambda perf: saved.append(perf))
         monkeypatch.setattr(stock_cli, "save_shareholders", lambda perf: None)
+        monkeypatch.setattr(stock_cli, "save_dividends", lambda code, divs: None)
+        monkeypatch.setattr(stock_cli, "save_metrics", lambda met: None)
         monkeypatch.setattr(stock_cli.time, "sleep", lambda seconds: sleeps.append(seconds))
         caplog.set_level(logging.INFO)
 
@@ -217,6 +223,8 @@ class TestRun:
         monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203", "9999"])
         monkeypatch.setattr(stock_cli, "existing_codes", lambda: {"7203", "9999"})
         monkeypatch.setattr(stock_cli, "existing_shareholder_codes", lambda: {"7203", "9999"})
+        monkeypatch.setattr(stock_cli, "existing_dividend_codes", lambda: {"7203", "9999"})
+        monkeypatch.setattr(stock_cli, "existing_metrics_codes", lambda: {"7203", "9999"})
         monkeypatch.setattr(stock_cli, "init_db", lambda: None)
         monkeypatch.setattr(stock_cli, "build_api_client", lambda: client)
         monkeypatch.setattr(stock_cli, "fetch_stock_latest_json", fake_fetch_stock_latest_json)
@@ -261,6 +269,8 @@ class TestRun:
         monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203"])
         monkeypatch.setattr(stock_cli, "existing_codes", lambda: set())
         monkeypatch.setattr(stock_cli, "existing_shareholder_codes", lambda: set())
+        monkeypatch.setattr(stock_cli, "existing_dividend_codes", lambda: set())
+        monkeypatch.setattr(stock_cli, "existing_metrics_codes", lambda: set())
         monkeypatch.setattr(stock_cli, "init_db", lambda: None)
         monkeypatch.setattr(stock_cli, "build_api_client", fake_build_api_client)
         monkeypatch.setattr(stock_cli, "refresh_cookie_source", fake_refresh_cookie_source)
@@ -268,6 +278,8 @@ class TestRun:
         monkeypatch.setattr(stock_cli, "parse_stock_latest_payload", lambda code, payload: _performance(code))
         monkeypatch.setattr(stock_cli, "save_performance", lambda perf: saved.append(perf))
         monkeypatch.setattr(stock_cli, "save_shareholders", lambda perf: None)
+        monkeypatch.setattr(stock_cli, "save_dividends", lambda code, divs: None)
+        monkeypatch.setattr(stock_cli, "save_metrics", lambda met: None)
 
         exit_code = stock_cli.main(["--raw-json-dir", str(raw_dir)])
 
@@ -302,6 +314,8 @@ class TestRun:
         monkeypatch.setattr(stock_cli, "_load_stock_codes", lambda: ["7203"])
         monkeypatch.setattr(stock_cli, "existing_codes", lambda: set())
         monkeypatch.setattr(stock_cli, "existing_shareholder_codes", lambda: set())
+        monkeypatch.setattr(stock_cli, "existing_dividend_codes", lambda: set())
+        monkeypatch.setattr(stock_cli, "existing_metrics_codes", lambda: set())
         monkeypatch.setattr(stock_cli, "init_db", lambda: None)
         monkeypatch.setattr(stock_cli, "build_api_client", fake_build_api_client)
         monkeypatch.setattr(stock_cli, "refresh_cookie_source", fake_refresh_cookie_source)
