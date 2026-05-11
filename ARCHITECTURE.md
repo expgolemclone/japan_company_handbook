@@ -65,7 +65,7 @@ Chrome の Cookie DB (SQLite) から toyokeizai.net ドメインの Cookie を�
 
 ### PDF全号取得
 
-`client.py` の `build_api_client()` で認証済みhttpxクライアントを構築し、`fetch_pdf_access()` で PDF配信パス (basic/premium) と pdf_hash を取得。`downloader.py` がページ単位でダウンロードし、`progress.py` (Progress) が完了状態を `data/progress.json` に記録。1リクエストごとに 1秒のインターバル。
+`client.py` の `build_api_client()` で認証済みhttpxクライアントを構築し、`fetch_pdf_access()` で PDF配信パス (basic/premium) と pdf_hash を取得。`downloader.py` がticker（銘柄コード）単位でダウンロードし、`progress.py` (Progress) が完了状態を `data/progress.json` に記録。直列時は1リクエストごとに1秒のインターバル。`--workers` / `-w` オプションで `ThreadPoolExecutor` による並列DLに対応（Progress はスレッドセーフ）。
 
 ### 誌面アーカイブ (magazine/)
 

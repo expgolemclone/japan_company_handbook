@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import threading
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -19,13 +20,14 @@ class DownloadKey:
 
 
 class Progress:
-    """JSONファイルでダウンロード済み銘柄を管理する。"""
+    """JSONファイルでダウンロード済み銘柄を管理する（スレッドセーフ）。"""
 
     def __init__(self, path: Path = PROGRESS_FILE, *, autosave_every: int = 100) -> None:
         self._path = path
         self._autosave_every = autosave_every
         self._completed: set[str] = self._load()
         self._dirty_count = 0
+        self._lock = threading.Lock()
 
     def _load(self) -> set[str]:
         if not self._path.exists():
@@ -42,29 +44,33 @@ class Progress:
         self._dirty_count = 0
 
     def is_downloaded(self, key: DownloadKey) -> bool:
-        return str(key) in self._completed
+        with self._lock:
+            return str(key) in self._completed
 
     def mark_downloaded(self, key: DownloadKey) -> None:
-        item = str(key)
-        if item in self._completed:
-            return
-        self._completed.add(item)
-        self._dirty_count += 1
-        if self._dirty_count >= self._autosave_every:
-            self._save()
+        with self._lock:
+            item = str(key)
+            if item in self._completed:
+                return
+            self._completed.add(item)
+            self._dirty_count += 1
+            if self._dirty_count >= self._autosave_every:
+                self._save()
 
     def flush(self) -> None:
-        if self._dirty_count:
-            self._save()
+        with self._lock:
+            if self._dirty_count:
+                self._save()
 
     def pending_pages(
         self, page_ids: list[str], year: str, series: str
     ) -> list[str]:
         """未ダウンロードのページID一覧を返す。"""
-        return [
-            page_id for page_id in page_ids
-            if not self.is_downloaded(DownloadKey(page_id, year, series))
-        ]
+        with self._lock:
+            return [
+                page_id for page_id in page_ids
+                if str(DownloadKey(page_id, year, series)) not in self._completed
+            ]
 
     def pending_codes(
         self, codes: list[str], year: str, series: str

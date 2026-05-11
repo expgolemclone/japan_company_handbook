@@ -79,6 +79,8 @@ class TestPdfAllCli:
             page_ids: list[str],
             access: dict[str, object],
             actual_progress: object,
+            *,
+            workers: int = 1,
         ) -> None:
             downloaded.append(
                 {
@@ -154,6 +156,8 @@ class TestPdfAllCli:
             page_ids: list[str],
             access: dict[str, object],
             actual_progress: object,
+            *,
+            workers: int = 1,
         ) -> None:
             nonlocal download_attempts
             download_attempts += 1

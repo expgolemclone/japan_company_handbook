@@ -25,6 +25,8 @@ def _run_stock_fetch(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
+    from scrape import pdf_all_cli
+
     parser = argparse.ArgumentParser(prog="shikiho", description=DESCRIPTION)
     top_level = parser.add_subparsers(dest="domain", required=True)
 
@@ -32,6 +34,13 @@ def build_parser() -> argparse.ArgumentParser:
     pdf_commands = pdf_parser.add_subparsers(dest="pdf_command", required=True)
     pdf_all_parser = pdf_commands.add_parser(
         "all",
+        parents=[
+            pdf_all_cli.build_parser(
+                prog="shikiho pdf all",
+                add_help=False,
+            )
+        ],
+        add_help=True,
         description=PDF_ALL_DESCRIPTION,
         help=PDF_ALL_DESCRIPTION,
     )

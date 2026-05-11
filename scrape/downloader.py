@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import httpx
@@ -54,14 +55,32 @@ def download_all_pages(
     access: PdfAccess,
     progress: Progress,
     dest_dir: Path | None = None,
+    *,
+    workers: int = 1,
 ) -> None:
-    """全ページのPDFを順次ダウンロードする。"""
+    """全ページのPDFをダウンロードする。workers>1で並列実行。"""
     pending = progress.pending_pages(page_ids, year, series)
     logger.info(
-        "[%s_%s] downloading %d / %d pages",
-        year, series, len(pending), len(page_ids),
+        "[%s_%s] downloading %d / %d pages (workers=%d)",
+        year, series, len(pending), len(page_ids), workers,
     )
 
+    if workers <= 1:
+        _download_sequential(client, year, series, pending, access, progress, dest_dir)
+    else:
+        _download_parallel(client, year, series, pending, access, progress, dest_dir, workers)
+    progress.flush()
+
+
+def _download_sequential(
+    client: httpx.Client,
+    year: str,
+    series: str,
+    pending: list[str],
+    access: PdfAccess,
+    progress: Progress,
+    dest_dir: Path | None,
+) -> None:
     for i, page_id in enumerate(pending):
         try:
             download_pdf(client, year, series, page_id, access, dest_dir)
@@ -74,4 +93,33 @@ def download_all_pages(
 
         if i < len(pending) - 1:
             time.sleep(REQUEST_INTERVAL)
-    progress.flush()
+
+
+def _download_parallel(
+    client: httpx.Client,
+    year: str,
+    series: str,
+    pending: list[str],
+    access: PdfAccess,
+    progress: Progress,
+    dest_dir: Path | None,
+    workers: int,
+) -> None:
+    key = DownloadKey  # local reference for closure
+
+    def _download_one(page_id: str) -> str:
+        download_pdf(client, year, series, page_id, access, dest_dir)
+        progress.mark_downloaded(key(page_id, year, series))
+        return page_id
+
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = {executor.submit(_download_one, pid): pid for pid in pending}
+        for future in as_completed(futures):
+            page_id = futures[future]
+            try:
+                future.result()
+            except httpx.HTTPStatusError as e:
+                logger.error("HTTP error for %s: %s", page_id, e)
+                raise
+            except ValueError as e:
+                logger.warning("skipping %s: %s", page_id, e)

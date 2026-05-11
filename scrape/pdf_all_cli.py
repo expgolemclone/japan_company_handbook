@@ -29,11 +29,18 @@ def build_parser(
     prog: str | None = None,
     add_help: bool = True,
 ) -> argparse.ArgumentParser:
-    return argparse.ArgumentParser(
+    parser = argparse.ArgumentParser(
         prog=prog,
         description=DESCRIPTION,
         add_help=add_help,
     )
+    parser.add_argument(
+        "--workers", "-w",
+        type=int,
+        default=1,
+        help="並列ダウンロード数 (default: 1 = 直列)",
+    )
+    return parser
 
 
 def run(_args: argparse.Namespace) -> int:
@@ -78,7 +85,10 @@ def run(_args: argparse.Namespace) -> int:
                     page_ids = extract_page_ids(magazine)
                     logger.info("ページ数: %d", len(page_ids))
 
-                    download_all_pages(client, year, series, page_ids, access, progress)
+                    download_all_pages(
+                        client, year, series, page_ids, access, progress,
+                        workers=_args.workers,
+                    )
                 except httpx.HTTPStatusError as exc:
                     if not is_http_auth_error(exc) or auth_retry_used:
                         raise
