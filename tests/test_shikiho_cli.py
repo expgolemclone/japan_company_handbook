@@ -51,6 +51,7 @@ class TestShikihoCli:
         def fake_run(args) -> int:
             assert args.domain == "stock"
             assert args.stock_command == "fetch"
+            assert str(args.raw_json_dir) == "data/stock_latest_json"
             return 13
 
         monkeypatch.setattr(stock_cli, "run", fake_run)

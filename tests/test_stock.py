@@ -8,9 +8,12 @@ import pytest
 from scrape.stock import (
     ForecastRow,
     MajorShareholder,
+    StockLatestJson,
     StockPerformance,
     _parse_value,
     fetch_stock_latest,
+    fetch_stock_latest_json,
+    parse_stock_latest_payload,
     parse_shimen_results,
 )
 from scrape.stock_db import existing_shareholder_codes, init_db, save_performance, save_shareholders
@@ -157,6 +160,35 @@ class TestParseShimenResults:
 
 
 class TestFetchStockLatest:
+    def test_fetches_raw_json_response(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        import httpx
+
+        content = (
+            b'{"is_exist":"1","company_name_j":"test",'
+            b'"shimen_results":[["header"],["\\u25c726.3\\u4e88"]]}'
+        )
+        request = httpx.Request("GET", "https://example.com/test")
+        response = httpx.Response(
+            200,
+            content=content,
+            headers={"content-type": "application/json"},
+            request=request,
+        )
+
+        monkeypatch.setattr(httpx.Client, "get", lambda self, url: response)
+        client = httpx.Client()
+        result = fetch_stock_latest_json(client, "7203")
+
+        assert result == StockLatestJson(
+            code="7203",
+            payload={
+                "is_exist": "1",
+                "company_name_j": "test",
+                "shimen_results": [["header"], ["◇26.3予"]],
+            },
+            content=content,
+        )
+
     def test_returns_performance(self, monkeypatch: pytest.MonkeyPatch) -> None:
         import httpx
 
@@ -178,6 +210,19 @@ class TestFetchStockLatest:
         assert len(result.shikiho_forecasts) == 2
         assert result.company_forecast is not None
         assert result.company_forecast.operating_profit == 3800000
+
+    def test_parses_payload_without_refetching(self) -> None:
+        payload = {
+            "is_exist": "1",
+            "company_name_j": "トヨタ自動車",
+            "shimen_results": SAMPLE_SHIMEN_RESULTS,
+        }
+
+        result = parse_stock_latest_payload("7203", payload)
+
+        assert result is not None
+        assert result.code == "7203"
+        assert result.company_name == "トヨタ自動車"
 
     def test_returns_none_for_missing(self, monkeypatch: pytest.MonkeyPatch) -> None:
         import httpx

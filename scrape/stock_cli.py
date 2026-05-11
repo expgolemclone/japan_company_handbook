@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 
 DATA_DIR = Path("data")
 DEFAULT_CODES_PATH = DATA_DIR / "stock_codes_2026_2.json"
+DEFAULT_RAW_JSON_DIR = DATA_DIR / "stock_latest_json"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DESCRIPTION = "四季報の銘柄業績予想を取得してSQLiteへ保存する"
 
@@ -68,7 +69,7 @@ httpx = _ensure_httpx_runtime()
 from scrape.auth import is_http_auth_error, refresh_cookie_source
 from scrape.client import build_api_client
 from scrape.downloader import REQUEST_INTERVAL
-from scrape.stock import fetch_stock_latest
+from scrape.stock import fetch_stock_latest_json, parse_stock_latest_payload
 from scrape.stock_db import existing_codes, existing_shareholder_codes, init_db, save_performance, save_shareholders
 
 
@@ -94,6 +95,12 @@ def build_parser(
         dest="codes",
         metavar="STOCK_CODE",
         help="指定した銘柄コードだけ取得する。複数指定可",
+    )
+    parser.add_argument(
+        "--raw-json-dir",
+        type=Path,
+        default=DEFAULT_RAW_JSON_DIR,
+        help="銘柄APIの生JSON保存先ディレクトリ",
     )
     return parser
 
@@ -128,7 +135,8 @@ def run(_args: argparse.Namespace) -> int:
     if not _args.force:
         existing_forecasts = existing_codes()
         existing_sh = existing_shareholder_codes()
-        existing = existing_forecasts & existing_sh
+        existing_raw_json = _existing_raw_json_codes(codes, _args.raw_json_dir)
+        existing = existing_forecasts & existing_sh & existing_raw_json
         before = len(codes)
         codes = [c for c in codes if c not in existing]
         if len(codes) < before:
@@ -165,7 +173,9 @@ def run(_args: argparse.Namespace) -> int:
             try:
                 while True:
                     try:
-                        perf = fetch_stock_latest(api_client, code)
+                        latest = fetch_stock_latest_json(api_client, code)
+                        _save_stock_latest_json(_args.raw_json_dir, code, latest.content)
+                        perf = parse_stock_latest_payload(code, latest.payload)
                     except httpx.HTTPStatusError as exc:
                         if not is_http_auth_error(exc) or auth_retry_used:
                             raise
@@ -229,6 +239,21 @@ def main(argv: list[str] | None = None) -> int:
 def _check_api_auth(api_client) -> None:
     access_resp = api_client.get("/sso/v1/sso/check")
     access_resp.raise_for_status()
+
+
+def _existing_raw_json_codes(codes: list[str], raw_json_dir: Path) -> set[str]:
+    return {code for code in codes if _raw_json_path(raw_json_dir, code).exists()}
+
+
+def _save_stock_latest_json(raw_json_dir: Path, code: str, content: bytes) -> Path:
+    path = _raw_json_path(raw_json_dir, code)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(content)
+    return path
+
+
+def _raw_json_path(raw_json_dir: Path, code: str) -> Path:
+    return raw_json_dir / f"{code}.json"
 
 
 def _refresh_api_client(api_client):

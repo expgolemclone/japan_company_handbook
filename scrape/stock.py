@@ -39,6 +39,13 @@ class StockPerformance:
     shareholders_date: str | None
 
 
+@dataclass(frozen=True, slots=True)
+class StockLatestJson:
+    code: str
+    payload: dict[str, object]
+    content: bytes
+
+
 def _parse_value(raw: str | None) -> int | None:
     if raw is None:
         return None
@@ -104,10 +111,26 @@ def fetch_stock_latest(
     client: httpx.Client,
     code: str,
 ) -> StockPerformance | None:
+    latest = fetch_stock_latest_json(client, code)
+    return parse_stock_latest_payload(code, latest.payload)
+
+
+def fetch_stock_latest_json(
+    client: httpx.Client,
+    code: str,
+) -> StockLatestJson:
     resp = client.get(f"/stocks/v1/stocks/{code}/latest")  # noqa: scrape-interval
     resp.raise_for_status()
     payload = resp.json()
+    if not isinstance(payload, dict):
+        raise ValueError(f"{code}: JSONオブジェクトではないレスポンスです")
+    return StockLatestJson(code=code, payload=payload, content=resp.content)
 
+
+def parse_stock_latest_payload(
+    code: str,
+    payload: dict[str, object],
+) -> StockPerformance | None:
     if payload.get("is_exist") != "1":
         logger.warning("%s: 銘柄が存在しません", code)
         return None

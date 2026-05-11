@@ -9,7 +9,7 @@
 2. `shikiho magazine ...`
    号単位の manifest、ページ実体、進捗、検証結果、監査結果を `data/magazines/` 配下に保存する。
 3. `shikiho stock fetch`
-   銘柄ごとの業績予想（四季報予想・会社予想）をAPIから取得し、SQLiteへ保存する。
+   銘柄ごとの API レスポンス JSON をローカル保存し、同じレスポンスから業績予想（四季報予想・会社予想）を抽出して SQLite へ保存する。
 
 補助系として、取得済みPDFを反転する `invert-pdfs` と、長時間バッチを監視する watchdog ラッパーを持つ。認証はいずれも東洋経済サイトのログインCookieに依存し、HTTPアクセスは Playwright ではなく `httpx` から直接 API と配信URLを叩く構成になっている。
 
@@ -93,7 +93,8 @@ Chrome Cookie DB
   -> scrape.client.build_api_client()
   -> /sso/v1/sso/check
   -> /stocks/v1/stocks/{code}/latest
-  -> scrape.stock.fetch_stock_latest()
+  -> data/stock_latest_json/{code}.json
+  -> scrape.stock.parse_stock_latest_payload()
   -> shimen_results パース
      -> ◇XX.X予 / ◎XX.X予 / 連XX.X予 / 単XX.X予 / *予 / 予変 -> 四季報予想(2期分)
      -> 会XX.X予 -> 会社予想(1期分)
@@ -111,7 +112,8 @@ Chrome Cookie DB
 - `連XX.X予` / `単XX.X予` / `◎XX.X予` や `*予` / `予変` を含む通期予想も四季報予想として取り込み、`26.7〜12予` のような中間期予想は保存しない。
 - `INSERT OR REPLACE` で同一キーを更新する。
 - `--code CODE` は指定銘柄だけを実行対象にし、`--force` と組み合わせると保存済みの単一銘柄を再取得できる。
-- 既定では `stock_forecasts` と `major_shareholders` の両方に保存済みの銘柄コードを起動直後に除外し、差分だけ処理する。
+- 各銘柄の API レスポンス本文は `data/stock_latest_json/{code}.json` に保存する。`--raw-json-dir` で保存先を変更できる。
+- 既定では `stock_forecasts`、`major_shareholders`、raw JSON のすべてが保存済みの銘柄コードを起動直後に除外し、差分だけ処理する。
 - API 上は銘柄が存在しても、保存対象の予想行を1件も抽出できなかった場合はスキップとして扱う。
 - 起動時 `sso/check` と銘柄取得中の `401` / `403` を検知した時だけ Cookie 更新を試み、同じ銘柄を1回だけ再試行する。
 - 進捗ログは100銘柄ごとに `進捗: x / total (成功: y, スキップ: z)` を出力する。
@@ -224,6 +226,7 @@ systemd-run --user
 
 - 銘柄業績予想と大株主のAPI呼び出しとパースを担当。
 - `/stocks/v1/stocks/{code}/latest` から `shimen_results` と `shimen_shareholders` を取得する。
+- API レスポンス本文を raw JSON 保存用に bytes のまま返し、同じ payload をパースして保存用データへ変換する。
 - `◇XX.X予`、`◎XX.X予`、`連XX.X予` / `単XX.X予`、`*予` / `予変` を含む通期行から四季報予想を2期分、`会XX.X予` 行から会社予想を1期分抽出する。
 - `shimen_shareholders` から大株主リストをパースし、`shareholders_research_date` を基準日として格納する。
 - 保存対象の予想行を抽出できなかった payload はスキップ対象として返す。
@@ -239,6 +242,7 @@ systemd-run --user
 
 - `shikiho stock fetch` の実行本体。
 - `data/stock_codes_*.json` の全銘柄を処理する。
+- `/stocks/v1/stocks/{code}/latest` の raw JSON を `data/stock_latest_json/{code}.json` または `--raw-json-dir` の指定先に保存する。
 - `httpx` 未導入時は `.venv` を検出して `scrape.shikiho_cli stock fetch` に再実行する。
 - `401` / `403` を検知した場合は Cookie 更新後に同じ銘柄を1回だけ再試行する。
 - 直接 `python -m scrape.stock_cli` された場合は移行メッセージを返す。
