@@ -190,6 +190,7 @@ def _parse_stat_value(raw: str | None) -> float | None:
     try:
         return float(stripped)
     except ValueError:
+        logger.debug("failed to parse stat value: %r", stripped)
         return None
 
 
