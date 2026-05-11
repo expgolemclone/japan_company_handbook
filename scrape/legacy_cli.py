@@ -46,3 +46,10 @@ def main_stock_module() -> int:
         "python -m scrape.stock_cli",
         "uv run shikiho stock fetch",
     )
+
+
+def main_stock_load_module() -> int:
+    return _print_migration(
+        "python -m scrape.stock_load_cli",
+        "uv run shikiho stock load",
+    )

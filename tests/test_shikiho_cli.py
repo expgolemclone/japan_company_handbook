@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import argparse
+
 import pytest
 
 from scrape import legacy_cli, shikiho_cli
@@ -57,6 +59,19 @@ class TestShikihoCli:
         monkeypatch.setattr(stock_cli, "run", fake_run)
 
         assert shikiho_cli.main(["stock", "fetch"]) == 13
+
+    def test_dispatches_stock_load(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        from scrape import stock_load_cli
+
+        def fake_run(args: argparse.Namespace) -> int:
+            assert args.domain == "stock"
+            assert args.stock_command == "load"
+            assert str(args.raw_json_dir) == "data/stock_latest_json"
+            return 17
+
+        monkeypatch.setattr(stock_load_cli, "run", fake_run)
+
+        assert shikiho_cli.main(["stock", "load"]) == 17
 
 
 class TestLegacyCli:

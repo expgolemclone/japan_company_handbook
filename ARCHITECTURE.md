@@ -15,6 +15,7 @@ scrape/              スクレイピング・データ取得
   pdf_all_cli.py       全号PDF一括取得
   stock.py             銘柄業績予想・大株主のパース
   stock_cli.py         銘柄データ取得CLI
+  stock_load_cli.py    ローカルJSON→SQLite読み込みCLI
   stock_db.py          SQLiteへの銘柄データ保存
   watchdog.py          プロセス監視・自動再起動
   magazine/            誌面アーカイブ取得サブパッケージ
@@ -54,6 +55,7 @@ tests/               テストスイート
 | `magazine verify` | 取得済みアーカイブの整合性検証 | `verify_cli.run` |
 | `magazine audit` | 欠号監査と認証診断 | `audit_cli.run` |
 | `stock fetch` | 銘柄業績予想・大株主の取得 | `stock_cli.run` |
+| `stock load` | ローカルJSONからSQLiteへ読み込み | `stock_load_cli.run` |
 
 ### 認証 (auth.py)
 
@@ -87,6 +89,8 @@ APIから号一覧を取得し、各号について:
 - `major_shareholders`: 銘柄コード・順位の複合主キーで UPSERT
 
 `stock_cli.py` は API生JSON を `data/stock_latest_json/{code}.json` に保存しつつ SQLite も更新。`--force` なしの場合は SQLite と raw JSON の両方が揃った銘柄をスキップ。
+
+`stock_load_cli.py` はAPI通信なしでローカルJSONからSQLiteへ読み込む。認証不要でオフライン再処理が可能。`--force` なしの場合はSQLite保存済み銘柄をスキップ。
 
 ### プロセス監視 (watchdog.py)
 

@@ -10,6 +10,7 @@ MAGAZINE_DESCRIPTION = "誌面アーカイブを取得・検証する"
 STOCK_DESCRIPTION = "銘柄業績予想を取得する"
 PDF_ALL_DESCRIPTION = "1936年以降の全号ページPDFを保存する"
 STOCK_FETCH_DESCRIPTION = "銘柄業績予想を取得してSQLiteへ保存する"
+STOCK_LOAD_DESCRIPTION = "ローカルJSONから銘柄データをSQLiteへ読み込む"
 
 
 def _run_pdf_all(args: argparse.Namespace) -> int:
@@ -22,6 +23,12 @@ def _run_stock_fetch(args: argparse.Namespace) -> int:
     from scrape import stock_cli
 
     return stock_cli.run(args)
+
+
+def _run_stock_load(args: argparse.Namespace) -> int:
+    from scrape import stock_load_cli
+
+    return stock_load_cli.run(args)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -133,6 +140,22 @@ def build_parser() -> argparse.ArgumentParser:
         help=STOCK_FETCH_DESCRIPTION,
     )
     stock_fetch_parser.set_defaults(handler=_run_stock_fetch)
+
+    from scrape import stock_load_cli as _stock_load_cli
+
+    stock_load_parser = stock_commands.add_parser(
+        "load",
+        parents=[
+            _stock_load_cli.build_parser(
+                prog="shikiho stock load",
+                add_help=False,
+            )
+        ],
+        add_help=True,
+        description=STOCK_LOAD_DESCRIPTION,
+        help=STOCK_LOAD_DESCRIPTION,
+    )
+    stock_load_parser.set_defaults(handler=_run_stock_load)
 
     return parser
 
