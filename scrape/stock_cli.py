@@ -5,6 +5,7 @@ import importlib
 import json
 import logging
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -15,7 +16,20 @@ DATA_DIR = Path("data")
 DEFAULT_CODES_PATH = DATA_DIR / "stock_codes_2026_2.json"
 DEFAULT_RAW_JSON_DIR = DATA_DIR / "stock_latest_json"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+STOCK_DB_PROJECT_ROOT = PROJECT_ROOT.parent / "stock_db"
 DESCRIPTION = "四季報の銘柄業績予想を取得してSQLiteへ保存する"
+
+
+def _sync_shikiho_forecasts() -> None:
+    result = subprocess.run(
+        ["uv", "run", "--project", str(STOCK_DB_PROJECT_ROOT),
+         "python", "-m", "stock_db.cli.sync_shikiho_forecasts"],
+        capture_output=True, text=True,
+    )
+    if result.returncode == 0:
+        logger.info("shikiho同期完了: %s", result.stderr.strip())
+    else:
+        logger.error("shikiho同期失敗: %s", result.stderr.strip())
 
 
 def _find_project_venv_python(project_root: Path = PROJECT_ROOT) -> Path | None:
@@ -233,6 +247,7 @@ def run(_args: argparse.Namespace) -> int:
                 time.sleep(REQUEST_INTERVAL)
 
         logger.info("完了 — 成功: %d, スキップ: %d / %d", success, skipped, len(codes))
+        _sync_shikiho_forecasts()
         return 0
     finally:
         api_client.close()

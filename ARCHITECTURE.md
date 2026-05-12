@@ -61,7 +61,7 @@ Chrome の Cookie DB (SQLite) から toyokeizai.net ドメインの Cookie を�
 - `stock_dividends`: 銘柄コード・期間の複合主キーで UPSERT (配当金)
 - `stock_metrics`: 銘柄コード主キーで UPSERT (PER/PBR/ROE/ROA/EPS/財務・会社基本情報)
 
-`stock_cli.py` は API生JSON を `data/stock_latest_json/{code}.json` に保存しつつ SQLite も更新。`--force` なしの場合は全テーブルと raw JSON が揃った銘柄をスキップ。
+`stock_cli.py` は API生JSON を `data/stock_latest_json/{code}.json` に保存しつつ SQLite も更新。`--force` なしの場合は全テーブルと raw JSON が揃った銘柄をスキップ。フェッチ完了後、`stock_db` の `sync_shikiho_forecasts` を subprocess で自動実行し、予想データを `stocks.db` へ即時同期する。
 
 `stock_load_cli.py` はAPI通信なしでローカルJSONからSQLiteへ読み込む。認証不要でオフライン再処理が可能。`--force` なしの場合は全テーブル保存済み銘柄をスキップ。
 
