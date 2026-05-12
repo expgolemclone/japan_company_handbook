@@ -19,10 +19,6 @@ dev = [
 shikiho = "scrape.shikiho_cli:main"
 scrape = "scrape.legacy_cli:main_scrape"
 invert-pdfs = "pdfops.__main__:main"
-scrape-magazine = "scrape.legacy_cli:main_scrape_magazine_issue"
-scrape-magazine-all = "scrape.legacy_cli:main_scrape_magazine_all"
-scrape-magazine-verify = "scrape.legacy_cli:main_scrape_magazine_verify"
-scrape-magazine-audit = "scrape.legacy_cli:main_scrape_magazine_audit"
 
 [tool.hatch.build.targets.wheel]
 packages = ["scrape", "pdfops"]

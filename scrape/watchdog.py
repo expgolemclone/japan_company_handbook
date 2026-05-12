@@ -48,30 +48,9 @@ class SignalState:
 PROFILES: dict[str, WatchdogProfile] = {
     "shikiho-pdf-all": WatchdogProfile(
         name="shikiho-pdf-all",
-        command=("uv", "run", "shikiho", "pdf", "all"),
+        command=("uv", "run", "shikiho", "pdf", "all", "-w", "10"),
         default_idle_seconds=900.0,
         heartbeat_globs=("data/progress.json",),
-    ),
-    "shikiho-magazine-all": WatchdogProfile(
-        name="shikiho-magazine-all",
-        command=(
-            "uv",
-            "run",
-            "shikiho",
-            "magazine",
-            "all",
-            "--resume",
-            "--verify-after-run",
-        ),
-        default_idle_seconds=1800.0,
-        heartbeat_globs=(
-            "data/magazines/issues.raw.json",
-            "data/magazines/issues.expected.json",
-            "data/magazines/batch_progress.json",
-            "data/magazines/batch_summary.json",
-            "data/magazines/verify_report.json",
-            "data/magazines/*/progress.json",
-        ),
     ),
 }
 

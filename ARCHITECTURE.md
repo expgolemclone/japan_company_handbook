@@ -18,23 +18,9 @@ scrape/              スクレイピング・データ取得
   stock_load_cli.py    ローカルJSON→SQLite読み込みCLI
   stock_db.py          SQLiteへの銘柄データ保存
   watchdog.py          プロセス監視・自動再起動
-  magazine/            誌面アーカイブ取得サブパッケージ
-    client.py            誌面APIクライアント・ペイロード検証
-    downloader.py        誌面アーティファクトダウンロード
-    normalize.py         APIレスポンスの正規化
-    progress.py          号単位・バッチ単位の進捗管理
-    verify.py            取得結果の検証
-    audit.py             欠号監査・認証診断
-    summary.py           バッチ結果サマリ
-    types.py             データ型定義 (TypedDict/dataclass)
-    issue_cli.py         単号取得CLI
-    all_cli.py           全号一括取得CLI
-    verify_cli.py        検証CLI
-    audit_cli.py         監査CLI
 pdfops/              PDF操作ユーティリティ
   invert.py            PDF白黒反転 (Ghostscript/pdftoppm+ImageMagick)
 data/                取得済みデータ保存先
-  magazines/           誌面アーカイブ (号ごとに {year}_{series}/)
   stock_latest_json/   銘柄API生JSON (code.json)
   stock_performance.db 銘柄業績予想SQLite
   progress.json        PDF全号ダウンロード進捗
@@ -50,10 +36,6 @@ tests/               テストスイート
 | サブコマンド | 機能 | ハンドラ |
 |---|---|---|
 | `pdf all` | 1936年以降の全号PDF一括保存 | `pdf_all_cli.run` |
-| `magazine issue` | 指定号の誌面アーカイブ取得 | `issue_cli.run` |
-| `magazine all` | 全号アーカイブ一括取得 (resume対応) | `all_cli.run` |
-| `magazine verify` | 取得済みアーカイブの整合性検証 | `verify_cli.run` |
-| `magazine audit` | 欠号監査と認証診断 | `audit_cli.run` |
 | `stock fetch` | 銘柄業績予想・大株主の取得 | `stock_cli.run` |
 | `stock load` | ローカルJSONからSQLiteへ読み込み | `stock_load_cli.run` |
 
@@ -68,17 +50,6 @@ Chrome の Cookie DB (SQLite) から toyokeizai.net ドメインの Cookie を�
 ### PDF全号取得
 
 `client.py` の `build_api_client()` で認証済みhttpxクライアントを構築し、`fetch_pdf_access()` で PDF配信パス (basic/premium) と pdf_hash を取得。`downloader.py` がticker（銘柄コード）単位でダウンロードし、`progress.py` (Progress) が完了状態を `data/progress.json` に記録。直列時は1リクエストごとに1秒のインターバル。`--workers` / `-w` オプションで `ThreadPoolExecutor` による並列DLに対応（Progress はスレッドセーフ）。
-
-### 誌面アーカイブ (magazine/)
-
-APIから号一覧を取得し、各号について:
-
-1. **client.py**: `/files/v1/files/magazines/{year}/{series}` から号情報を取得
-2. **normalize.py**: レスポンスを `NormalizedMagazine` に正規化。ページの source_url をヒューリスティクスで推定、または `fetch_pdf_access()` で PDF URL を構築
-3. **downloader.py**: 各ページをダウンロード。テキスト/htmlレスポンスの場合は pdf_access を再取得してリトライ
-4. **progress.py**: `IssueProgress` (号単位) と `BatchProgress` (全号単位) で進捗を JSON に永続化
-5. **verify.py**: manifest・progress・ファイルの整合性を検証し `VerifyReport` を生成
-6. **audit.py**: API号一覧と期待号一覧を比較し、欠号を `external_confirmed`/`mixed`/`internal_inferred` に分類。認証診断で各エンドポイントの健全性をチェック
 
 ### 銘柄データ取得 (stock)
 
@@ -96,7 +67,7 @@ APIから号一覧を取得し、各号について:
 
 ### プロセス監視 (watchdog.py)
 
-長時間実行コマンド (pdf all, magazine all) を子プロセスとして起動し、heartbeat (ファイル更新時刻) で停滞を検知して自動再起動する。バックオフスケジュール (10s→20s→...→300s) で再起動間隔を制御。プロファイルごとにファイルロックで排他。
+長時間実行コマンド (pdf all) を子プロセスとして起動し、heartbeat (ファイル更新時刻) で停滞を検知して自動再起動する。バックオフスケジュール (10s→20s→...→300s) で再起動間隔を制御。プロファイルごとにファイルロックで排他。
 
 ### PDF白黒反転 (pdfops/)
 
@@ -113,18 +84,17 @@ Chrome Cookie DB
        ▼
 ┌─────────────────────────────────────────┐
 │            API (api-shikiho.toyokeizai.net)  │
-└──┬──────────┬──────────┬───────────────┘
-   │          │          │
-   ▼          ▼          ▼
- PDF URL   号一覧     銘柄情報
-   │          │          │
-   ▼          ▼          ▼
-downloader  normalize   stock.py
-   │       downloader    │
-   │          │          ▼
-   ▼          ▼       stock_db.py ──► SQLite
- data/{year}_{series}/   stock_cli.py ──► raw JSON
- data/magazines/
+└──┬──────────┬───────────────────────────┘
+   │          │
+   ▼          ▼
+ PDF URL     銘柄情報
+   │          │
+   ▼          ▼
+downloader   stock.py
+   │          │
+   ▼          ▼
+ data/{year}_{series}/  stock_db.py ──► SQLite
+                        stock_cli.py ──► raw JSON
 ```
 
 ## 依存関係

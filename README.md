@@ -13,10 +13,6 @@ uv sync
 | 用途 | コマンド | 主な出力 |
 | --- | --- | --- |
 | 全号ページPDFを一括取得 | `uv run shikiho pdf all` | `data/{year}_{series}/{page_id}.pdf` |
-| 誌面アーカイブを単号取得 | `uv run shikiho magazine issue --calendar 2026 --series 2` | `data/magazines/{calendar}_{series}/` |
-| 誌面アーカイブを全号取得 | `uv run shikiho magazine all --resume --verify-after-run` | `data/magazines/` 配下一式 |
-| 誌面アーカイブを検証 | `uv run shikiho magazine verify` | `data/magazines/verify_report.json` |
-| 欠号監査と認証診断 | `uv run shikiho magazine audit --cookie-file data/cookies.json` | `fact_check_report.json` / `auth_diagnostics.json` |
 | 銘柄業績予想を取得 | `uv run shikiho stock fetch` | `data/stock_performance.db` / `data/stock_latest_json/{code}.json` |
 | 指定銘柄だけ再取得 | `uv run shikiho stock fetch --code 4231 --force` | `data/stock_performance.db` / `data/stock_latest_json/4231.json` |
 
@@ -27,20 +23,14 @@ uv sync
 - `shikiho stock fetch` は各銘柄の API レスポンス JSON を `data/stock_latest_json/{code}.json` に丸ごと保存し、同じレスポンスから従来どおり SQLite も更新します。保存先は `--raw-json-dir` で変更できます。
 - `--force` なしの場合、SQLite と raw JSON の両方が揃っている銘柄だけを取得済みとしてスキップします。
 - `.venv` が無い、または依存が未インストールの場合は起動できないため、先に `uv sync` を実行してください。
-- `shikiho pdf all` / `shikiho stock fetch` / `shikiho magazine issue|all|audit` は、`401` / `403` / `3202` などの認証失敗を検知すると `https://shikiho.toyokeizai.net/stocks/` を開いて Cookie 更新を試み、成功時は同じ処理を1回だけ再試行します。
+- `shikiho pdf all` / `shikiho stock fetch` は、`401` / `403` / `3202` などの認証失敗を検知すると `https://shikiho.toyokeizai.net/stocks/` を開いて Cookie 更新を試み、成功時は同じ処理を1回だけ再試行します。
 - `--cookie-file data/cookies.json` のような JSON Cookie を指定した場合も、認証失敗時は Chrome Cookie DB を元にその JSON を自動で上書き更新します。
-- `shikiho magazine all` は開始前に現在の Cookie で認証 preflight を行い、認証系失敗時だけ Cookie 更新後に再試行します。回復できない場合は `data/magazines/auth_diagnostics.json` を書いて停止します。
-- `shikiho magazine audit` は `issues.raw.json` / `issues.expected.json` / 既存 manifest を突き合わせて、欠号候補を `external_confirmed` / `mixed` / `internal_inferred` で分類します。
 
 ## 移行表
 
 | 旧コマンド | 新コマンド |
 | --- | --- |
 | `scrape` | `uv run shikiho pdf all` |
-| `scrape-magazine` | `uv run shikiho magazine issue` |
-| `scrape-magazine-all` | `uv run shikiho magazine all` |
-| `scrape-magazine-verify` | `uv run shikiho magazine verify` |
-| `scrape-magazine-audit` | `uv run shikiho magazine audit` |
 | `python -m scrape.stock_cli` | `uv run shikiho stock fetch` |
 
 旧コマンドは互換実行せず、対応する `shikiho` コマンドを案内して終了します。
