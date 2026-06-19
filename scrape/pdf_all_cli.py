@@ -2,12 +2,14 @@ from __future__ import annotations
 
 import argparse
 import logging
+from dataclasses import dataclass
 from typing import Callable, TypeVar
 
 import httpx
 
 from scrape.auth import is_http_auth_error, refresh_cookie_source
 from scrape.client import (
+    Issue,
     PdfAccess,
     build_api_client,
     build_http_client,
@@ -22,6 +24,12 @@ from scrape.progress import Progress
 DESCRIPTION = "四季報ビューア全号のページPDFを保存する"
 logger = logging.getLogger(__name__)
 T = TypeVar("T")
+
+
+@dataclass(frozen=True, slots=True)
+class IssueSelector:
+    year: str
+    series: str
 
 
 def build_parser(
@@ -40,6 +48,13 @@ def build_parser(
         default=1,
         help="並列ダウンロード数 (default: 1 = 直列)",
     )
+    parser.add_argument(
+        "--issue",
+        action="append",
+        type=_parse_issue_selector,
+        metavar="YYYY_SERIES",
+        help="取得対象号をYYYY_SERIES形式で指定する. 複数指定可",
+    )
     return parser
 
 
@@ -56,6 +71,7 @@ def run(_args: argparse.Namespace) -> int:
             lambda current_client: fetch_issues(current_client, from_year=1936),
             label="号一覧取得",
         )
+        issues = _select_issues(issues, _args.issue or [])
 
         logger.info("取得対象号数: %d", len(issues))
         if issues:
@@ -104,6 +120,40 @@ def run(_args: argparse.Namespace) -> int:
         api_client.close()
         if client is not None:
             client.close()
+
+
+def _parse_issue_selector(value: str) -> IssueSelector:
+    parts = value.split("_")
+    if len(parts) != 2:
+        raise argparse.ArgumentTypeError("号はYYYY_SERIES形式で指定してください")
+
+    year, series = parts
+    if len(year) != 4 or not year.isdecimal() or not series.isdecimal():
+        raise argparse.ArgumentTypeError("号はYYYY_SERIES形式で指定してください")
+
+    return IssueSelector(year=year, series=series)
+
+
+def _select_issues(
+    issues: list[Issue],
+    selectors: list[IssueSelector],
+) -> list[Issue]:
+    if not selectors:
+        return issues
+
+    requested = {(selector.year, selector.series) for selector in selectors}
+    selected = [
+        issue for issue in issues
+        if (str(issue["calendar"]), str(issue["series"])) in requested
+    ]
+
+    found = {(str(issue["calendar"]), str(issue["series"])) for issue in selected}
+    missing = sorted(requested - found)
+    if missing:
+        labels = ", ".join(f"{year}_{series}" for year, series in missing)
+        raise ValueError(f"指定された号が見つかりません: {labels}")
+
+    return selected
 
 
 def _fetch_pdf_access_with_retry(api_client: httpx.Client) -> tuple[PdfAccess, httpx.Client]:

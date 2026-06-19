@@ -25,6 +25,107 @@ def _http_status_error(status_code: int) -> httpx.HTTPStatusError:
 
 
 class TestPdfAllCli:
+    def test_downloads_only_requested_issue(self, monkeypatch) -> None:
+        api_client = _FakeClient("api")
+        download_client = _FakeClient("download")
+        progress = object()
+        downloaded: list[dict[str, object]] = []
+
+        monkeypatch.setattr(pdf_all_cli, "build_api_client", lambda: api_client)
+        monkeypatch.setattr(pdf_all_cli, "build_http_client", lambda: download_client)
+        monkeypatch.setattr(
+            pdf_all_cli,
+            "fetch_pdf_access",
+            lambda client: {
+                "auth_level": 5,
+                "pdf_hash": "Policy=abc",
+                "pdf_path": "/files/shimen/premium",
+            },
+        )
+        monkeypatch.setattr(
+            pdf_all_cli,
+            "fetch_issues",
+            lambda client, from_year=1936: [
+                {"calendar": "2026", "series": "2", "title": "春号"},
+                {"calendar": "2026", "series": "3", "title": "夏号"},
+            ],
+        )
+        monkeypatch.setattr(
+            pdf_all_cli,
+            "fetch_magazine",
+            lambda client, year, series: {"pages": [{"page": "0001"}, {"page": "0002"}]},
+        )
+        monkeypatch.setattr(pdf_all_cli, "extract_page_ids", lambda magazine: ["0001", "0002"])
+        monkeypatch.setattr(pdf_all_cli, "Progress", lambda: progress)
+
+        def fake_download_all_pages(
+            client: _FakeClient,
+            year: str,
+            series: str,
+            page_ids: list[str],
+            access: dict[str, object],
+            actual_progress: object,
+            *,
+            workers: int = 1,
+        ) -> None:
+            downloaded.append(
+                {
+                    "client": client.name,
+                    "year": year,
+                    "series": series,
+                    "page_ids": page_ids,
+                    "progress": actual_progress,
+                    "workers": workers,
+                }
+            )
+
+        monkeypatch.setattr(pdf_all_cli, "download_all_pages", fake_download_all_pages)
+
+        exit_code = pdf_all_cli.main(["--issue", "2026_3", "--workers", "3"])
+
+        assert exit_code == 0
+        assert downloaded == [
+            {
+                "client": "download",
+                "year": "2026",
+                "series": "3",
+                "page_ids": ["0001", "0002"],
+                "progress": progress,
+                "workers": 3,
+            }
+        ]
+        assert api_client.closed is True
+        assert download_client.closed is True
+
+    def test_missing_requested_issue_raises(self, monkeypatch) -> None:
+        api_client = _FakeClient("api")
+
+        monkeypatch.setattr(pdf_all_cli, "build_api_client", lambda: api_client)
+        monkeypatch.setattr(
+            pdf_all_cli,
+            "fetch_pdf_access",
+            lambda client: {
+                "auth_level": 5,
+                "pdf_hash": "Policy=abc",
+                "pdf_path": "/files/shimen/premium",
+            },
+        )
+        monkeypatch.setattr(
+            pdf_all_cli,
+            "fetch_issues",
+            lambda client, from_year=1936: [
+                {"calendar": "2026", "series": "2", "title": "春号"}
+            ],
+        )
+
+        try:
+            pdf_all_cli.main(["--issue", "2026_3"])
+        except ValueError as exc:
+            assert str(exc) == "指定された号が見つかりません: 2026_3"
+        else:
+            raise AssertionError("ValueError was not raised")
+        assert api_client.closed is True
+
     def test_retries_after_401_and_downloads_pages(self, monkeypatch) -> None:
         api_clients: list[_FakeClient] = []
         download_client = _FakeClient("download")
