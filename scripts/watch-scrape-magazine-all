@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo '`scripts/watch-scrape-magazine-all` は廃止されました。`scripts/watch-shikiho-magazine-all` を使ってください。' >&2
+exit 2

@@ -1,0 +1,37 @@
+# === Whitelist .gitignore ===
+# デフォルトですべてを無視し、明示的に許可したものだけを管理する
+
+# すべて無視
+*
+
+# === ルート設定ファイル ===
+!.gitignore
+!.gitattributes
+!README.md
+!ARCHITECTURE.md
+!AGENTS.md
+!pyproject.toml
+!uv.lock
+
+# === ソースコード ===
+!pdfops/
+!pdfops/**
+!scrape/
+!scrape/**
+!scripts/
+!scripts/**
+!tests/
+!tests/**
+
+# === キャッシュ・ビルド成果物は再除外 ===
+__pycache__/
+*.pyc
+*.pyo
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+
+!data/stock_codes_*.json

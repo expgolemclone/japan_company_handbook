@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo '`scripts/watch-scrape` は廃止されました。`scripts/watch-shikiho-pdf-all` を使ってください。' >&2
+exit 2
